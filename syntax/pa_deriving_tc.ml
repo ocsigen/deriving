@@ -9,12 +9,12 @@ open Camlp4.PreCast
 
 open Pa_deriving_common
 
-let translate_str deriver types =
+let translate_str deriver _ types =
   let _loc = Ast.loc_of_ctyp types in
   let decls = Base.display_errors _loc Type.Translate.decls types in
   Base.derive_str _loc decls deriver
 
-let translate_sig deriver types =
+let translate_sig deriver _ types =
   let _loc = Ast.loc_of_ctyp types in
   let decls = Base.display_errors _loc Type.Translate.decls types in
   Base.derive_sig _loc decls deriver
