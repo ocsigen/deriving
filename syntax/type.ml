@@ -170,6 +170,9 @@ struct
     | Ast.TyQuP (loc, name) -> name, Some `Plus
     | Ast.TyQuM (loc, name) -> name, Some `Minus
     | Ast.TyQuo (loc, name)  -> name, None
+    | Ast.TyAnP _ -> "", Some `Plus
+    | Ast.TyAnM _ -> "", Some `Minus
+    | Ast.TyAny _ -> "", None
     | _ -> assert false
 
   let params = List.map param
@@ -310,6 +313,8 @@ struct
       | Ast.TyId (_, c)                  -> (ident c, []), []
       | Ast.TyOf (_, Ast.TyId (_, c), t) ->
           let es, vs = List.split (list expr split_and t) in (ident c, es), List.concat vs
+      | Ast.TyCol (_, Ast.TyId (_, c), _) ->
+          failwith "deriving does not currently support GADT"
       | _                                -> assert false
 
     let rec repr = function

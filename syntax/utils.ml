@@ -141,6 +141,9 @@ struct
     | TyOfAmp (_, c1, c2) -> "TyOfAmp ("^ ctyp c1 ^ ", " ^ ctyp c2 ^")"
     | TyPkg (_, mt) -> failwith "first-class modules not supported"
     | TyAnt (_, s) -> "TyAnt("^s^")"
+    | TyTypePol (_, c1, c2) -> "TyTypoPol("^ ctyp c1^ ", "^ ctyp c2 ^")"
+    | TyAnP _ -> "TyAnP"
+    | TyAnM _ -> "TyAnM"
 end
 
 module Map = struct
