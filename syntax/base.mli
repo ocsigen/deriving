@@ -113,6 +113,7 @@ val register : generator -> unit
 val add_register_hook: (generator -> unit) -> unit
 
 val find : Type.name -> generator
+val register_predefs : Type.name -> (Type.qname * Type.qname) list -> unit
 val is_registered : Type.name -> bool
 
 val derive_str : Loc.t -> Type.decl list -> generator -> Ast.str_item

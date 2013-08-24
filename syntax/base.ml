@@ -183,6 +183,9 @@ module AstHelpers(Loc : Loc) = struct
 
 end
 
+let overloaded_qnames = Hashtbl.create 17
+
+
 module Generator(Loc: Loc)(Desc : ClassDescription) = struct
 
   (** How does it works ?
@@ -270,6 +273,13 @@ module Generator(Loc: Loc)(Desc : ClassDescription) = struct
 
   let import_depends ctxt ty =
     List.map (import_depend ctxt ty) Desc.depends
+
+  let get_real_qname qname =
+    try Hashtbl.find overloaded_qnames (Desc.classname, qname)
+    with Not_found ->
+      try List.assoc qname Desc.predefs
+	    with Not_found -> qname
+
 
   class virtual generator = object (self)
 
@@ -381,9 +391,7 @@ module Generator(Loc: Loc)(Desc : ClassDescription) = struct
 	  EMap.find (tname, params) ctxt.mod_insts
       | _ ->
 	(* External module: apply classical functor. *)
-        let qname =
-	  try List.assoc qname Desc.predefs
-	  with Not_found -> qname in
+        let qname = get_real_qname qname in
 	List.fold_left
 	  (fun m p -> <:module_expr< $m$ ($self#expr ctxt p$) >>)
 	  <:module_expr<
@@ -621,6 +629,11 @@ let find classname =
   try Hashtbl.find generators classname
   with Not_found -> raise (NoSuchClass classname)
 let is_registered classname = Hashtbl.mem generators classname
+
+let register_predefs classname predefs =
+  let _ = find classname in
+  List.iter (fun (k,v) ->
+      Hashtbl.add overloaded_qnames (classname,k) v) predefs
 
 module Register
     (Desc : ClassDescription)
