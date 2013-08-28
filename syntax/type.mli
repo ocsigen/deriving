@@ -25,7 +25,7 @@ and rhs =
     [ `Expr of expr
     | `Fresh of expr option * repr * [ `Private | `Public ]
     | `Nothing
-    | `Variant of variant ]
+    | `Variant of variant * [ `Private | `Public ] ]
 
 and repr = Sum of summand list  | GSum of name * gsummand list | Record of field list
 

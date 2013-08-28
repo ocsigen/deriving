@@ -400,7 +400,7 @@ module InnerGenerator(Loc: Loc)(Desc : InnerClassDescription) = struct
         | `Fresh (eq, Record fields, _) ->
 	    self#wrap ctxt ty (self#record ?eq ctxt tname params constraints fields)
         | `Expr e -> self#expr ctxt e
-        | `Variant v ->
+        | `Variant (v,p) ->
 	    self#wrap ctxt ty (self#variant ctxt tname params constraints v)
         | `Nothing -> <:module_expr< >>
 
