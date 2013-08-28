@@ -158,7 +158,7 @@ module Builder(Generator : Defs.Generator) = struct
        <:expr< fun $Helpers.record_pattern fields$ ->
                    $Helpers.record_expr (List.map (fun ((l,_,_) as f) -> (l,field context f)) fields)$ >>
     |`Expr e                  -> expr context e
-    |`Variant (_, tags) ->
+    |`Variant ((_, tags), _) ->
        <:expr< function $list:List.map (polycase context) tags$ | _ -> assert false >>
     | `Nothing -> raise (Base.Underivable "Cannot generate functor instance for the empty type")
 

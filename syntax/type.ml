@@ -20,7 +20,7 @@ type decl = name * param list * rhs * constraint_ list
     * bool
 and rhs = [`Fresh of expr option * repr * [`Private|`Public]
           |`Expr of expr
-          |`Variant of variant
+          |`Variant of variant * [ `Private | `Public ]
           |`Nothing]
 and repr =
     Sum of summand list
@@ -140,7 +140,7 @@ object (self : 'self)
                   | `Fresh (Some e, r, _) -> [self#expr e; self#repr r]
                   | `Fresh (None, r, _)   -> [self#repr r]
                   | `Expr e               -> [self#expr e]
-                  | `Variant v            -> [self#variant v]
+                  | `Variant (v,_)        -> [self#variant v]
                   | `Nothing              -> [])
 
 
@@ -198,7 +198,7 @@ object (self : 'self)
     | `Fresh (eopt, repr, p) -> `Fresh (Option.map (self # expr) eopt,
                                         self # repr repr, p)
     | `Expr e -> `Expr (self # expr e)
-    | `Variant v -> `Variant (self # variant v)
+    | `Variant (v,p) -> `Variant (self # variant v, p)
     | `Nothing -> `Nothing
 
   method repr = function
@@ -462,13 +462,16 @@ struct
           let repr, vs = repr r in `Fresh (None, repr, `Public), vs
       | Ast.TyVrnEq (_, t)  ->
           let es, vs = List.split (list tagspec split_or t) in
-            `Variant (`Eq, es), List.concat vs
+            `Variant ((`Eq, es), `Public), List.concat vs
+      | Ast.TyPrv (_, Ast.TyVrnSup (_, t)) ->
+          let es, vs = List.split (list tagspec split_or t) in
+            `Variant ((`Gt, es), `Private), List.concat vs
       | Ast.TyVrnSup (_, t) ->
           let es, vs = List.split (list tagspec split_or t) in
-            `Variant (`Gt, es), List.concat vs
+            `Variant ((`Gt, es), `Public), List.concat vs
       | Ast.TyVrnInf (_, t) ->
           let es, vs = List.split (list tagspec split_or t) in
-            `Variant (`Lt, es), List.concat vs
+            `Variant ((`Lt, es), `Public), List.concat vs
       | Ast.TyVrnInfSup (_, _, _) -> failwith "deriving does not currently support [ < > ] types"
       | Ast.TyNil _ -> `Nothing, []
       | Ast.TyPrv _ -> failwith "deriving does not currently support private rows"
@@ -492,7 +495,7 @@ struct
 
     let declify =
       let declify1 (name, variant, alias) : decl * (name * expr) option =
-        (name, params, `Variant variant, [], true), Option.map (fun a -> a, apply_t name) alias in
+        (name, params, `Variant (variant,`Public), [], true), Option.map (fun a -> a, apply_t name) alias in
         List.map declify1
   end
 
@@ -610,9 +613,18 @@ struct
       | `Fresh (Some e, t, `Private) -> <:ctyp< $expr e$ == private $repr t$ >>
       | `Fresh (Some e, t, `Public) -> Ast.TyMan (_loc, expr e, repr t)
       | `Expr t          -> expr t
-      | `Variant (`Eq, tags) -> <:ctyp< [= $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
-      | `Variant (`Gt, tags) -> <:ctyp< [> $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
-      | `Variant (`Lt, tags) -> <:ctyp< [< $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
+      | `Variant ((`Eq, tags), `Public) ->
+        <:ctyp< [= $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
+      | `Variant ((`Eq, tags), `Private) ->
+        <:ctyp< private [= $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
+      | `Variant ((`Gt, tags), `Public) ->
+        <:ctyp< [> $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
+      | `Variant ((`Gt, tags), `Private) ->
+        <:ctyp< private [> $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
+      | `Variant ((`Lt, tags), `Public) ->
+        <:ctyp< [< $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
+      | `Variant ((`Lt, tags), `Private) ->
+        <:ctyp< private [< $Ast.tyOr_of_list (List.map tagspec tags)$ ] >>
       | `Nothing -> <:ctyp< >>
   and tagspec = function
       | Tag (c, []) -> <:ctyp< `$c$ >>
