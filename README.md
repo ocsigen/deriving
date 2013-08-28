@@ -1,10 +1,9 @@
 Deriving-ocsigen
 ================
 
-This release of deriving-ocsigen library is based on the deriving library by Jeremy Yallop. See:
+This release of deriving is based on the library by Jeremy Yallop. See:
 
  * http://code.google.com/p/deriving/
- * https://github.com/jaked/deriving
 
 Compared to the original library, it adds:
 

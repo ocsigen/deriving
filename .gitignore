@@ -11,7 +11,7 @@
 #*#
 tests/tests
 files/META
-files/META.deriving-ocsigen
+files/META.deriving
 syntax/deriving
 syntax/deriving.opt
 syntax/id.ml
