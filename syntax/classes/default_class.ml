@@ -35,7 +35,7 @@ module Builder(Generator : Defs.Generator) = struct
 
   module Helpers = Generator.AstHelpers
 
-  let wrap expr = [ <:str_item< value default () = $expr$ >> ]
+  let wrap expr = [ <:str_item< let default () = $expr$ >> ]
 
 
   let generator = (object (self)
