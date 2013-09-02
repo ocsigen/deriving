@@ -1,6 +1,9 @@
 deriving_Bounded.cmo : deriving_Bounded.cmi
 deriving_Bounded.cmx : deriving_Bounded.cmi
 deriving_Bounded.cmi :
+deriving_Default.cmo : deriving_Default.cmi
+deriving_Default.cmx : deriving_Default.cmi
+deriving_Default.cmi :
 deriving_Dump.cmo : deriving_Dump.cmi
 deriving_Dump.cmx : deriving_Dump.cmi
 deriving_Dump.cmi :

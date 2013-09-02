@@ -35,6 +35,7 @@ CLASSES := show_class.ml         \
            typeable_class.ml     \
            pickle_class.ml       \
            functor_class.ml      \
+           default_class.ml      \
 
 MAIN := pa_deriving.ml
 ifneq (${TYPECONV},)

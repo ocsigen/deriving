@@ -24,6 +24,8 @@ utils.cmx : utils.cmi
 utils.cmi :
 classes/bounded_class.cmo : utils.cmi type.cmi defs.cmi base.cmi
 classes/bounded_class.cmx : utils.cmx type.cmx defs.cmx base.cmx
+classes/default_class.cmo : utils.cmi type.cmi defs.cmi base.cmi
+classes/default_class.cmx : utils.cmx type.cmx defs.cmx base.cmx
 classes/dump_class.cmo : utils.cmi type.cmi defs.cmi base.cmi
 classes/dump_class.cmx : utils.cmx type.cmx defs.cmx base.cmx
 classes/enum_class.cmo : utils.cmi type.cmi defs.cmi base.cmi

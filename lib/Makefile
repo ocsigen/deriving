@@ -18,6 +18,7 @@ SOURCES = deriving_Show.ml           \
           deriving_dynmap.ml         \
           deriving_Pickle.ml	     \
           deriving_Functor.ml        \
+          deriving_Default.ml        \
 
 ##
 

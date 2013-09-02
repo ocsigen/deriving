@@ -11,6 +11,7 @@ INTF := syntax/pa_deriving_common.cmi \
 	lib/deriving_Eq.cmi \
 	lib/deriving_Pickle.cmi \
 	lib/deriving_num.cmi \
+  lib/deriving_Default.cmi
 
 IMPL := syntax/pa_deriving.cma \
         lib/deriving.cma \
