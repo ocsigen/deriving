@@ -50,7 +50,7 @@ these types we have two distinct design choices:
   2. Always mutate the original copy
 
 Neither of these seems like the right thing to do, so instead we
-simply don't handle mustable types at all.
+simply don't handle mutable types at all.
 
 (Lazy.t is another example: we'd like map to be total and side-effect
 free, which is impossible to guarantee if we handle lazy.
