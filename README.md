@@ -1,4 +1,4 @@
-Deriving-ocsigen
+Deriving
 ================
 
 This release of deriving is based on the library by Jeremy Yallop. See:
@@ -51,7 +51,7 @@ Examples:
  # #camlp4o;;
 	Camlp4 Parsing version 3.12.0
 
- # #require "deriving-ocsigen.syntax";;
+ # #require "deriving.syntax.std";;
  # type t = A of int | B of t deriving (Show);;
  type t = A of int | B of t
  module rec Show_t : sig ... end
@@ -72,7 +72,7 @@ Examples with type-conv:
 	Camlp4 Parsing version 3.12.0
 
  # #require "type-conv";;
- # #require "deriving-ocsigen.syntax_tc";;
+ # #require "deriving.syntax.tc";;
  # type t = A of int | B of t with show;;
  type t = A of int | B of t
  module rec Show_t : sig ... end

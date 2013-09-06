@@ -1,0 +1,74 @@
+# OASIS_START
+# DO NOT EDIT (digest: 9bb1626f387ac25867e8e73f62c3e973)
+# Ignore VCS directories, you can use the same kind of rule outside 
+# OASIS_START/STOP if you want to exclude directories that contains 
+# useless stuff for the build process
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library pa_deriving_common
+"syntax/pa_deriving_common.cmxs": use_pa_deriving_common
+"syntax/id.cmx": for-pack(Pa_deriving_common)
+"syntax/utils.cmx": for-pack(Pa_deriving_common)
+"syntax/type.cmx": for-pack(Pa_deriving_common)
+"syntax/defs.cmx": for-pack(Pa_deriving_common)
+"syntax/clusters.cmx": for-pack(Pa_deriving_common)
+"syntax/base.cmx": for-pack(Pa_deriving_common)
+"syntax/extend.cmx": for-pack(Pa_deriving_common)
+# Library pa_deriving
+"syntax/pa_deriving.cmxs": use_pa_deriving
+# Library pa_deriving_tc
+"syntax/pa_deriving_tc.cmxs": use_pa_deriving_tc
+<syntax/*.ml{,i}>: use_pa_deriving_common
+<syntax/*.ml{,i}>: pkg_type_conv
+<syntax/*.ml{,i}>: pkg_camlp4
+<syntax/*.ml{,i}>: pkg_camlp4.extend
+<syntax/*.ml{,i}>: pkg_optcomp
+# Library pa_deriving_classes
+"syntax/classes/pa_deriving_classes.cmxs": use_pa_deriving_classes
+<syntax/classes/*.ml{,i}>: use_pa_deriving_common
+<syntax/classes/*.ml{,i}>: pkg_camlp4
+<syntax/classes/*.ml{,i}>: pkg_camlp4.extend
+<syntax/classes/*.ml{,i}>: pkg_optcomp
+# Library deriving-num
+"lib/deriving-num.cmxs": use_deriving-num
+# Library deriving
+"lib/deriving.cmxs": use_deriving
+<lib/*.ml{,i}>: use_pa_deriving_classes
+<lib/*.ml{,i}>: use_pa_deriving
+<lib/*.ml{,i}>: use_pa_deriving_common
+<lib/*.ml{,i}>: pkg_camlp4
+<lib/*.ml{,i}>: pkg_camlp4.extend
+<lib/*.ml{,i}>: pkg_optcomp
+# Executable test_notc
+<tests/notc.{native,byte}>: use_deriving
+<tests/notc.{native,byte}>: use_pa_deriving_classes
+<tests/notc.{native,byte}>: use_pa_deriving
+<tests/notc.{native,byte}>: use_pa_deriving_common
+<tests/notc.{native,byte}>: pkg_camlp4
+<tests/notc.{native,byte}>: pkg_camlp4.extend
+<tests/notc.{native,byte}>: pkg_optcomp
+# Executable test_tc
+<tests/tc.{native,byte}>: use_deriving
+<tests/tc.{native,byte}>: use_pa_deriving_classes
+<tests/tc.{native,byte}>: use_pa_deriving
+<tests/tc.{native,byte}>: use_pa_deriving_common
+<tests/tc.{native,byte}>: pkg_camlp4
+<tests/tc.{native,byte}>: pkg_camlp4.extend
+<tests/tc.{native,byte}>: pkg_optcomp
+<tests/*.ml{,i}>: use_deriving
+<tests/*.ml{,i}>: use_pa_deriving_classes
+<tests/*.ml{,i}>: use_pa_deriving
+<tests/*.ml{,i}>: use_pa_deriving_common
+<tests/*.ml{,i}>: pkg_camlp4
+<tests/*.ml{,i}>: pkg_camlp4.extend
+<tests/*.ml{,i}>: pkg_optcomp
+# OASIS_STOP
+"syntax/id.cmx": for-pack(Pa_deriving_common)

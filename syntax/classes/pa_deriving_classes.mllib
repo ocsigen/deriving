@@ -1,0 +1,12 @@
+# OASIS_START
+# DO NOT EDIT (digest: 6042eadd4824b5e058df518e6db97915)
+Show_class
+Dump_class
+Enum_class
+Bounded_class
+Eq_class
+Typeable_class
+Pickle_class
+Functor_class
+Default_class
+# OASIS_STOP

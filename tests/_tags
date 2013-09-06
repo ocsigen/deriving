@@ -1,0 +1,3 @@
+
+<*.ml{,i}>:syntax_camlp4o,pa_deriving_common,pa_deriving,pa_deriving_classes,-pkg_type_conv
+<tc.ml{,i}>:syntax_camlp4o,pa_deriving_common,-pa_deriving,pa_deriving_tc,pa_deriving_classes,pkg_type_conv

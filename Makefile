@@ -1,70 +1,40 @@
-include Makefile.config
+# OASIS_START
+# DO NOT EDIT (digest: bc1e05bfc8b39b664f29dae8dbd3ebbb)
 
-all: files/META files/META.${PROJECTNAME}
-	${MAKE} -C syntax
-	${MAKE} -C lib
+SETUP = ocaml setup.ml
 
-byte: files/META files/META.${PROJECTNAME}
-	${MAKE} -C syntax byte
-	${MAKE} -C lib byte
+build: setup.data
+	$(SETUP) -build $(BUILDFLAGS)
 
-opt: files/META files/META.${PROJECTNAME}
-	${MAKE} -C syntax opt
-	${MAKE} -C lib opt
+doc: setup.data build
+	$(SETUP) -doc $(DOCFLAGS)
 
-files/META: files/META.in
-	sed -e "s%__NAME__%${PROJECTNAME}%" \
-            -e "s%__LIBDIR__%%" \
-            -e "s%__SYNTAXDIR__%%" \
-            -e "s%__TCNAME__%${TYPECONVNAME}%" \
-	  $< > $@
+test: setup.data build
+	$(SETUP) -test $(TESTFLAGS)
 
-files/META.${PROJECTNAME}: files/META.in
-	sed -e "s%__NAME__%${PROJECTNAME}%" \
-            -e "s%__LIBDIR__%directory = \"../lib\"%" \
-            -e "s%__SYNTAXDIR__%directory = \"../syntax\"%" \
-            -e "s%__TCNAME__%${TYPECONVNAME}%" \
-	  $< > $@
+all: 
+	$(SETUP) -all $(ALLFLAGS)
 
-clean: clean.local
-	${MAKE} -C syntax clean DEPEND=no
-	${MAKE} -C lib clean DEPEND=no
-	${MAKE} -C tests clean
-clean.local:
-	-rm -f files/META files/META.${PROJECTNAME}
+install: setup.data
+	$(SETUP) -install $(INSTALLFLAGS)
 
-distclean: clean.local
-	${MAKE} -C syntax distclean DEPEND=no
-	${MAKE} -C lib distclean DEPEND=no
-	${MAKE} -C tests distclean
-	-rm -f *~ \#* .\#*
+uninstall: setup.data
+	$(SETUP) -uninstall $(UNINSTALLFLAGS)
 
-.PHONY: tests
-tests:
-	${MAKE} -C tests
-	./tests/tests
+reinstall: setup.data
+	$(SETUP) -reinstall $(REINSTALLFLAGS)
 
-include Makefile.filelist
-VERSION := $(shell head -n 1 VERSION)
+clean: 
+	$(SETUP) -clean $(CLEANFLAGS)
 
-install:
-	${OCAMLFIND} install ${PROJECTNAME} \
-	  -patch-version ${VERSION} \
-	  files/META ${SYNTAX_INTF} ${INTF} ${IMPL} ${NATIMPL} ${DOC}
+distclean: 
+	$(SETUP) -distclean $(DISTCLEANFLAGS)
 
-install-byte:
-	${OCAMLFIND} install ${PROJECTNAME} \
-	  -patch-version ${VERSION} \
-	  files/META ${SYNTAX_INTF} ${INTF} ${IMPL} ${DOC}
+setup.data:
+	$(SETUP) -configure $(CONFIGUREFLAGS)
 
-install-opt:
-	${OCAMLFIND} install ${PROJECTNAME} \
-	  -patch-version ${VERSION} \
-	  files/META ${SYNTAX_INTF} ${INTF} ${NATIMPL} ${DOC}
+.PHONY: build doc test all install uninstall reinstall clean distclean configure
 
-uninstall:
-	${OCAMLFIND} remove ${PROJECTNAME}
+# OASIS_STOP
 
-reinstall: uninstall install
-reinstall-byte: uninstall install-byte
-reinstall-opt: uninstall install-opt
+update_version: distclean build

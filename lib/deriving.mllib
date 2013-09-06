@@ -1,0 +1,15 @@
+# OASIS_START
+# DO NOT EDIT (digest: d1cf9d970482ac491ac704c2a54d12d7)
+Deriving_Show
+Deriving_Eq
+Deriving_Bounded
+Deriving_Enum
+Deriving_monad
+Deriving_Dump
+Deriving_Typeable
+Deriving_Pickle
+Deriving_Functor
+Deriving_Default
+Deriving_interned
+Deriving_dynmap
+# OASIS_STOP

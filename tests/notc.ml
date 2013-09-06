@@ -1,0 +1,12 @@
+open Tests_defs
+open Sigs
+open Pickle_tests
+open Typeable_tests
+open Bounded_tests
+open Eq_tests
+open Dump_tests
+open Enum_tests
+open Functor_tests
+open Show_tests
+open Exp
+open Inline

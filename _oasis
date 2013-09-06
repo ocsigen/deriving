@@ -1,0 +1,93 @@
+OASISFormat: 0.3
+Name:        deriving
+Version:     0.5
+Synopsis:    Extension to OCaml for deriving functions from type declarations
+Authors:     Jeremy Yallop
+License:     MIT
+Plugins:     META (0.3), DevFiles (0.3)
+BuildTools:      ocamlbuild
+FilesAB: syntax/id.ml.ab
+
+Flag tc
+  Description: type-conv support
+  Default: true
+
+Library deriving
+  Path:            lib
+  Modules:         Deriving_Show, Deriving_Eq, Deriving_Bounded,
+    Deriving_Enum, Deriving_monad, Deriving_Dump, Deriving_Typeable,
+    Deriving_Pickle, Deriving_Functor, Deriving_Default
+  InternalModules: Deriving_interned, Deriving_dynmap
+  FindlibName : deriving
+  BuildDepends: deriving.syntax.std,deriving.syntax.classes
+
+Library "deriving-num"
+  Path:       lib
+  FindlibParent: deriving
+  FindlibName : num
+  Modules:    Deriving_num
+  XMETAEnable: false
+  BuildDepends: deriving.syntax.std,deriving.syntax.classes
+
+Library "pa_deriving_common"
+  Path:       syntax
+  FindlibParent: deriving
+  FindlibName : syntax
+  Pack: true
+  Modules:    Id, Utils, Type, Defs, Clusters, Base, Extend
+  BuildDepends: camlp4,camlp4.extend,optcomp
+  XMETAType: syntax
+  XMETADescription: Deriving syntax
+  XMETARequires: camlp4
+
+Library "pa_deriving"
+  Path:       syntax
+  FindlibParent: pa_deriving_common
+  FindlibName : std
+  BuildDepends: deriving.syntax
+  Modules:    Pa_deriving
+  XMETAType: syntax
+  XMETADescription: Deriving syntax
+  XMETAExtraLines: requires(syntax) = "deriving.syntax"
+  XMETARequires: camlp4
+
+Library "pa_deriving_tc"
+  Path:       syntax
+  Build$: flag(tc)
+  Install$: flag(tc)
+  FindlibParent: pa_deriving_common
+  FindlibName : tc
+  BuildDepends: deriving.syntax,type_conv
+  Modules:    Pa_deriving_tc
+  XMETAType: syntax
+  XMETADescription: Deriving syntax
+  XMETAExtraLines: requires(syntax) = "deriving.syntax"
+  XMETARequires: camlp4
+
+Library "pa_deriving_classes"
+  Path:       syntax/classes
+  FindlibParent: pa_deriving_common
+  FindlibName : classes
+  Modules:    Show_class, Dump_class, Enum_class, Bounded_class, Eq_class,
+    Typeable_class, Pickle_class, Functor_class, Default_class
+  BuildDepends: deriving.syntax
+  XMETAType: syntax
+  XMETADescription: Deriving syntax
+  XMETAExtraLines: requires(syntax) = "deriving.syntax"
+  XMETARequires: camlp4
+
+
+Executable test_notc
+  Path: tests
+  Install: false
+  CompiledObject: best
+  MainIs: notc.ml
+  BuildDepends: deriving
+
+Executable test_tc
+  Path: tests
+  Build$: flag(tc)
+  Install: false
+  CompiledObject: best
+  MainIs: tc.ml
+  BuildDepends: deriving
