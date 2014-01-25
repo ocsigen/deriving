@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 941a5f54fdd88463e717ea761ebcfca2) *)
+(* DO NOT EDIT (digest: 5799d3c110634c7c6abb8396e3875fae) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -561,8 +561,10 @@ let package_default =
           ("pa_deriving", ["syntax/std"], []);
           ("pa_deriving_tc", ["syntax/tc"], []);
           ("pa_deriving_classes", ["syntax/classes"], []);
-          ("deriving", ["lib"], []);
-          ("deriving-num", ["lib"], [])
+          ("deriving-runtime", ["lib"], []);
+          ("deriving-num", ["lib"], []);
+          ("deriving-tc", ["files"], []);
+          ("deriving", ["files"], [])
        ];
      lib_c = [];
      flags = [];
@@ -572,14 +574,15 @@ let package_default =
           ("syntax/tc", ["syntax/common"]);
           ("syntax/std", ["syntax/common"]);
           ("syntax/classes", ["syntax/common"]);
-          ("lib", ["syntax/classes"; "syntax/common"; "syntax/std"])
+          ("lib", ["syntax/classes"; "syntax/common"; "syntax/std"]);
+          ("files", ["lib"; "syntax/classes"; "syntax/std"; "syntax/tc"])
        ]
   }
   ;;
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default package_default;;
 
-# 583 "myocamlbuild.ml"
+# 586 "myocamlbuild.ml"
 (* OASIS_STOP *)
 
 let _ = Ocamlbuild_plugin.dispatch (fun hook ->

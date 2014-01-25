@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: d18b5bb6a87abb49b615d74e8e23c9b9)
+# DO NOT EDIT (digest: f7eefe330e5cada58c56d2dfe2e1011c)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -40,31 +40,43 @@
 <syntax/classes/*.ml{,i}>: use_pa_deriving_common
 <syntax/classes/*.ml{,i}>: package(camlp4.extend)
 <syntax/classes/*.ml{,i}>: package(camlp4)
-# Library deriving
-"lib/deriving.cmxs": use_deriving
+# Library deriving-runtime
+"lib/deriving-runtime.cmxs": use_deriving-runtime
 # Library deriving-num
 "lib/deriving-num.cmxs": use_deriving-num
-<lib/*.ml{,i}>: use_deriving
+<lib/*.ml{,i}>: use_deriving-runtime
 <lib/*.ml{,i}>: use_pa_deriving_classes
 <lib/*.ml{,i}>: use_pa_deriving
 <lib/*.ml{,i}>: use_pa_deriving_common
 <lib/*.ml{,i}>: package(camlp4.extend)
 <lib/*.ml{,i}>: package(camlp4)
+# Library deriving-tc
+"files/deriving-tc.cmxs": use_deriving-tc
+<files/*.ml{,i}>: use_pa_deriving_tc
+<files/*.ml{,i}>: package(type_conv)
+# Library deriving
+"files/deriving.cmxs": use_deriving
+<files/*.ml{,i}>: use_deriving-runtime
+<files/*.ml{,i}>: use_pa_deriving_classes
+<files/*.ml{,i}>: use_pa_deriving
+<files/*.ml{,i}>: use_pa_deriving_common
+<files/*.ml{,i}>: package(camlp4.extend)
+<files/*.ml{,i}>: package(camlp4)
 # Executable test_notc
-<tests/notc.{native,byte}>: use_deriving
+<tests/notc.{native,byte}>: use_deriving-runtime
 <tests/notc.{native,byte}>: use_pa_deriving_classes
 <tests/notc.{native,byte}>: use_pa_deriving
 <tests/notc.{native,byte}>: use_pa_deriving_common
 <tests/notc.{native,byte}>: package(camlp4.extend)
 <tests/notc.{native,byte}>: package(camlp4)
 # Executable test_tc
-<tests/tc.{native,byte}>: use_deriving
+<tests/tc.{native,byte}>: use_deriving-runtime
 <tests/tc.{native,byte}>: use_pa_deriving_classes
 <tests/tc.{native,byte}>: use_pa_deriving
 <tests/tc.{native,byte}>: use_pa_deriving_common
 <tests/tc.{native,byte}>: package(camlp4.extend)
 <tests/tc.{native,byte}>: package(camlp4)
-<tests/*.ml{,i}>: use_deriving
+<tests/*.ml{,i}>: use_deriving-runtime
 <tests/*.ml{,i}>: use_pa_deriving_classes
 <tests/*.ml{,i}>: use_pa_deriving
 <tests/*.ml{,i}>: use_pa_deriving_common

@@ -13,27 +13,46 @@ Flag tc
   Description: type-conv support
   Default: true
 
-Library deriving
+Library "deriving"
+  Path:            files
+  Build:           false
+  BuildDepends:    deriving.runtime,deriving.syntax.classes,deriving.syntax
+
+Library "deriving-tc"
+  Path:            files
+  Build:           false
+  BuildDepends:    deriving.runtime,deriving.syntax.classes,deriving.syntax.tc
+  FindlibParent:   deriving
+  FindlibName : deriving_tc
+
+
+Library "deriving-runtime"
   Path:            lib
   Modules:         Deriving_Show, Deriving_Eq, Deriving_Bounded,
     Deriving_Enum, Deriving_monad, Deriving_Dump, Deriving_Typeable,
     Deriving_Pickle, Deriving_Functor, Deriving_Default
   InternalModules: Deriving_interned, Deriving_dynmap
-  FindlibName : deriving
-  BuildDepends: deriving.syntax.base,deriving.syntax.classes,deriving.syntax
+  FindlibName : runtime
+  FindlibParent: deriving
+  BuildDepends: deriving.syntax.common,deriving.syntax.classes,deriving.syntax
+  XMETAExtraLines: archive(byte, pkg_num) = "deriving_num.cma"
+                   archive(byte, plugin, pkg_num) = "deriving_num.cma"
+                   archive(native, pkg_num) = "deriving_num.cmxa"
+                   archive(native, plugin, pkg_num) = "deriving_num.cmxs"
+
 
 Library "deriving-num"
   Path:          lib
   FindlibParent: deriving
   FindlibName :  num
   Modules:       Deriving_num
-  BuildDepends:  deriving
+  BuildDepends:  deriving.runtime
   XMETAEnable: false
 
 Library "pa_deriving_common"
   Path:          syntax/common
   FindlibParent: pa_deriving
-  FindlibName :  base
+  FindlibName :  common
   Pack:          true
   Modules:       Id, Utils, Type, Defs, Clusters, Base, Extend
   BuildDepends:  camlp4,camlp4.extend
@@ -45,11 +64,11 @@ Library "pa_deriving"
   Path:          syntax/std
   FindlibParent: deriving
   FindlibName :  syntax
-  BuildDepends:  camlp4.extend,deriving.syntax.base
+  BuildDepends:  camlp4.extend,deriving.syntax.common
   Modules:       Pa_deriving
   XMETAType:        syntax
   XMETADescription: Deriving syntax
-  XMETAExtraLines:  requires(syntax) = "deriving.syntax.base"
+  XMETAExtraLines:  requires(syntax) = "deriving.syntax.common"
   XMETARequires:    camlp4
 
 Library "pa_deriving_tc"
@@ -58,11 +77,11 @@ Library "pa_deriving_tc"
   Install$:      flag(tc)
   FindlibParent: pa_deriving
   FindlibName :  tc
-  BuildDepends:  deriving.syntax.base,type_conv
+  BuildDepends:  deriving.syntax.common,type_conv
   Modules:       Pa_deriving_tc
   XMETAType:        syntax
   XMETADescription: Deriving syntax
-  XMETAExtraLines:  requires(syntax) = "deriving.syntax.base,type_conv"
+  XMETAExtraLines:  requires(syntax) = "deriving.syntax.common,type_conv"
   XMETARequires:    camlp4
 
 Library "pa_deriving_classes"
@@ -71,10 +90,10 @@ Library "pa_deriving_classes"
   FindlibName :  classes
   Modules:       Show_class, Dump_class, Enum_class, Bounded_class, Eq_class,
                  Typeable_class, Pickle_class, Functor_class, Default_class
-  BuildDepends:  deriving.syntax.base
+  BuildDepends:  deriving.syntax.common
   XMETAType:        syntax
   XMETADescription: Deriving syntax
-  XMETAExtraLines:  requires(syntax) = "deriving.syntax.base"
+  XMETAExtraLines:  requires(syntax) = "deriving.syntax.common"
   XMETARequires:    camlp4
 
 Executable test_notc
@@ -82,7 +101,7 @@ Executable test_notc
   Install: false
   CompiledObject: best
   MainIs: notc.ml
-  BuildDepends: deriving
+  BuildDepends: deriving.runtime
 
 Executable test_tc
   Path: tests
@@ -90,4 +109,4 @@ Executable test_tc
   Install: false
   CompiledObject: best
   MainIs: tc.ml
-  BuildDepends: deriving
+  BuildDepends: deriving.runtime

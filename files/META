@@ -1,0 +1,95 @@
+# OASIS_START
+# DO NOT EDIT (digest: 11164fc80adcaa78a8dcb6da510f2abe)
+version = "0.6"
+description =
+"Extension to OCaml for deriving functions from type declarations"
+requires = "deriving.runtime deriving.syntax.classes deriving.syntax"
+archive(byte) = "deriving.cma"
+archive(byte, plugin) = "deriving.cma"
+archive(native) = "deriving.cmxa"
+archive(native, plugin) = "deriving.cmxs"
+exists_if = "deriving.cma"
+package "syntax" (
+ version = "0.6"
+ description = "Deriving syntax"
+ requires = "camlp4"
+ archive(syntax, preprocessor) = "pa_deriving.cma"
+ archive(syntax, toploop) = "pa_deriving.cma"
+ archive(syntax, byte) = "pa_deriving.cma"
+ archive(syntax, byte, plugin) = "pa_deriving.cma"
+ archive(syntax, native) = "pa_deriving.cmxa"
+ archive(syntax, native, plugin) = "pa_deriving.cmxs"
+ requires(syntax) = "deriving.syntax.common"
+ exists_if = "pa_deriving.cma"
+ package "tc" (
+  version = "0.6"
+  description = "Deriving syntax"
+  requires = "camlp4"
+  archive(syntax, preprocessor) = "pa_deriving_tc.cma"
+  archive(syntax, toploop) = "pa_deriving_tc.cma"
+  archive(syntax, byte) = "pa_deriving_tc.cma"
+  archive(syntax, byte, plugin) = "pa_deriving_tc.cma"
+  archive(syntax, native) = "pa_deriving_tc.cmxa"
+  archive(syntax, native, plugin) = "pa_deriving_tc.cmxs"
+  requires(syntax) = "deriving.syntax.common,type_conv"
+  exists_if = "pa_deriving_tc.cma"
+ )
+ 
+ package "common" (
+  version = "0.6"
+  description = "Deriving syntax"
+  requires = "camlp4"
+  archive(syntax, preprocessor) = "pa_deriving_common.cma"
+  archive(syntax, toploop) = "pa_deriving_common.cma"
+  archive(syntax, byte) = "pa_deriving_common.cma"
+  archive(syntax, byte, plugin) = "pa_deriving_common.cma"
+  archive(syntax, native) = "pa_deriving_common.cmxa"
+  archive(syntax, native, plugin) = "pa_deriving_common.cmxs"
+  exists_if = "pa_deriving_common.cma"
+ )
+ 
+ package "classes" (
+  version = "0.6"
+  description = "Deriving syntax"
+  requires = "camlp4"
+  archive(syntax, preprocessor) = "pa_deriving_classes.cma"
+  archive(syntax, toploop) = "pa_deriving_classes.cma"
+  archive(syntax, byte) = "pa_deriving_classes.cma"
+  archive(syntax, byte, plugin) = "pa_deriving_classes.cma"
+  archive(syntax, native) = "pa_deriving_classes.cmxa"
+  archive(syntax, native, plugin) = "pa_deriving_classes.cmxs"
+  requires(syntax) = "deriving.syntax.common"
+  exists_if = "pa_deriving_classes.cma"
+ )
+)
+
+package "runtime" (
+ version = "0.6"
+ description =
+ "Extension to OCaml for deriving functions from type declarations"
+ requires = "deriving.syntax.common deriving.syntax.classes deriving.syntax"
+ archive(byte) = "deriving-runtime.cma"
+ archive(byte, plugin) = "deriving-runtime.cma"
+ archive(native) = "deriving-runtime.cmxa"
+ archive(native, plugin) = "deriving-runtime.cmxs"
+ archive(byte, pkg_num) = "deriving_num.cma"
+ archive(byte, plugin, pkg_num) = "deriving_num.cma"
+ archive(native, pkg_num) = "deriving_num.cmxa"
+ archive(native, plugin, pkg_num) = "deriving_num.cmxs"
+ exists_if = "deriving-runtime.cma"
+)
+
+
+package "deriving_tc" (
+ version = "0.6"
+ description =
+ "Extension to OCaml for deriving functions from type declarations"
+ requires = "deriving.runtime deriving.syntax.classes deriving.syntax.tc"
+ archive(byte) = "deriving-tc.cma"
+ archive(byte, plugin) = "deriving-tc.cma"
+ archive(native) = "deriving-tc.cmxa"
+ archive(native, plugin) = "deriving-tc.cmxs"
+ exists_if = "deriving-tc.cma"
+)
+# OASIS_STOP
+
