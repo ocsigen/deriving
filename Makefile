@@ -8,13 +8,20 @@
 # Set to setup.exe for the release
 SETUP := setup-dev.exe
 
+
+# FIX for ocaml version 3.12, link with toplevellib.cma 
+TOPLEVEL= -package compiler-libs.toplevel
+ifeq ($(shell ocamlc -v | grep -q "version 3.12"; echo $$?),0)
+TOPLEVEL=toplevellib.cma
+endif
+
 # Default rule
 default: build
 
 # Setup for the development version
 setup-dev.exe: _oasis setup.ml
 	grep -v '^#' setup.ml > setup_dev.ml
-	ocamlfind ocamlc -o $@ -linkpkg -package ocamlbuild,oasis.dynrun,compiler-libs.toplevel setup_dev.ml || true
+	ocamlfind ocamlc -o $@ -linkpkg -package ocamlbuild,oasis.dynrun $(TOPLEVEL) setup_dev.ml || true
 	rm -f setup_dev.*
 
 # Setup for the release
