@@ -18,7 +18,7 @@ syntax/id.ml
 syntax/common/id.ml
 *.bak
 *.ba0
-setup-dev.exe
+setup.exe
 *.mllib
 *.mlpack
 lib/META

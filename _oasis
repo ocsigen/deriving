@@ -8,6 +8,8 @@ License:     MIT
 BuildTools:  ocamlbuild
 FilesAB:     syntax/common/id.ml.ab,
              lib/META.ab
+Plugins: DevFiles (0.4)
+AlphaFeatures: compiled_setup_ml
 
 Flag tc
   Description: type-conv support
