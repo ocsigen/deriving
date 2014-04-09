@@ -82,7 +82,7 @@ Executable test_tc
 Test std
   TestTools : test
   Command   : $test
-  Run$: flag(test)
+  Run$: flag(tests)
 
 Test tc
   TestTools : test_tc
