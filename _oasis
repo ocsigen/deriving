@@ -1,7 +1,7 @@
 OASISFormat: 0.4
 Name:        deriving
 OCamlVersion: >= 3.12.1
-Version:     0.7-dev
+Version:     0.6.1
 Synopsis:    Extension to OCaml for deriving functions from type declarations
 Authors:     Jeremy Yallop
 License:     MIT
@@ -11,7 +11,7 @@ FilesAB:     syntax/common/id.ml.ab,
 
 Flag tc
   Description: type-conv support
-  Default: true
+  Default: false
 
 Library "deriving"
   Path            : lib
@@ -69,6 +69,7 @@ Executable test
   MainIs         : notc.ml
   BuildDepends   : deriving,optcomp
   Install        : false
+  Build$: flag(tests)
 
 Executable test_tc
   Path           : tests/tc
@@ -76,12 +77,14 @@ Executable test_tc
   CompiledObject : best
   MainIs         : tc.ml
   BuildDepends   : deriving,type_conv
-  Build$: flag(tc)
+  Build$: flag(tests) && flag(tc)
 
 Test std
   TestTools : test
-  Command   : _build/tests/notc.native
+  Command   : $test
+  Run$: flag(test)
 
 Test tc
   TestTools : test_tc
-  Command   : _build/tests/tc.native
+  Command   : $test_tc
+  Run$: flag(tests) && flag(tc)
