@@ -1,10 +1,3 @@
-*.cm[iaox]
-*.cmxa
-*.cmxs
-*.cmxas
-*.a
-*.o
-*.annot
 ._*
 *~
 #*
@@ -12,7 +5,6 @@
 _build
 setup.log
 setup.data
-syntax/id.ml
 *.native
 *.byte
 syntax/common/id.ml
