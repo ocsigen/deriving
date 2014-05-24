@@ -1,6 +1,7 @@
 opam-version: "1"
 maintainer: "dev@ocsigen.org"
 version: "dev"
+
 build: [
   [ "./configure" "--prefix" prefix "--%{type_conv:enable}%-tc" ]
   [ make ]
