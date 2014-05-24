@@ -1,2 +1,2 @@
 opam pin deriving .
-opan install deriving
+opam install deriving
