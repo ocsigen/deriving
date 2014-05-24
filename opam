@@ -1,6 +1,6 @@
 opam-version: "1"
 maintainer: "dev@ocsigen.org"
-version: "9999"
+version: "dev"
 build: [
   [ "./configure" "--prefix" prefix "--%{type_conv:enable}%-tc" ]
   [ make ]
@@ -19,5 +19,5 @@ depopts: [
   "type_conv"
 ]
 conflicts: [
-  "type_conv" {>= "108.07.00"}
+  "type_conv" {< "108.07.00"}
 ]
