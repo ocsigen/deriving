@@ -1,2 +1,2 @@
 opam pin deriving .
-opam install deriving
+opam install type_conv deriving
