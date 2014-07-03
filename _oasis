@@ -63,6 +63,19 @@ Library "pa_deriving_tc"
   Build$: flag(tc)
   Install$: flag(tc)
 
+Document "deriving-api"
+  Title: API reference for Deriving
+  Type: ocamlbuild (0.3)
+  Install: true
+  InstallDir: $htmldir/api
+  BuildTools: ocamldoc
+  XOCamlbuildPath: ./
+  XOCamlbuildLibraries:
+    deriving,
+    deriving.num,
+    deriving.syntax,
+    deriving.syntax.common
+
 Executable test
   Path           : tests/std
   CompiledObject : best

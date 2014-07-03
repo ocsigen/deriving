@@ -1,0 +1,40 @@
+{1 Deriving - API Reference}
+
+{2 Runtime library}
+
+Runtime for deriving classes shipped with deriving.
+
+{!modules:
+Deriving_Show
+Deriving_Eq
+Deriving_Bounded
+Deriving_Enum
+Deriving_monad
+Deriving_Dump
+Deriving_Typeable
+Deriving_Pickle
+Deriving_Functor
+Deriving_Default
+}
+
+{!modules:
+Deriving_num
+}
+
+{2 Syntax}
+The {e deriving.syntax.common} package contains modules needed to
+write deriving classes.
+
+{!modules:
+Id
+Utils
+Type
+Defs
+Clusters
+Base
+Extend
+}
+
+{2 Index}
+
+{!indexlist}
