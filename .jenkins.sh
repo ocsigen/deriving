@@ -5,7 +5,8 @@ opam install --deps-only deriving
 opam install --verbose deriving
 
 do_build_doc () {
-
+  # Nothing
+  echo "No documentation!"
 }
 
 do_remove () {
