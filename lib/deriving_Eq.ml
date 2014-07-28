@@ -54,6 +54,13 @@ struct
   let eq = M.equal (E.eq)
 end  
 
+module Eq_set_s_t (S : Set.S)
+  : Eq with type a = S.t =
+struct
+  type a = S.t
+  let eq = S.equal
+end  
+
 module Eq_list (E : Eq) :
   Eq with type a = E.a list =
 struct

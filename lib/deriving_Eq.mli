@@ -26,3 +26,4 @@ module Eq_array (E : Eq) : Eq with type a = E.a array
 module Eq_list (E : Eq)  : Eq with type a = E.a list
 module Eq_option (E : Eq): Eq with type a = E.a option
 module Eq_map_s_t (E : Eq) (M : Map.S) : Eq with type a = E.a M.t
+module Eq_set_s_t (S : Set.S) : Eq with type a = S.t
