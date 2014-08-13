@@ -32,12 +32,46 @@ module Deriving (S : Camlp4.Sig.Camlp4Syntax) = struct
 
   include Syntax
 
+  let rec drop n l =
+     if n <= 0 then
+       l
+     else
+       match l with
+       | [] -> []
+       | _ :: l -> drop (n - 1) l
+
+  let test_val_longident_dot_lt =
+    Gram.Entry.of_parser "test_val_longident_dot_lt" (fun strm ->
+      let rec test_longident_dot pos tokens =
+        match tokens with
+        | (ANTIQUOT ((""|"id"|"anti"|"list"), _), _) :: tokens ->
+          test_longident_dot (pos+1) tokens
+        | (UIDENT _, _) :: (KEYWORD ".", _) :: (LIDENT _, _) :: tokens ->
+          test_longident_dot (pos+3) tokens
+        | _ :: _ ->
+          test_delim pos tokens
+        | [] -> fetch_more test_longident_dot pos
+      and test_delim pos tokens =
+        if pos = 0 then
+          raise Stream.Failure
+        else
+          match tokens with
+          | (KEYWORD ("<"), _) :: _ -> ()
+          | _ :: _ -> raise Stream.Failure
+          | [] -> fetch_more test_delim pos
+      and fetch_more k pos =
+        match drop pos (Stream.npeek (pos + 10) strm) with
+        | [] -> raise Stream.Failure
+        | tokens -> k pos tokens
+      in fetch_more test_longident_dot 0
+    )
+
   open Ast
 
   EXTEND Gram
   expr: LEVEL "simple"
   [
-  [ TRY [e1 = val_longident ; "<" ; t = ctyp; ">" ->
+  [ TRY[ test_val_longident_dot_lt; e1 = val_longident ; "<" ; t = ctyp; ">" ->
      match e1 with
        | <:ident< $uid:classname$ . $lid:methodname$ >> ->
 	   let m = instantiate _loc t classname in
@@ -50,7 +84,7 @@ module Deriving (S : Camlp4.Sig.Camlp4Syntax) = struct
 
   module_expr: LEVEL "simple"
   [
-  [ TRY [e1 = val_longident ; "<" ; t = ctyp; ">" ->
+  [ TRY[ test_val_longident_dot_lt; e1 = val_longident ; "<" ; t = ctyp; ">" ->
      match e1 with
        | <:ident< $uid:classname$ >> ->
 	   instantiate _loc t classname
