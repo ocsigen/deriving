@@ -44,3 +44,6 @@ setup.exe: setup.ml
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
 
 # OASIS_STOP
+
+wikidoc: $(SETUP) setup.data build
+	$(SETUP) -build deriving-api.wikidocdir/index.wiki
