@@ -2,7 +2,6 @@ version = "$(pkg_version)"
 description = "Deriving"
 
 requires = "$(pkg_name).runtime, $(pkg_name).syntax"
-requires(syntax, preprocessor) = "$(pkg_name).syntax"
 archive(syntax, preprocessor) = "-ignore dummy"
 
 error(pkg_type_conv, pkg_deriving) = "Could not be loaded together with 'type_conv'. Please use $(pkg_name).tc instead."
@@ -19,7 +18,7 @@ package "runtime" (
 package "syntax" (
 
   requires(syntax, preprocessor) = "$(pkg_name).syntax.std, $(pkg_name).syntax.classes"
-  requires(syntax, toploop) = "$(pkg_name).syntax.std, $(pkg_name).syntax.classes"
+  requires(toploop) = "$(pkg_name).syntax.std, $(pkg_name).syntax.classes"
   archive(syntax, preprocessor) = "-ignore dummy"
 
   error(pkg_type_conv, pkg_deriving.syntax, -pkg_deriving) = "Could not be loaded together with 'type_conv'. Please use $(pkg_name).syntax_tc instead."
@@ -27,7 +26,7 @@ package "syntax" (
   package "common" (
 
     requires(syntax, preprocessor) = "unix, camlp4"
-    requires(syntax, toploop) = "unix, camlp4"
+    requires(toploop) = "unix, camlp4"
 
     archive(syntax, preprocessor) = "pa_deriving_common.cma"
     archive(syntax, toploop) = "pa_deriving_common.cma"
@@ -40,7 +39,7 @@ package "syntax" (
     version = "$(pkg_version)"
 
     requires(syntax, preprocessor) = "$(pkg_name).syntax.common"
-    requires(syntax, toploop) = "$(pkg_name).syntax.common"
+    requires(toploop) = "$(pkg_name).syntax.common"
 
     error(pkg_type_conv, -pkg_deriving.syntax, -pkg_deriving) = "Could not be loaded together with 'type_conv'. Please use $(pkg_name).syntax.tc instead."
 
@@ -57,7 +56,7 @@ package "syntax" (
     version = "$(pkg_version)"
 
     requires(syntax, preprocessor) = "$(pkg_name).syntax.common, type_conv"
-    requires(syntax, toploop) = "$(pkg_name).syntax.common, type_conv"
+    requires(toploop) = "$(pkg_name).syntax.common, type_conv"
 
     exists_if = "pa_deriving_tc.cma"
 
@@ -72,7 +71,7 @@ package "syntax" (
     version = "$(pkg_version)"
 
     requires(syntax, preprocessor) = "$(pkg_name).syntax.common"
-    requires(syntax, toploop) = "$(pkg_name).syntax.common"
+    requires(toploop) = "$(pkg_name).syntax.common"
 
     exists_if = "pa_deriving_classes.cma"
 
@@ -85,12 +84,11 @@ package "syntax" (
 
 package "tc" (
   requires = "$(pkg_name).runtime, $(pkg_name).syntax_tc"
-  requires(syntax, preprocessor) = "$(pkg_name).syntax_tc"
   archive(syntax, preprocessor) = "-ignore dummy"
 )
 
 package "syntax_tc" (
   requires(syntax, preprocessor) = "$(pkg_name).syntax.tc, $(pkg_name).syntax.classes"
-  requires(syntax, toploop) = "$(pkg_name).syntax.tc, $(pkg_name).syntax.classes"
+  requires(toploop) = "$(pkg_name).syntax.tc, $(pkg_name).syntax.classes"
   archive(syntax, preprocessor) = "-ignore dummy"
 )
