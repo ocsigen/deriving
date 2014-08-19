@@ -25,10 +25,8 @@ Build intructions:
 ------------------
 
 ```
- $ ${EDITOR} Makefile.config
+ $ ./configure [--disable-tc]
  $ make
-
- $ make tests
 
  # make install
 ```

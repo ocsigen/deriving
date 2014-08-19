@@ -8,10 +8,12 @@ License:     MIT
 BuildTools:  ocamlbuild
 FilesAB:     syntax/common/id.ml.ab,
              lib/META.ab
+Plugins: DevFiles (0.4)
+AlphaFeatures: compiled_setup_ml
 
 Flag tc
   Description: type-conv support
-  Default: true
+  Default: false
 
 Library "deriving"
   Path            : lib
@@ -82,6 +84,7 @@ Executable test
   MainIs         : notc.ml
   BuildDepends   : deriving,optcomp
   Install        : false
+  Build$: flag(tests)
 
 Executable test_tc
   Path           : tests/tc
@@ -89,11 +92,14 @@ Executable test_tc
   CompiledObject : best
   MainIs         : tc.ml
   BuildDepends   : deriving,type_conv
+  Build$: flag(tests) && flag(tc)
 
 Test std
   TestTools : test
-  Command   : _build/tests/notc.native
+  Command   : $test
+  Run$: flag(tests)
 
 Test tc
   TestTools : test_tc
-  Command   : _build/tests/tc.native
+  Command   : $test_tc
+  Run$: flag(tests) && flag(tc)

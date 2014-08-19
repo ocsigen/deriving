@@ -28,7 +28,7 @@ dist:
 	oasis -C deriving-${VERSION} setup
 	sed -i "s/SETUP := setup-dev.exe/SETUP := setup.exe/" \
 	    deriving-${VERSION}/Makefile
-	cd deriving-${VERSION} && rm -rf .git .gitignore Makefile.dist
+	cd deriving-${VERSION} && rm -rf .git .gitignore Makefile.dist opam
 	tar cvzf deriving-${VERSION}.tar.gz deriving-${VERSION}
 	@rm -rf deriving-${VERSION}
 
