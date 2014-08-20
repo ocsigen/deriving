@@ -146,6 +146,9 @@ struct
     | TyAnP _ -> "TyAnP"
     | TyAnM _ -> "TyAnM"
 #endif
+#if ocaml_version >= (4, 02)
+    | TyAtt (_,name,_,c) -> "TyAtt("^ name ^", "^ ctyp c ^")"
+#endif
 end
 
 module Map = struct
@@ -207,9 +210,9 @@ end
 let random_id length =
   let idchars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'" in
   let nidchars = String.length idchars in
-  let s = String.create length in
+  let s = Bytes.create length in
     for i = 0 to length - 1 do
-      s.[i] <- idchars.[Random.int nidchars]
+      Bytes.set s i idchars.[Random.int nidchars]
     done;
     s
 

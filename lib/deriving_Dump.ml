@@ -138,9 +138,9 @@ module Dump_string = Defaults (
       end
     and from_stream stream = 
       let len = Dump_int.from_stream stream in
-      let s = String.create len in
+      let s = Bytes.create len in
         for i = 0 to len - 1 do
-          String.set s i (Stream.next stream) (* could use String.unsafe_set here *)
+          Bytes.unsafe_set s i (Stream.next stream)
         done;
         s
   end
@@ -243,11 +243,11 @@ module Dump_via_marshal (P : sig type a end) = Defaults (
     let to_buffer buffer obj = Buffer.add_string buffer (Marshal.to_string obj [Marshal.Closures])
     let from_stream stream = 
       let readn n = 
-        let s = String.create n in
-          for i = 0 to n - 1 do
-            String.set s i (Stream.next stream)
-          done;
-          s
+        let s = Bytes.create n in
+        for i = 0 to n - 1 do
+          Bytes.set s i (Stream.next stream)
+        done;
+        s
       in
       let header = readn Marshal.header_size in
       let datasize = Marshal.data_size header 0 in

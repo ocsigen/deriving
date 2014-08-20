@@ -47,7 +47,7 @@ Library "pa_deriving_common"
   FindlibName   : common
   Pack          : true
   Modules       : Id, Utils, Type, Defs, Clusters, Base, Extend
-  BuildDepends  : camlp4,camlp4.extend,camlp4.quotations.o,optcomp
+  BuildDepends  : camlp4,camlp4.extend,camlp4.quotations.o,optcomp,bytes
 
 Library "pa_deriving_std"
   Path          : syntax/std
