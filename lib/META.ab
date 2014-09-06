@@ -13,6 +13,8 @@ package "runtime" (
   archive(byte, pkg_num) += "deriving_num.cma"
   archive(native, pkg_num) += "deriving_num.cmxa"
 
+  requires = "bytes"
+
 )
 
 package "syntax" (
