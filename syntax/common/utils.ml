@@ -148,6 +148,8 @@ struct
 #endif
 #if ocaml_version >= (4, 02)
     | TyAtt (_,name,_,c) -> "TyAtt("^ name ^", "^ ctyp c ^")"
+    | TyExt (_,name,args,c) -> "TyExt("^ ident name ^", ["^ (String.concat ", " (List.map ctyp args)) ^ "], " ^ ctyp c ^")"
+    | TyOpn _ -> "TyOpn"
 #endif
 end
 
