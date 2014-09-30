@@ -1,3 +1,9 @@
+== 0.7
+
+  * Compatibility with ocaml-4.02 (Peter Zotoz, Hugo Heuzard)
+  * Fix toplevel usage (Vincent Bernardoff)
+  * Class: add equality for sets (Jeremy Yallop)
+
 == 0.6
 
   * Added a 'Default' class (Hugo Heuzard)
