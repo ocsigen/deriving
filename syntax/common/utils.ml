@@ -223,7 +223,6 @@ let random_id length =
    Garrigue's 1998 ML workshop paper.
 *)
 let tag_hash s =
-  let wrap = 0x40000000 in
   let acc = ref 0 in
   let len = String.length s in
     for i = 0 to len - 1 do
@@ -232,7 +231,7 @@ let tag_hash s =
         acc := (223 * !acc + n);
     done;
     acc := !acc land (1 lsl 31 - 1);
-    if !acc >= wrap then !acc - (1 lsl 31) else !acc
+    if !acc > 0x3fffffff then !acc - (1 lsl 31) else !acc
 
 let _ =
   (* Sanity check to make sure the function doesn't change underneath
