@@ -18,8 +18,13 @@ struct
   open Camlp4.PreCast
   include Syntax
 
+#if ocaml_version >= (4, 03)
+  DELETE_RULE Gram str_item: "type"; opt_nonrec; type_declaration END
+  DELETE_RULE Gram sig_item: "type"; opt_nonrec; type_declaration END
+#else
   DELETE_RULE Gram str_item: "type"; type_declaration END
   DELETE_RULE Gram sig_item: "type"; type_declaration END
+#endif
 
   open Ast
 
