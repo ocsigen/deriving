@@ -2,8 +2,10 @@ opam-version: "1.2"
 name: "deriving"
 version: "dev"
 maintainer: "dev@ocsigen.org"
-homepage: "http://ocsigen.org/deriving/"
+author: "Jeremy Yallop <yallop@gmail.com>"
+homepage: "http://github.com/ocsigen/deriving/"
 bug-reports: "https://github.com/ocsigen/deriving/issues/"
+dev-repo: "https://github.com/ocsigen/deriving.git"
 license: "MIT"
 build: [
   [ "./configure" "--prefix" prefix "--%{type_conv:enable}%-tc" ]

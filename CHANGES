@@ -1,3 +1,7 @@
+== 0.7.1
+
+  * Compatibility with OCaml 4.03
+
 == 0.7
 
   * Compatibility with ocaml-4.02 (Peter Zotoz, Hugo Heuzard)
