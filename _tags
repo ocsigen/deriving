@@ -1,4 +1,111 @@
 # OASIS_START
+# DO NOT EDIT (digest: 937b9f91f8ff61c8015805a9db03d4da)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+true: annot, bin_annot
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library pa_deriving_common
+"syntax/common/pa_deriving_common.cmxs": use_pa_deriving_common
+"syntax/common/utils.cmx": for-pack(Pa_deriving_common)
+"syntax/common/type.cmx": for-pack(Pa_deriving_common)
+"syntax/common/defs.cmx": for-pack(Pa_deriving_common)
+"syntax/common/clusters.cmx": for-pack(Pa_deriving_common)
+"syntax/common/base.cmx": for-pack(Pa_deriving_common)
+"syntax/common/extend.cmx": for-pack(Pa_deriving_common)
+<syntax/common/*.ml{,i,y}>: package(bytes)
+<syntax/common/*.ml{,i,y}>: package(camlp4)
+<syntax/common/*.ml{,i,y}>: package(camlp4.extend)
+<syntax/common/*.ml{,i,y}>: package(camlp4.quotations.o)
+<syntax/common/*.ml{,i,y}>: package(optcomp)
+# Library pa_deriving_std
+"syntax/std/pa_deriving_std.cmxs": use_pa_deriving_std
+<syntax/std/*.ml{,i,y}>: package(bytes)
+<syntax/std/*.ml{,i,y}>: package(camlp4)
+<syntax/std/*.ml{,i,y}>: package(camlp4.extend)
+<syntax/std/*.ml{,i,y}>: package(camlp4.quotations.o)
+<syntax/std/*.ml{,i,y}>: package(optcomp)
+<syntax/std/*.ml{,i,y}>: use_pa_deriving_common
+# Library pa_deriving_classes
+"syntax/classes/pa_deriving_classes.cmxs": use_pa_deriving_classes
+<syntax/classes/*.ml{,i,y}>: package(bytes)
+<syntax/classes/*.ml{,i,y}>: package(camlp4)
+<syntax/classes/*.ml{,i,y}>: package(camlp4.extend)
+<syntax/classes/*.ml{,i,y}>: package(camlp4.quotations.o)
+<syntax/classes/*.ml{,i,y}>: package(optcomp)
+<syntax/classes/*.ml{,i,y}>: use_pa_deriving_common
+<syntax/classes/*.ml{,i,y}>: use_pa_deriving_std
+# Library deriving
+"lib/deriving.cmxs": use_deriving
+# Library deriving_num
+"lib/deriving_num.cmxs": use_deriving_num
+<lib/*.ml{,i,y}>: package(bytes)
+<lib/*.ml{,i,y}>: package(camlp4)
+<lib/*.ml{,i,y}>: package(camlp4.extend)
+<lib/*.ml{,i,y}>: package(camlp4.quotations.o)
+<lib/*.ml{,i,y}>: package(optcomp)
+<lib/*.ml{,i,y}>: use_deriving
+<lib/*.ml{,i,y}>: use_pa_deriving_classes
+<lib/*.ml{,i,y}>: use_pa_deriving_common
+<lib/*.ml{,i,y}>: use_pa_deriving_std
+# Library pa_deriving_tc
+"syntax/tc/pa_deriving_tc.cmxs": use_pa_deriving_tc
+<syntax/tc/*.ml{,i,y}>: package(bytes)
+<syntax/tc/*.ml{,i,y}>: package(camlp4)
+<syntax/tc/*.ml{,i,y}>: package(camlp4.extend)
+<syntax/tc/*.ml{,i,y}>: package(camlp4.quotations.o)
+<syntax/tc/*.ml{,i,y}>: package(optcomp)
+<syntax/tc/*.ml{,i,y}>: package(type_conv)
+<syntax/tc/*.ml{,i,y}>: use_pa_deriving_common
+# Executable test
+<tests/std/notc.{native,byte}>: package(bytes)
+<tests/std/notc.{native,byte}>: package(camlp4)
+<tests/std/notc.{native,byte}>: package(camlp4.extend)
+<tests/std/notc.{native,byte}>: package(camlp4.quotations.o)
+<tests/std/notc.{native,byte}>: package(optcomp)
+<tests/std/notc.{native,byte}>: use_deriving
+<tests/std/notc.{native,byte}>: use_pa_deriving_classes
+<tests/std/notc.{native,byte}>: use_pa_deriving_common
+<tests/std/notc.{native,byte}>: use_pa_deriving_std
+<tests/std/*.ml{,i,y}>: package(bytes)
+<tests/std/*.ml{,i,y}>: package(camlp4)
+<tests/std/*.ml{,i,y}>: package(camlp4.extend)
+<tests/std/*.ml{,i,y}>: package(camlp4.quotations.o)
+<tests/std/*.ml{,i,y}>: package(optcomp)
+<tests/std/*.ml{,i,y}>: use_deriving
+<tests/std/*.ml{,i,y}>: use_pa_deriving_classes
+<tests/std/*.ml{,i,y}>: use_pa_deriving_common
+<tests/std/*.ml{,i,y}>: use_pa_deriving_std
+# Executable test_tc
+<tests/tc/tc.{native,byte}>: package(bytes)
+<tests/tc/tc.{native,byte}>: package(camlp4)
+<tests/tc/tc.{native,byte}>: package(camlp4.extend)
+<tests/tc/tc.{native,byte}>: package(camlp4.quotations.o)
+<tests/tc/tc.{native,byte}>: package(optcomp)
+<tests/tc/tc.{native,byte}>: package(type_conv)
+<tests/tc/tc.{native,byte}>: use_deriving
+<tests/tc/tc.{native,byte}>: use_pa_deriving_classes
+<tests/tc/tc.{native,byte}>: use_pa_deriving_common
+<tests/tc/tc.{native,byte}>: use_pa_deriving_std
+<tests/tc/*.ml{,i,y}>: package(bytes)
+<tests/tc/*.ml{,i,y}>: package(camlp4)
+<tests/tc/*.ml{,i,y}>: package(camlp4.extend)
+<tests/tc/*.ml{,i,y}>: package(camlp4.quotations.o)
+<tests/tc/*.ml{,i,y}>: package(optcomp)
+<tests/tc/*.ml{,i,y}>: package(type_conv)
+<tests/tc/*.ml{,i,y}>: use_deriving
+<tests/tc/*.ml{,i,y}>: use_pa_deriving_classes
+<tests/tc/*.ml{,i,y}>: use_pa_deriving_common
+<tests/tc/*.ml{,i,y}>: use_pa_deriving_std
 # OASIS_STOP
 <**/*.ml{,i}>:syntax(camlp4o)
 <syntax/common/type.ml{,i}>:-package(camlp4.quotations.o)
