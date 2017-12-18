@@ -4,25 +4,25 @@
 *)
 
 (* Interned strings *)
-module BytesMap = Map.Make(Bytes)
+module StringMap = Map.Make(String)
 
 (* global state *)
-let map = ref BytesMap.empty
+let map = ref StringMap.empty
 let counter = ref 0
 
 type t = int * string
     deriving (Show)
 
 let intern s =
-  try BytesMap.find s !map
+  try StringMap.find s !map
   with Not_found ->
-    let fresh = (!counter, Bytes.of_string s) in begin
-      map := BytesMap.add s fresh !map;
+    let fresh = (!counter, s) in begin
+      map := StringMap.add s fresh !map;
       incr counter;
       fresh
     end
 
-let to_string (_,s) = Bytes.to_string s
+let to_string (_,s) = s
 let name = snd
 let compare (l,_) (r,_) = compare l r
 let eq (l,_) (r,_) = l = r
