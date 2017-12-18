@@ -18,6 +18,7 @@ depends: [
   "ocamlfind"
   "camlp4"
   "optcomp"
+  "base-bytes"
   ## OASIS is not required in released version
   "oasis" {>= "0.4.4"}
 ]

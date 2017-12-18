@@ -136,13 +136,13 @@ module Dump_string = Defaults (
         Dump_int.to_buffer buffer (String.length string);
         Buffer.add_string buffer string
       end
-    and from_stream stream = 
+    and from_stream stream =
       let len = Dump_int.from_stream stream in
       let s = Bytes.create len in
         for i = 0 to len - 1 do
           Bytes.unsafe_set s i (Stream.next stream)
         done;
-        s
+        Bytes.to_string s
   end
 )
 
@@ -252,5 +252,5 @@ module Dump_via_marshal (P : sig type a end) = Defaults (
       let header = readn Marshal.header_size in
       let datasize = Marshal.data_size header 0 in
       let datapart = readn datasize in
-        Marshal.from_string (header ^ datapart) 0
+        Marshal.from_string (Bytes.to_string header ^ Bytes.to_string datapart) 0
   end)
