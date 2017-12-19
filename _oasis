@@ -47,14 +47,14 @@ Library "pa_deriving_common"
   FindlibName   : common
   Pack          : true
   Modules       : Id, Utils, Type, Defs, Clusters, Base, Extend
-  BuildDepends  : camlp4,camlp4.extend,camlp4.quotations.o,optcomp,bytes
+  BuildDepends  : camlp4,camlp4.extend,camlp4.quotations.o,bytes
 
 Library "pa_deriving_std"
   Path          : syntax/std
   FindlibParent : pa_deriving_classes
   FindlibName   : std
   Modules       : Pa_deriving_std
-  BuildDepends  : deriving.syntax.common,optcomp,camlp4.quotations.o
+  BuildDepends  : deriving.syntax.common,camlp4.quotations.o
 
 Library "pa_deriving_tc"
   Path          : syntax/tc
@@ -82,7 +82,7 @@ Executable test
   Path           : tests/std
   CompiledObject : best
   MainIs         : notc.ml
-  BuildDepends   : deriving,optcomp
+  BuildDepends   : deriving
   Install        : false
   Build$: flag(tests)
 

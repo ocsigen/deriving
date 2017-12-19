@@ -508,9 +508,6 @@ module InnerGenerator(Loc: Loc)(Desc : InnerClassDescription) = struct
       let cluster_argmap = make_argmap cluster.Clusters.params in
 
       let rec wrap_local_types (args : expr list) body =
-#if ocaml_version < (4, 00)
-        body
-#else
         match args with
         | [] -> body
         | `Param (arg, _) :: args
@@ -526,7 +523,6 @@ module InnerGenerator(Loc: Loc)(Desc : InnerClassDescription) = struct
               <:expr< (fun (type $lid:id$) -> (function $pat$ -> $body$))
                      (module $uid:"M_"^arg$) >>
         | _ -> assert false
-#endif
       in
 
       let generate_instance (tname, eparams as inst) =
