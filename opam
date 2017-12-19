@@ -17,7 +17,6 @@ remove: [ "ocamlfind" "remove" "deriving" ]
 depends: [
   "ocamlfind"
   "camlp4"
-  "optcomp"
   ## OASIS is not required in released version
   "oasis" {>= "0.4.4"}
 ]
@@ -27,3 +26,4 @@ depopts: [
 conflicts: [
   "type_conv" {< "108.07.00"}
 ]
+ocaml-version: [>= "4.03.0"]

@@ -175,8 +175,6 @@ type ii' = {
     int64': Int64.t;
   } deriving (Eq, Dump, Typeable, Pickle, Show)
 
-#if ocaml_version >= (4, 00)
-
 (* GADTs *)
 
 type _ g1 =
@@ -200,5 +198,3 @@ and _ g4 =
   | C : 'a g3 * 'a -> 'a g4
   | D : float g4
       deriving (Show)
-
-#endif

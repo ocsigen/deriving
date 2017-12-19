@@ -251,11 +251,9 @@ struct
     | Ast.TyQuP (loc, name) -> name, Some `Plus
     | Ast.TyQuM (loc, name) -> name, Some `Minus
     | Ast.TyQuo (loc, name)  -> name, None
-#if ocaml_version >= (4, 00)
     | Ast.TyAnP _ -> anon_param (), Some `Plus
     | Ast.TyAnM _ -> anon_param (), Some `Minus
     | Ast.TyAny _ -> anon_param (), None
-#endif
     | _ -> assert false
 
   let params = List.map param
@@ -564,14 +562,10 @@ struct
   let param (name, v) =
     if name.[0] = '_'
     then
-#if ocaml_version < (4, 00)
-      Ast.TyAny _loc
-#else
       match v with
       | None        -> Ast.TyAny _loc
       | Some `Plus  -> Ast.TyAnP _loc
       | Some `Minus -> Ast.TyAnM _loc
-#endif
     else
       match v with
       | None        -> <:ctyp<  '$lid:name$ >>
