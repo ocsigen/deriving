@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title> deriving examples </title><meta charset="utf8"/><link rel="stylesheet" href="/style.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/themes/prism.min.css"/><script src="/client.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-ocaml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-clike.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-reason.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-javascript.min.js"></script></head><body><h1> deriving examples </h1><h2> Pretty printing </h2><p>The deriving preprocessor and library provide common functionality
+which has an obvious definition at most types. For example, it's
+usually easy, although tedious, to write a to_string function for a
+new type you've defined; deriving will save you the trouble by writing
+the function for you automatically. To call a deriving function at a
+particular type you use a special notation:
+</p><pre class=""><code class="language-ocaml translatable">Class.method&lt;type&gt; argument</code></pre><p>(Note that the terms &quot;Class&quot; and &quot;method&quot; are taken from Haskell's
+type classes, and has nothing to do with OCaml's object-oriented
+class system.)
+</p><p>For example, to call the show method of the Show class to convert an
+integer to a string you would write:
+</p><pre class=""><code class="language-ocaml translatable">Show.show&lt;int&gt; 3
+=&gt;
+&quot;3&quot;</code></pre><p>You can also specify more complex types:
+</p><pre class=""><code class="language-ocaml translatable">let factors = [(10,[2;5]); (11, []);  12, [2;3;4;6]]
+
+Show.show&lt;(int * int list) list&gt; factors
+=&gt;
+&quot;[(10,[2; 5]); (11, []);  12, [2; 3; 4; 6]]&quot;</code></pre><p>To use a deriving function at a type you've defined, you need to add
+the phrase deriving (Class) to the end of your type definition. For
+example,
+</p><pre class=""><code class="language-ocaml translatable">type 'a tree = Leaf of 'a | Branch of 'a tree * 'a * 'a tree
+     deriving (Show)
+
+ type point = { x : float; y : float }
+     deriving (Show)
+
+ let points = Branch (Leaf {x=0.0;
+                            y=0.0;},
+                      {x=2.0; y=2.0},
+                      Branch (Leaf {x=1.0; y=1.0},
+                              {x=1.0; y=0.0},
+                              Leaf {x=0.0; y=1.0}))
+
+Show.show&lt;point tree&gt; points
+=&gt;
+&quot;Branch
+   (Leaf {x =193.11; y =132.13}, {x =211.91; y =201.11},
+    Branch
+      (Leaf {x =113.12; y =1.}, {x =12.7; y =44.1}, Leaf {x =0.; y
+      =13.41}))&quot;</code></pre><p>If you want to show values of an abstract type defined in a module
+outside the module you should add the deriving annotation to the
+signature as well:
+</p><pre class=""><code class="language-ocaml translatable">module IntStack : sig
+  type t
+    deriving (Show)
+
+  val empty : t
+  val push : int -&gt; t -&gt; t
+  val top : t -&gt; int
+  val pop : t -&gt; t
+end =
+struct
+  type t = Stack of int list
+     deriving (Show)
+  let empty = Stack []
+  let push item (Stack list) = Stack (item::list)
+  let top (Stack (top::_)) = top
+  let pop (Stack (_::rest)) = Stack rest
+end
+
+Show.show&lt;IntStack.t&gt;
+  (IntStack.push 3 (IntStack.push 4 (IntStack.push 5 IntStack.empty)))
+=&gt;
+&quot;Stack [3; 4; 5]&quot;</code></pre><p>You can derive Show for most types, including recursive (and mutually
+recursive) types, normal and polymorphic variants, records, tuples and
+types containing other types for which Show has been derived. You
+can't derive Show for functions because there's usually no meaningful
+way to display them. If you have a way to display values of a type for
+which Show cannot be derived then you can always write your own
+definition and make it available to deriving; see the section
+&quot;Extending definitions&quot;.
+</p><h2> Dynamic typing </h2><p>The `Typeable' class provides operations for converting between a
+universal type `dynamic' and any other type. Converting from dynamic
+to another type succeeds only if the type specified in the conversion
+matches the type used to create the dynamic value. The upcast
+operation is called mk (or make_dynamic if you prefer to be
+verbose). The downcasts are cast, which returns an option value, and
+throwing_cast, which throws an exception if the downcast fails.
+</p><pre class=""><code class="language-ocaml translatable">type 'a tree = Leaf of 'a | Branch of 'a tree * 'a * 'a tree
+  deriving (Typeable)
+
+let items =
+   [Typeable.mk&lt;int&gt; 3;
+    Typeable.mk&lt;float&gt; 3.0;
+    Typeable.mk&lt;string tree&gt; (Leaf &quot;three&quot;)]
+=&gt;
+[&lt;abstr&gt;; &lt;abstr&gt;; &lt;abstr&gt;]
+
+Typeable.cast&lt;int&gt; (List.hd items)
+=&gt;
+Some 3
+
+Typeable.throwing_cast&lt;int&gt; (List.hd items)
+=&gt;
+3
+
+Typeable.cast&lt;float&gt; (List.hd items)
+=&gt;
+None
+
+Typeable.throwing_cast&lt;float&gt; (List.hd items)
+=&gt;
+Exception: Typeable.CastFailure &quot;cast failed&quot;.</code></pre><p>Casts also work between equivalent polymorphic variant types (even if
+the types used for the upcast and downcast are defined differently):
+</p><pre class=""><code class="language-ocaml translatable">type 'a seq = [`Nil | `Cons of 'a * 'a seq]
+    deriving (Typeable)
+
+let l = `Cons (3, `Cons (2, `Cons (1, `Nil)))
+
+Typeable.cast&lt;[`Cons of int * 'a|`Nil] as 'a&gt;
+  (Typeable.mk&lt;int seq&gt; l)
+=&gt;
+Some (`Cons (3, `Cons (2, `Cons (1, `Nil))))</code></pre><p>Casts don't work between record or normal variant types which are
+defined separately, even if the definitions are identical.
+</p><pre class=""><code class="language-ocaml translatable">type complex = {x : float; y : float}
+  deriving (Typeable)
+
+
+type point = {x : float; y : float}
+  deriving (Typeable)
+
+Typeable.cast&lt;point&gt; (Typeable.mk&lt;complex&gt; {x : -1.0; y : 0.0})
+=&gt;
+None</code></pre><p>However, abstraction using module signatures does not change whether
+types are interconvertible, so you can use Typeable to access the
+representation of an abstract type if you know it.
+</p><pre class=""><code class="language-ocaml translatable">module T :
+sig
+  type t
+    deriving (Typeable)
+  val v : t
+end =
+struct
+  type t = int
+  val v = 12
+end
+
+Typeable.cast&lt;int&gt; (Typeable.mk&lt;T.t&gt; T.v)
+=&gt;
+12</code></pre><h2> Equality </h2><p>There are two polymorphic equality operators in OCaml:
+</p><p><span class="teletype">=</span> tests for structural equality.
+<span class="teletype">==</span> tests for physical equality.
+Sometimes neither of these is appropriate. Instead, we want to test
+for structural equality at immutable types and physical equality
+(identity) at mutable types (as in SML). This sort of equality tests
+whether two values can be used interchangeably in a program.
+</p><pre class=""><code class="language-ocaml translatable">Eq.eq&lt;int ref&gt; (ref 1) (ref 1)
+=&gt;
+false
+
+let x = ref 1 in Eq.eq&lt;int ref&gt; x x
+=&gt;
+true
+
+Eq.eq&lt;int list&gt; [1;2;3] [1;2;3]
+=&gt;
+true
+
+type mpoint = { mutable x : float; mutable y : float}
+    deriving (Eq)
+
+Eq.eq&lt;mpoint&gt; {x = 1.0; y = 2.0} {x = 1.0; y = 2.0}
+=&gt;
+false
+
+let p = {x = 1.0; y = 2.0} in Eq.eq&lt;mpoint&gt; p p
+=&gt;
+true
+
+type ipoint = { x : float; y : float}
+    deriving (Eq)
+
+Eq.eq&lt;ipoint&gt; {x = 1.0; y = 2.0} {x = 1.0; y = 2.0}
+=&gt;
+true</code></pre><h2> Serialisation </h2><p>The `Pickle' class provides operations for structure-sharing
+serialisation (marshalling). If any value to be serialised contains
+two equal subvalues then only one copy of the subvalue will be
+serialised. Cycles that are created by mutable record fields,
+including references, are preserved.
+</p><p>All &quot;instances&quot; of Pickle must also be &quot;instances&quot; of Eq and
+Typeable. (As in Haskell, we use &quot;instance&quot; to mean a set of functions
+that implement the methods of a class at a particular type.)
+</p><pre class=""><code class="language-ocaml translatable">type 'a tree = Leaf of 'a | Branch of 'a tree * 'a * 'a tree
+  deriving (Eq, Typeable, Pickle)
+
+type point = { x : float; y : float }
+    deriving (Eq, Typeable, Pickle)
+
+Pickle.to_string&lt;point tree&gt; points
+=&gt;
+&quot;\007\003\t\128\128\128\128\128\128\128\248?\t\128\128\128\128\128\128\128\128@\001\000\005\000\001\008\000\001\n\001\003\004\t\003\000\001\012\001\003\006\011\005\005\002\002\000\002\000\002\002\000\000\002\001\001\002\002\002&quot;
+
+Pickle.from_string&lt;point tree&gt; (Pickle.to_string&lt;point tree&gt; points)
+=&gt;
+Branch
+  (Leaf {x =193.11; y =132.13}, {x =211.91; y =201.11},
+   Branch
+     (Leaf {x =113.12; y =1.}, {x =12.7; y =44.1}, Leaf {x =0.; y =13.41}))</code></pre><p>You can supply a custom definition of equality (see the section
+&quot;Extending definitions&quot;) to increase sharing: see the file
+tests/exp.ml in the distribution for an example.
+</p><p>There is another class, `Dump', that provides simpler value-oriented
+serialisation, but doesn't deal with references or cycles.
+</p><h2> Map </h2><p>Given a type ('a1,...,'an) t, the `Functor' class will derive a map operation:
+</p><pre class=""><code class="language-ocaml translatable">val map : ('a1-&gt;'b1) -&gt; ... ('an-&gt;'bn} -&gt; ('a1,...,'an) t -&gt; ('b1,...,'bn) t</code></pre><p>For example,
+</p><pre class=""><code class="language-ocaml translatable">type 'a tree = Leaf of 'a | Branch of 'a tree * 'a * 'a tree
+  deriving (Functor)
+
+Functor_tree.map ((+) 1) (Branch (Leaf 3, 4, Leaf 5))
+=&gt;
+(Branch (Leaf 4, 5, Leaf 6))</code></pre><p>The &lt;t&gt; notation is not currently available for Functor.
+</p><h2> Enumerations </h2><p>Enumerations provide several operations for dealing with variant types
+where all constructors have no argument.
+</p><pre class=""><code class="language-ocaml translatable">Enum.enum_from_to&lt;int&gt; 0 10
+=&gt;
+[0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+
+type fruit = Apple | Orange | Banana | Kiwi
+   deriving (Enum)
+
+Enum.enum_from_to&lt;fruit&gt; Apple Kiwi
+=&gt;
+[Apple; Orange; Banana; Kiwi]
+
+Enum.succ&lt;fruit&gt; Orange
+=&gt;
+Banana</code></pre><h2> Minimum and maximum values </h2><p>Instances of bounded have maximum and minimum values:
+</p><pre class=""><code class="language-ocaml translatable">type fruit = Apple | Orange | Banana | Kiwi
+   deriving (Bounded)
+
+(Bounded.min_bound&lt;int * fruit&gt;, Bounded.max_bound&lt;int * fruit&gt;)
+=&gt;
+((-1073741824, Apple), (1073741823, Kiwi))</code></pre><h2> Extending definitions </h2><p>Instead of deriving a definition automatically you can provide your
+own by writing a module with the same signature as the standard
+definitions with a name formed from the class name, an underscore, and
+the name of the type constructor for which you want to provide the
+definition.
+</p><pre class=""><code class="language-ocaml translatable">module Eq_fruit
+  : Eq.Eq with type a = fruit =
+Eq.Defaults(struct
+  type a = fruit
+  let eq l r = match l, r with
+   | Apple  , Orange
+   | Orange , Apple
+   | Apple  , Apple
+   | Orange , Orange
+   | Banana , Banana
+   | Kiwi   , Kiwi   -&gt; true
+   | _               -&gt; false
+end)
+
+Eq.eq&lt;fruit list&gt; [Apple; Orange; Banana] [Orange; Orange; Banana]
+=&gt;
+true</code></pre></body></html>
