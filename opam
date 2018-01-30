@@ -2,28 +2,25 @@ opam-version: "1.2"
 name: "deriving"
 version: "dev"
 maintainer: "dev@ocsigen.org"
-author: "Jeremy Yallop <yallop@gmail.com>"
+authors: "Jeremy Yallop <yallop@gmail.com>"
 homepage: "http://github.com/ocsigen/deriving/"
 bug-reports: "https://github.com/ocsigen/deriving/issues/"
-dev-repo: "https://github.com/ocsigen/deriving.git"
 license: "MIT"
+dev-repo: "https://github.com/ocsigen/deriving.git"
 build: [
-  [ make "setup.exe" ]
-  [ "./setup.exe" "-configure" "--prefix" prefix "--%{type_conv:enable}%-tc" ]
-  [ make ]
+  [make "setup.exe"]
+  ["./setup.exe" "-configure" "--prefix" prefix "--%{type_conv:enable}%-tc"]
+  [make]
 ]
-install: [ make "install" ]
-remove: [ "ocamlfind" "remove" "deriving" ]
+install: [make "install"]
+remove: ["ocamlfind" "remove" "deriving"]
 depends: [
   "ocamlfind"
   "camlp4"
-  ## OASIS is not required in released version
-  "oasis" {>= "0.4.4"}
+  "oasis" {build & >= "0.4.4"}
 ]
-depopts: [
-  "type_conv"
-]
+depopts: "type_conv"
 conflicts: [
   "type_conv" {< "108.07.00"}
 ]
-ocaml-version: [>= "4.03.0"]
+available: [ocaml-version >= "4.03.0"]

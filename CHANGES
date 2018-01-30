@@ -1,3 +1,8 @@
+== 0.8
+
+  * Compatibility with OCaml 4.06 (-safe-string)
+  * Drop optcomp dependency and compatibility with OCaml < 4.03
+
 == 0.7.1
 
   * Compatibility with OCaml 4.03
