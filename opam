@@ -17,6 +17,7 @@ remove: ["ocamlfind" "remove" "deriving"]
 depends: [
   "ocamlfind"
   "camlp4"
+  "num"
   "oasis" {build & >= "0.4.4"}
 ]
 depopts: "type_conv"
