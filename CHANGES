@@ -1,3 +1,7 @@
+== 0.8.1
+
+  * Declare dependency on 'num'. Fixes build on OS X.
+
 == 0.8
 
   * Compatibility with OCaml 4.06 (-safe-string)
