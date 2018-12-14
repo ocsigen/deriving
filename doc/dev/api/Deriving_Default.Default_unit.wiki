@@ -1,0 +1,4 @@
+=Module <<a_api_type | module Deriving_Default.Default_unit >> =
+<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|module>> <<span class="ocsforge_color_uid"|<<span class="ocsforge_color_uid"|Default_unit>>>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|<<a_api text="Default" | module Deriving_Default.Default >>>><<span class="odocwiki_type"|  with type a = unit>>>>
+----
+<<pre class="ocsforge_color odocwiki_code" id="TYPEa"|<<span class="ocsforge_color_keyword"|type>> <<span class="odocwiki_name"|a>>>><<pre id="VALdefault" class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|val>> <<span class="odocwiki_name"|default>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|unit <<span class="ocsforge_color_delimiter"| -> >> <<a_api text="a" | type Deriving_Default.Default.a >>>>>>

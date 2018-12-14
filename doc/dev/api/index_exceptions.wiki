@@ -1,0 +1,14 @@
+=Index of exceptions=
+
+|@@ @style="tet-align: left;"@@\\C|
+|@@class="odocwiki_index"@ @@<<a_api text="CastFailure"| exception Deriving_Typeable.CastFailure >> ~[<<a_api | module Deriving_Typeable >>~]||
+|@@ @style="tet-align: left;"@@\\D|
+|@@class="odocwiki_index"@ @@<<a_api text="Dump_error"| exception Deriving_Dump.Dump_error >> ~[<<a_api | module Deriving_Dump >>~]||
+|@@ @style="tet-align: left;"@@\\N|
+|@@class="odocwiki_index"@ @@<<a_api text="NoSuchClass"| exception Base.NoSuchClass >> ~[<<a_api | module Base >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="Not_found"| exception Utils.Map.S.Not_found >> ~[<<a_api | module Utils.Map.S >>~]||
+|@@ @style="tet-align: left;"@@\\U|
+|@@class="odocwiki_index"@ @@<<a_api text="Underivable"| exception Base.Underivable >> ~[<<a_api | module Base >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="UnknownTag"| exception Deriving_Pickle.UnknownTag >> ~[<<a_api | module Deriving_Pickle >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="UnpicklingError"| exception Deriving_Pickle.UnpicklingError >> ~[<<a_api | module Deriving_Pickle >>~]||
+\\

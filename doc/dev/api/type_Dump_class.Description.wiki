@@ -1,0 +1,1 @@
+<<code language="ocaml" | Pa_deriving_common.Defs.ClassDescription >>

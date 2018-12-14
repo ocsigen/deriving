@@ -1,0 +1,1 @@
+<<code language="ocaml" | sig type 'a f = 'a option val map : ('a -> 'b) -> 'a f -> 'b f end >>

@@ -1,0 +1,1 @@
+<<code language="ocaml" | sig val _loc : Camlp4.PreCast.Loc.t end >>

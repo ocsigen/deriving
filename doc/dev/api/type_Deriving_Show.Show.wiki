@@ -1,0 +1,7 @@
+<<code language="ocaml" | sig
+  type a
+  val format : Format.formatter -> Deriving_Show.Show.a -> unit
+  val format_list : Format.formatter -> Deriving_Show.Show.a list -> unit
+  val show : Deriving_Show.Show.a -> string
+  val show_list : Deriving_Show.Show.a list -> string
+end >>

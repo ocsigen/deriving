@@ -1,0 +1,1 @@
+<<code language="ocaml" | sig type a = fpclass val min_bound : a val max_bound : a end >>

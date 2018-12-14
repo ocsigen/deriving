@@ -1,0 +1,4 @@
+<<code language="ocaml" | sig
+  module Deriving :
+    functor (S : Camlp4.Sig.Camlp4Syntax) -> Camlp4.Sig.Camlp4Syntax
+end >>

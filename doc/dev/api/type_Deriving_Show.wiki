@@ -1,0 +1,175 @@
+<<code language="ocaml" | sig
+  module type Show =
+    sig
+      type a
+      val format : Format.formatter -> Deriving_Show.Show.a -> unit
+      val format_list : Format.formatter -> Deriving_Show.Show.a list -> unit
+      val show : Deriving_Show.Show.a -> string
+      val show_list : Deriving_Show.Show.a list -> string
+    end
+  module Defaults :
+    functor
+      (S : sig
+             type a
+             val format :
+               Format.formatter -> Deriving_Show.Defaults.a -> unit
+           end) ->
+      sig
+        type a = S.a
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+  module Show_unprintable :
+    functor (S : sig type a end) ->
+      sig
+        type a = S.a
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+  module Show_char :
+    sig
+      type a = char
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_bool :
+    sig
+      type a = bool
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_unit :
+    sig
+      type a = unit
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_int :
+    sig
+      type a = int
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_int32 :
+    sig
+      type a = int32
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_int64 :
+    sig
+      type a = int64
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_nativeint :
+    sig
+      type a = nativeint
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_float :
+    sig
+      type a = float
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_string :
+    sig
+      type a = string
+      val format : Format.formatter -> a -> unit
+      val format_list : Format.formatter -> a list -> unit
+      val show : a -> string
+      val show_list : a list -> string
+    end
+  module Show_list :
+    functor (S : Show) ->
+      sig
+        type a = S.a list
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+  module Show_ref :
+    functor (S : Show) ->
+      sig
+        type a = S.a ref
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+  module Show_option :
+    functor (S : Show) ->
+      sig
+        type a = S.a option
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+  module Show_array :
+    functor (S : Show) ->
+      sig
+        type a = S.a array
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+  module Show_map :
+    functor
+      (O : Map.OrderedType) (K : sig
+                                   type a = O.t
+                                   val format : Format.formatter -> a -> unit
+                                   val format_list :
+                                     Format.formatter -> a list -> unit
+                                   val show : a -> string
+                                   val show_list : a list -> string
+                                 end) (V : Show) ->
+      sig
+        type a = V.a Map.Make(O).t
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+  module Show_set :
+    functor
+      (O : Set.OrderedType) (K : sig
+                                   type a = O.t
+                                   val format : Format.formatter -> a -> unit
+                                   val format_list :
+                                     Format.formatter -> a list -> unit
+                                   val show : a -> string
+                                   val show_list : a list -> string
+                                 end) ->
+      sig
+        type a = Set.Make(O).t
+        val format : Format.formatter -> a -> unit
+        val format_list : Format.formatter -> a list -> unit
+        val show : a -> string
+        val show_list : a list -> string
+      end
+end >>

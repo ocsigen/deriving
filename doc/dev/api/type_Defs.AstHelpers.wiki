@@ -1,0 +1,27 @@
+<<code language="ocaml" | sig
+  module Untranslate : Type.Untranslate
+  val seq :
+    Camlp4.PreCast.Ast.expr ->
+    Camlp4.PreCast.Ast.expr -> Camlp4.PreCast.Ast.expr
+  val seq_list : Camlp4.PreCast.Ast.expr list -> Camlp4.PreCast.Ast.expr
+  val record_pattern :
+    ?prefix:string -> Type.field list -> Camlp4.PreCast.Ast.patt
+  val record_expr :
+    (string * Camlp4.PreCast.Ast.expr) list -> Camlp4.PreCast.Ast.expr
+  val record_expression :
+    ?prefix:string -> Type.field list -> Camlp4.PreCast.Ast.expr
+  val expr_list : Camlp4.PreCast.Ast.expr list -> Camlp4.PreCast.Ast.expr
+  val patt_list : Camlp4.PreCast.Ast.patt list -> Camlp4.PreCast.Ast.patt
+  val tuple_expr : Camlp4.PreCast.Ast.expr list -> Camlp4.PreCast.Ast.expr
+  val tuple :
+    ?param:string ->
+    int -> string list * Camlp4.PreCast.Ast.patt * Camlp4.PreCast.Ast.expr
+  val cast_pattern :
+    Type.qname Type.NameMap.t ->
+    ?param:string ->
+    Type.expr ->
+    Camlp4.PreCast.Ast.patt * Camlp4.PreCast.Ast.expr *
+    Camlp4.PreCast.Ast.expr
+  val modname_from_qname :
+    qname:string list -> classname:string -> Camlp4.PreCast.Ast.ident
+end >>

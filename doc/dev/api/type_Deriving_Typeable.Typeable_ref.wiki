@@ -1,0 +1,10 @@
+<<code language="ocaml" | functor (A : Typeable) ->
+  sig
+    type a = A.a ref
+    val type_rep : TypeRep.t Lazy.t
+    val has_type : dynamic -> bool
+    val cast : dynamic -> a option
+    val throwing_cast : dynamic -> a
+    val make_dynamic : a -> dynamic
+    val mk : a -> dynamic
+  end >>

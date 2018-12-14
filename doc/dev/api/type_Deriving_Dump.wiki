@@ -1,0 +1,174 @@
+<<code language="ocaml" | sig
+  module type Dump =
+    sig
+      type a
+      val to_buffer : Buffer.t -> Deriving_Dump.Dump.a -> unit
+      val to_string : Deriving_Dump.Dump.a -> string
+      val to_channel : Pervasives.out_channel -> Deriving_Dump.Dump.a -> unit
+      val from_stream : char Stream.t -> Deriving_Dump.Dump.a
+      val from_string : string -> Deriving_Dump.Dump.a
+      val from_channel : Pervasives.in_channel -> Deriving_Dump.Dump.a
+    end
+  module Defaults :
+    functor
+      (P : sig
+             type a
+             val to_buffer : Buffer.t -> Deriving_Dump.Defaults.a -> unit
+             val from_stream : char Stream.t -> Deriving_Dump.Defaults.a
+           end) ->
+      sig
+        type a = P.a
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  exception Dump_error of string
+  module Dump_int32 :
+    sig
+      type a = Int32.t
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_int64 :
+    sig
+      type a = Int64.t
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_nativeint :
+    sig
+      type a = Nativeint.t
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_int :
+    sig
+      type a = int
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_char :
+    sig
+      type a = char
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_string :
+    sig
+      type a = string
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_float :
+    sig
+      type a = float
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_bool :
+    sig
+      type a = bool
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_unit :
+    sig
+      type a = unit
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Dump_list :
+    functor (P : Dump) ->
+      sig
+        type a = P.a list
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Dump_option :
+    functor (P : Dump) ->
+      sig
+        type a = P.a option
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Dump_undumpable :
+    functor (P : sig type a val tname : string end) ->
+      sig
+        type a = P.a
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Dump_via_marshal :
+    functor (P : sig type a end) ->
+      sig
+        type a = P.a
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Dump_alpha :
+    functor (P : sig type a end) ->
+      sig
+        type a = P.a
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+end >>

@@ -1,0 +1,24 @@
+<<code language="ocaml" | sig
+  type a
+  module Typeable :
+    sig
+      type a = a
+      val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+      val has_type : Deriving_Typeable.dynamic -> bool
+      val cast : Deriving_Typeable.dynamic -> a option
+      val throwing_cast : Deriving_Typeable.dynamic -> a
+      val make_dynamic : a -> Deriving_Typeable.dynamic
+      val mk : a -> Deriving_Typeable.dynamic
+    end
+  module Eq : sig type a = a val eq : a -> a -> bool end
+  val pickle :
+    Deriving_Pickle.Pickle.a -> Deriving_Pickle.id Deriving_Pickle.Write.m
+  val unpickle :
+    Deriving_Pickle.id -> Deriving_Pickle.Pickle.a Deriving_Pickle.Read.m
+  val to_buffer : Buffer.t -> Deriving_Pickle.Pickle.a -> unit
+  val to_string : Deriving_Pickle.Pickle.a -> string
+  val to_channel : Pervasives.out_channel -> Deriving_Pickle.Pickle.a -> unit
+  val from_stream : char Stream.t -> Deriving_Pickle.Pickle.a
+  val from_string : string -> Deriving_Pickle.Pickle.a
+  val from_channel : Pervasives.in_channel -> Deriving_Pickle.Pickle.a
+end >>

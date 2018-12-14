@@ -1,0 +1,1 @@
+<<code language="ocaml" | sig type a = nativeint val eq : a -> a -> bool end >>
