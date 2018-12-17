@@ -1,0 +1,508 @@
+<html><head><title></title><meta charset="utf8"/><link rel="stylesheet" href="https://ocsigen.org/ocsigen-toolkit/tmp/style.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/themes/prism.min.css"/><script type="text/javascript" src="https://ocsigen.org/js/client.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-core.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-ocaml.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-clike.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-reason.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-javascript.min.js">
+//<![CDATA[
+
+//]]>
+</script></head><body><div class="project-page"><div class="page-header"><p class="logo-ocsigen"><a href=".././../../" class="ocsimore_phrasing_link"><img src=".././../../img/ocsigen-white.svg" alt="Ocsigen"/></a>
+</p><div class="mainmenu"><p><span class="mainmenu-home"><a href=".././../../" class="ocsimore_phrasing_link">Home</a></span>
+<span class="mainmenu-doc"><a href=".././../../tuto/" class="ocsimore_phrasing_link">Doc</a></span>
+</p><p><a href=".././../../eliom/" class="ocsimore_phrasing_link">Eliom</a></p><p><a href=".././../../js_of_ocaml/" class="ocsimore_phrasing_link">Js_of_ocaml</a></p><p><a href=".././../../lwt/" class="ocsimore_phrasing_link">Lwt</a></p><p><a href=".././../../tyxml/" class="ocsimore_phrasing_link">Tyxml</a></p><p><a href=".././../../ocsigen-start/" class="ocsimore_phrasing_link">Start</a></p></div><form id="googlesearch" action="https://google.com/search"><input name="q" id="gsearch-box" placeholder="Search using Google"/><label for="gsearch-box"><img src="https://ocsigen.org/ocsigen-toolkit/tmp/search.svg" alt="" id="gsearch-icon"/></label><input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/></form><aside class="how-drawer"><input id="how-drawer-toggle" type="checkbox"/><label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label><nav class="how-drawer-content"><ul class="drawermainmenu"><li class="drawermainmenu-home"><a href=".././../../" class="ocsimore_phrasing_link">Home</a>
+</li><li class="drawermainmenu-doc"><a href=".././../../tuto/" class="ocsimore_phrasing_link">Doc</a>
+</li><li class="drawermainmenu-project"><a href=".././../../eliom/" class="ocsimore_phrasing_link">Eliom</a>
+</li><li class="drawermainmenu-project"><a href=".././../../js_of_ocaml/" class="ocsimore_phrasing_link">Js_of_ocaml</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsigenserver/" class="ocsimore_phrasing_link">Server</a>
+</li><li class="drawermainmenu-project"><a href=".././../../lwt/" class="ocsimore_phrasing_link">Lwt</a>
+</li><li class="drawermainmenu-project"><a href=".././../../tyxml/" class="ocsimore_phrasing_link">Tyxml</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsigen-toolkit/" class="ocsimore_phrasing_link">Toolkit</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsigen-start/" class="ocsimore_phrasing_link">Start</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsimore/" class="ocsimore_phrasing_link">Ocsimore (<em>deprecated</em>)</a>
+</li><li class="drawermainmenu-page"><a href=".././../../projects" class="ocsimore_phrasing_link">Other projects</a>
+</li><li class="drawermainmenu-page"><a href=".././../../papers" class="ocsimore_phrasing_link">Research papers</a>
+</li><li class="drawermainmenu-page"><a href=".././../../credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
+</li><li class="drawermainmenu-page"><a href=".././../../blog" class="ocsimore_phrasing_link">Blog</a>
+</li><li class="drawermainmenu-page"><a href="https://github.com/ocsigen" class="ocsimore_phrasing_link">Source code</a>
+</li></ul><nav class="how-doctree"><h1>Deriving - API Reference</h1><h2>Runtime library</h2><h3><a href=".././api/Deriving_Show" class="ocsimore_phrasing_link">Deriving_Show</a></h3><h3><a href=".././api/Deriving_Eq" class="ocsimore_phrasing_link">Deriving_Eq</a></h3><h3><a href=".././api/Deriving_Bounded" class="ocsimore_phrasing_link">Deriving_Bounded</a></h3><h3><a href=".././api/Deriving_Enum" class="ocsimore_phrasing_link">Deriving_Enum</a></h3><h3><a href=".././api/Deriving_monad" class="ocsimore_phrasing_link">Deriving_monad</a></h3><h3><a href=".././api/Deriving_Dump" class="ocsimore_phrasing_link">Deriving_Dump</a></h3><h3><a href=".././api/Deriving_Typeable" class="ocsimore_phrasing_link">Deriving_Typeable</a></h3><h3><a href=".././api/Deriving_Pickle" class="ocsimore_phrasing_link">Deriving_Pickle</a></h3><h3><a href=".././api/Deriving_Functor" class="ocsimore_phrasing_link">Deriving_Functor</a></h3><h3><a href=".././api/Deriving_Default" class="ocsimore_phrasing_link">Deriving_Default</a></h3><h3><a href=".././api/Deriving_num" class="ocsimore_phrasing_link">Deriving_num</a></h3><h2>Syntax</h2><h3><a href=".././api/Id" class="ocsimore_phrasing_link">Id</a></h3><h3><a href=".././api/Utils" class="ocsimore_phrasing_link">Utils</a></h3><h3><a href=".././api/Type" class="ocsimore_phrasing_link">Type</a></h3><h3><a href=".././api/Defs" class="ocsimore_phrasing_link">Defs</a></h3><h3><a href=".././api/Clusters" class="ocsimore_phrasing_link">Clusters</a></h3><h3><a href=".././api/Base" class="ocsimore_phrasing_link">Base</a></h3><h3><a href=".././api/Extend" class="ocsimore_phrasing_link">Extend</a></h3><h2>Index</h2><h3> <span><a href=".././api/index_types">Index of types</a></span></h3><h3> <span><a href=".././api/index_exceptions">Index of exceptions</a></span></h3><h3> <span><a href=".././api/index_values">Index of values</a></span></h3><h3> <span><a href=".././api/index_methods">Index of class methods</a></span></h3><h3> <span><a href=".././api/index_classes">Index of classes</a></span></h3><h3> <span><a href=".././api/index_modules">Index of modules</a></span></h3><h3> <span><a href=".././api/index_module_types">Index of module types</a></span></h3></nav></nav></aside></div><p class="reasonwarning">Warning: Reason support is experimental.
+We are looking for beta-tester and contributors.
+</p><button id="reason">Switch to </button><div class="twocols"><nav class="leftcol">Version <select class="how-versions" onchange="location = this.value;"><option value=".././../dev/api/type_Type" selected="selected">dev</option></select><nav class="how-doctree"><h1>Deriving - API Reference</h1><h2>Runtime library</h2><h3><a href=".././api/Deriving_Show" class="ocsimore_phrasing_link">Deriving_Show</a></h3><h3><a href=".././api/Deriving_Eq" class="ocsimore_phrasing_link">Deriving_Eq</a></h3><h3><a href=".././api/Deriving_Bounded" class="ocsimore_phrasing_link">Deriving_Bounded</a></h3><h3><a href=".././api/Deriving_Enum" class="ocsimore_phrasing_link">Deriving_Enum</a></h3><h3><a href=".././api/Deriving_monad" class="ocsimore_phrasing_link">Deriving_monad</a></h3><h3><a href=".././api/Deriving_Dump" class="ocsimore_phrasing_link">Deriving_Dump</a></h3><h3><a href=".././api/Deriving_Typeable" class="ocsimore_phrasing_link">Deriving_Typeable</a></h3><h3><a href=".././api/Deriving_Pickle" class="ocsimore_phrasing_link">Deriving_Pickle</a></h3><h3><a href=".././api/Deriving_Functor" class="ocsimore_phrasing_link">Deriving_Functor</a></h3><h3><a href=".././api/Deriving_Default" class="ocsimore_phrasing_link">Deriving_Default</a></h3><h3><a href=".././api/Deriving_num" class="ocsimore_phrasing_link">Deriving_num</a></h3><h2>Syntax</h2><h3><a href=".././api/Id" class="ocsimore_phrasing_link">Id</a></h3><h3><a href=".././api/Utils" class="ocsimore_phrasing_link">Utils</a></h3><h3><a href=".././api/Type" class="ocsimore_phrasing_link">Type</a></h3><h3><a href=".././api/Defs" class="ocsimore_phrasing_link">Defs</a></h3><h3><a href=".././api/Clusters" class="ocsimore_phrasing_link">Clusters</a></h3><h3><a href=".././api/Base" class="ocsimore_phrasing_link">Base</a></h3><h3><a href=".././api/Extend" class="ocsimore_phrasing_link">Extend</a></h3><h2>Index</h2><h3> <span><a href=".././api/index_types">Index of types</a></span></h3><h3> <span><a href=".././api/index_exceptions">Index of exceptions</a></span></h3><h3> <span><a href=".././api/index_values">Index of values</a></span></h3><h3> <span><a href=".././api/index_methods">Index of class methods</a></span></h3><h3> <span><a href=".././api/index_classes">Index of classes</a></span></h3><h3> <span><a href=".././api/index_modules">Index of modules</a></span></h3><h3> <span><a href=".././api/index_module_types">Index of module types</a></span></h3></nav></nav><article class="rightcol"><pre class=""><code class="language-ocaml translatable">sig
+  type name = string
+  type qname = Type.name list
+  module NameMap :
+    sig
+      type key = string
+      type +'a t
+      val empty : 'a t
+      val is_empty : 'a t -&gt; bool
+      val mem : key -&gt; 'a t -&gt; bool
+      val add : key -&gt; 'a -&gt; 'a t -&gt; 'a t
+      val singleton : key -&gt; 'a -&gt; 'a t
+      val remove : key -&gt; 'a t -&gt; 'a t
+      val merge :
+        (key -&gt; 'a option -&gt; 'b option -&gt; 'c option) -&gt; 'a t -&gt; 'b t -&gt; 'c t
+      val compare : ('a -&gt; 'a -&gt; int) -&gt; 'a t -&gt; 'a t -&gt; int
+      val equal : ('a -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t -&gt; bool
+      val iter : (key -&gt; 'a -&gt; unit) -&gt; 'a t -&gt; unit
+      val fold : (key -&gt; 'a -&gt; 'b -&gt; 'b) -&gt; 'a t -&gt; 'b -&gt; 'b
+      val for_all : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val exists : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val filter : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t
+      val partition : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t * 'a t
+      val cardinal : 'a t -&gt; int
+      val bindings : 'a t -&gt; (key * 'a) list
+      val min_binding : 'a t -&gt; key * 'a
+      val max_binding : 'a t -&gt; key * 'a
+      val choose : 'a t -&gt; key * 'a
+      val split : key -&gt; 'a t -&gt; 'a t * 'a option * 'a t
+      val find : key -&gt; 'a t -&gt; 'a
+      val map : ('a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      val mapi : (key -&gt; 'a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      exception Not_found of key
+      val fromList : (key * 'a) list -&gt; 'a t
+      val union_disjoint : 'a t list -&gt; 'a t
+      val union_disjoint2 : 'a t -&gt; 'a t -&gt; 'a t
+    end
+  module NameSet :
+    sig
+      type elt = string
+      type t
+      val empty : t
+      val is_empty : t -&gt; bool
+      val mem : elt -&gt; t -&gt; bool
+      val add : elt -&gt; t -&gt; t
+      val singleton : elt -&gt; t
+      val remove : elt -&gt; t -&gt; t
+      val union : t -&gt; t -&gt; t
+      val inter : t -&gt; t -&gt; t
+      val diff : t -&gt; t -&gt; t
+      val compare : t -&gt; t -&gt; int
+      val equal : t -&gt; t -&gt; bool
+      val subset : t -&gt; t -&gt; bool
+      val iter : (elt -&gt; unit) -&gt; t -&gt; unit
+      val fold : (elt -&gt; 'a -&gt; 'a) -&gt; t -&gt; 'a -&gt; 'a
+      val for_all : (elt -&gt; bool) -&gt; t -&gt; bool
+      val exists : (elt -&gt; bool) -&gt; t -&gt; bool
+      val filter : (elt -&gt; bool) -&gt; t -&gt; t
+      val partition : (elt -&gt; bool) -&gt; t -&gt; t * t
+      val cardinal : t -&gt; int
+      val elements : t -&gt; elt list
+      val min_elt : t -&gt; elt
+      val max_elt : t -&gt; elt
+      val choose : t -&gt; elt
+      val split : elt -&gt; t -&gt; t * bool * t
+      val find : elt -&gt; t -&gt; elt
+      val of_list : elt list -&gt; t
+      val toList : t -&gt; elt list
+      val fromList : elt list -&gt; t
+    end
+  type param = Type.name * [ `Minus | `Plus ] option
+  type decl = Type.name * Type.param list * rhs * constraint_ list * bool
+  and rhs =
+      [ `Expr of expr
+      | `Fresh of expr option * repr * [ `Private | `Public ]
+      | `Nothing
+      | `Variant of variant * [ `Private | `Public ] ]
+  and repr =
+      Sum of Type.summand list
+    | GSum of Type.name * Type.gsummand list
+    | Record of Type.field list
+  and field = Type.name * poly_expr * [ `Immutable | `Mutable ]
+  and summand = Type.name * expr list
+  and gsummand = Type.name * expr list * expr list
+  and constraint_ = expr * expr
+  and expr =
+      [ `Class of [ `NYI ]
+      | `Constr of Type.qname * expr list
+      | `Function of expr * expr
+      | `GParam of Type.param * expr
+      | `Label of [ `NonOptional | `Optional ] * Type.name * expr * expr
+      | `Object of [ `NYI ]
+      | `Param of Type.param
+      | `Tuple of expr list ]
+  and poly_expr = Type.param list * expr
+  and variant = [ `Eq | `Gt | `Lt ] * tagspec list
+  and tagspec = Tag of Type.name * Type.expr list | Extends of Type.expr
+  module ParamSet :
+    sig
+      type elt = param
+      type t
+      val empty : t
+      val is_empty : t -&gt; bool
+      val mem : elt -&gt; t -&gt; bool
+      val add : elt -&gt; t -&gt; t
+      val singleton : elt -&gt; t
+      val remove : elt -&gt; t -&gt; t
+      val union : t -&gt; t -&gt; t
+      val inter : t -&gt; t -&gt; t
+      val diff : t -&gt; t -&gt; t
+      val compare : t -&gt; t -&gt; int
+      val equal : t -&gt; t -&gt; bool
+      val subset : t -&gt; t -&gt; bool
+      val iter : (elt -&gt; unit) -&gt; t -&gt; unit
+      val fold : (elt -&gt; 'a -&gt; 'a) -&gt; t -&gt; 'a -&gt; 'a
+      val for_all : (elt -&gt; bool) -&gt; t -&gt; bool
+      val exists : (elt -&gt; bool) -&gt; t -&gt; bool
+      val filter : (elt -&gt; bool) -&gt; t -&gt; t
+      val partition : (elt -&gt; bool) -&gt; t -&gt; t * t
+      val cardinal : t -&gt; int
+      val elements : t -&gt; elt list
+      val min_elt : t -&gt; elt
+      val max_elt : t -&gt; elt
+      val choose : t -&gt; elt
+      val split : elt -&gt; t -&gt; t * bool * t
+      val find : elt -&gt; t -&gt; elt
+      val of_list : elt list -&gt; t
+      val toList : t -&gt; elt list
+      val fromList : elt list -&gt; t
+    end
+  module ParamMap :
+    sig
+      type key = param
+      type +'a t
+      val empty : 'a t
+      val is_empty : 'a t -&gt; bool
+      val mem : key -&gt; 'a t -&gt; bool
+      val add : key -&gt; 'a -&gt; 'a t -&gt; 'a t
+      val singleton : key -&gt; 'a -&gt; 'a t
+      val remove : key -&gt; 'a t -&gt; 'a t
+      val merge :
+        (key -&gt; 'a option -&gt; 'b option -&gt; 'c option) -&gt; 'a t -&gt; 'b t -&gt; 'c t
+      val compare : ('a -&gt; 'a -&gt; int) -&gt; 'a t -&gt; 'a t -&gt; int
+      val equal : ('a -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t -&gt; bool
+      val iter : (key -&gt; 'a -&gt; unit) -&gt; 'a t -&gt; unit
+      val fold : (key -&gt; 'a -&gt; 'b -&gt; 'b) -&gt; 'a t -&gt; 'b -&gt; 'b
+      val for_all : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val exists : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val filter : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t
+      val partition : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t * 'a t
+      val cardinal : 'a t -&gt; int
+      val bindings : 'a t -&gt; (key * 'a) list
+      val min_binding : 'a t -&gt; key * 'a
+      val max_binding : 'a t -&gt; key * 'a
+      val choose : 'a t -&gt; key * 'a
+      val split : key -&gt; 'a t -&gt; 'a t * 'a option * 'a t
+      val find : key -&gt; 'a t -&gt; 'a
+      val map : ('a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      val mapi : (key -&gt; 'a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      exception Not_found of key
+      val fromList : (key * 'a) list -&gt; 'a t
+      val union_disjoint : 'a t list -&gt; 'a t
+      val union_disjoint2 : 'a t -&gt; 'a t -&gt; 'a t
+    end
+  module ExprSet :
+    sig
+      type elt = expr
+      type t
+      val empty : t
+      val is_empty : t -&gt; bool
+      val mem : elt -&gt; t -&gt; bool
+      val add : elt -&gt; t -&gt; t
+      val singleton : elt -&gt; t
+      val remove : elt -&gt; t -&gt; t
+      val union : t -&gt; t -&gt; t
+      val inter : t -&gt; t -&gt; t
+      val diff : t -&gt; t -&gt; t
+      val compare : t -&gt; t -&gt; int
+      val equal : t -&gt; t -&gt; bool
+      val subset : t -&gt; t -&gt; bool
+      val iter : (elt -&gt; unit) -&gt; t -&gt; unit
+      val fold : (elt -&gt; 'a -&gt; 'a) -&gt; t -&gt; 'a -&gt; 'a
+      val for_all : (elt -&gt; bool) -&gt; t -&gt; bool
+      val exists : (elt -&gt; bool) -&gt; t -&gt; bool
+      val filter : (elt -&gt; bool) -&gt; t -&gt; t
+      val partition : (elt -&gt; bool) -&gt; t -&gt; t * t
+      val cardinal : t -&gt; int
+      val elements : t -&gt; elt list
+      val min_elt : t -&gt; elt
+      val max_elt : t -&gt; elt
+      val choose : t -&gt; elt
+      val split : elt -&gt; t -&gt; t * bool * t
+      val find : elt -&gt; t -&gt; elt
+      val of_list : elt list -&gt; t
+      val toList : t -&gt; elt list
+      val fromList : elt list -&gt; t
+    end
+  module ExprMap :
+    sig
+      type key = expr
+      type +'a t
+      val empty : 'a t
+      val is_empty : 'a t -&gt; bool
+      val mem : key -&gt; 'a t -&gt; bool
+      val add : key -&gt; 'a -&gt; 'a t -&gt; 'a t
+      val singleton : key -&gt; 'a -&gt; 'a t
+      val remove : key -&gt; 'a t -&gt; 'a t
+      val merge :
+        (key -&gt; 'a option -&gt; 'b option -&gt; 'c option) -&gt; 'a t -&gt; 'b t -&gt; 'c t
+      val compare : ('a -&gt; 'a -&gt; int) -&gt; 'a t -&gt; 'a t -&gt; int
+      val equal : ('a -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t -&gt; bool
+      val iter : (key -&gt; 'a -&gt; unit) -&gt; 'a t -&gt; unit
+      val fold : (key -&gt; 'a -&gt; 'b -&gt; 'b) -&gt; 'a t -&gt; 'b -&gt; 'b
+      val for_all : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val exists : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val filter : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t
+      val partition : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t * 'a t
+      val cardinal : 'a t -&gt; int
+      val bindings : 'a t -&gt; (key * 'a) list
+      val min_binding : 'a t -&gt; key * 'a
+      val max_binding : 'a t -&gt; key * 'a
+      val choose : 'a t -&gt; key * 'a
+      val split : key -&gt; 'a t -&gt; 'a t * 'a option * 'a t
+      val find : key -&gt; 'a t -&gt; 'a
+      val map : ('a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      val mapi : (key -&gt; 'a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      exception Not_found of key
+      val fromList : (key * 'a) list -&gt; 'a t
+      val union_disjoint : 'a t list -&gt; 'a t
+      val union_disjoint2 : 'a t -&gt; 'a t -&gt; 'a t
+    end
+  module ESet :
+    sig
+      type elt = name * expr list
+      type t
+      val empty : t
+      val is_empty : t -&gt; bool
+      val mem : elt -&gt; t -&gt; bool
+      val add : elt -&gt; t -&gt; t
+      val singleton : elt -&gt; t
+      val remove : elt -&gt; t -&gt; t
+      val union : t -&gt; t -&gt; t
+      val inter : t -&gt; t -&gt; t
+      val diff : t -&gt; t -&gt; t
+      val compare : t -&gt; t -&gt; int
+      val equal : t -&gt; t -&gt; bool
+      val subset : t -&gt; t -&gt; bool
+      val iter : (elt -&gt; unit) -&gt; t -&gt; unit
+      val fold : (elt -&gt; 'a -&gt; 'a) -&gt; t -&gt; 'a -&gt; 'a
+      val for_all : (elt -&gt; bool) -&gt; t -&gt; bool
+      val exists : (elt -&gt; bool) -&gt; t -&gt; bool
+      val filter : (elt -&gt; bool) -&gt; t -&gt; t
+      val partition : (elt -&gt; bool) -&gt; t -&gt; t * t
+      val cardinal : t -&gt; int
+      val elements : t -&gt; elt list
+      val min_elt : t -&gt; elt
+      val max_elt : t -&gt; elt
+      val choose : t -&gt; elt
+      val split : elt -&gt; t -&gt; t * bool * t
+      val find : elt -&gt; t -&gt; elt
+      val of_list : elt list -&gt; t
+      val toList : t -&gt; elt list
+      val fromList : elt list -&gt; t
+    end
+  module EMap :
+    sig
+      type key = name * expr list
+      type +'a t
+      val empty : 'a t
+      val is_empty : 'a t -&gt; bool
+      val mem : key -&gt; 'a t -&gt; bool
+      val add : key -&gt; 'a -&gt; 'a t -&gt; 'a t
+      val singleton : key -&gt; 'a -&gt; 'a t
+      val remove : key -&gt; 'a t -&gt; 'a t
+      val merge :
+        (key -&gt; 'a option -&gt; 'b option -&gt; 'c option) -&gt; 'a t -&gt; 'b t -&gt; 'c t
+      val compare : ('a -&gt; 'a -&gt; int) -&gt; 'a t -&gt; 'a t -&gt; int
+      val equal : ('a -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t -&gt; bool
+      val iter : (key -&gt; 'a -&gt; unit) -&gt; 'a t -&gt; unit
+      val fold : (key -&gt; 'a -&gt; 'b -&gt; 'b) -&gt; 'a t -&gt; 'b -&gt; 'b
+      val for_all : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val exists : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; bool
+      val filter : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t
+      val partition : (key -&gt; 'a -&gt; bool) -&gt; 'a t -&gt; 'a t * 'a t
+      val cardinal : 'a t -&gt; int
+      val bindings : 'a t -&gt; (key * 'a) list
+      val min_binding : 'a t -&gt; key * 'a
+      val max_binding : 'a t -&gt; key * 'a
+      val choose : 'a t -&gt; key * 'a
+      val split : key -&gt; 'a t -&gt; 'a t * 'a option * 'a t
+      val find : key -&gt; 'a t -&gt; 'a
+      val map : ('a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      val mapi : (key -&gt; 'a -&gt; 'b) -&gt; 'a t -&gt; 'b t
+      exception Not_found of key
+      val fromList : (key * 'a) list -&gt; 'a t
+      val union_disjoint : 'a t list -&gt; 'a t
+      val union_disjoint2 : 'a t -&gt; 'a t -&gt; 'a t
+    end
+  val free_tvars : Type.expr -&gt; Type.ParamSet.t
+  val contains_tvars : Type.expr -&gt; bool
+  val contains_tvars_decl : Type.decl -&gt; bool
+  type subst = Type.expr Type.NameMap.t
+  val build_subst : (Type.name * Type.expr) list -&gt; Type.subst
+  val substitute_decl : Type.subst -&gt; Type.decl -&gt; Type.decl
+  val substitute_expr : Type.subst -&gt; Type.expr -&gt; Type.expr
+  val substitute_rhs : Type.subst -&gt; Type.rhs -&gt; Type.rhs
+  val substitute_constraint :
+    Type.subst -&gt; Type.constraint_ -&gt; Type.constraint_
+  val rename_rhs : Type.name Type.NameMap.t -&gt; Type.rhs -&gt; Type.rhs
+  val rename_constraint :
+    Type.name Type.NameMap.t -&gt; Type.constraint_ -&gt; Type.constraint_
+  class virtual ['a] fold :
+    object
+      method constraint_ : Type.constraint_ -&gt; 'a
+      method virtual crush : 'a list -&gt; 'a
+      method decl : Type.decl -&gt; 'a
+      method expr : Type.expr -&gt; 'a
+      method field : Type.field -&gt; 'a
+      method gsummand : Type.gsummand -&gt; 'a
+      method poly_expr : Type.poly_expr -&gt; 'a
+      method repr : Type.repr -&gt; 'a
+      method rhs : Type.rhs -&gt; 'a
+      method summand : Type.summand -&gt; 'a
+      method tagspec : Type.tagspec -&gt; 'a
+      method variant : Type.variant -&gt; 'a
+    end
+  class transform :
+    object
+      method constraint_ : Type.constraint_ -&gt; Type.constraint_
+      method decl : Type.decl -&gt; Type.decl
+      method expr : Type.expr -&gt; Type.expr
+      method field : Type.field -&gt; Type.field
+      method gsummand : Type.gsummand -&gt; Type.gsummand
+      method poly_expr : Type.poly_expr -&gt; Type.poly_expr
+      method repr : Type.repr -&gt; Type.repr
+      method rhs : Type.rhs -&gt; Type.rhs
+      method summand : Type.summand -&gt; Type.summand
+      method tagspec : Type.tagspec -&gt; Type.tagspec
+      method variant : Type.variant -&gt; Type.variant
+    end
+  module Translate :
+    sig
+      val param :
+        Camlp4.PreCast.Ast.ctyp -&gt; string * [&gt; `Minus | `Plus ] option
+      val params :
+        Camlp4.PreCast.Ast.ctyp list -&gt;
+        (string * [&gt; `Minus | `Plus ] option) list
+      val split_and :
+        Camlp4.PreCast.Ast.ctyp -&gt;
+        (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+         Camlp4.PreCast.Ast.ctyp)
+        Utils.either
+      val split_comma :
+        Camlp4.PreCast.Ast.ctyp -&gt;
+        (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+         Camlp4.PreCast.Ast.ctyp)
+        Utils.either
+      val split_semi :
+        Camlp4.PreCast.Ast.ctyp -&gt;
+        (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+         Camlp4.PreCast.Ast.ctyp)
+        Utils.either
+      val split_or :
+        Camlp4.PreCast.Ast.ctyp -&gt;
+        (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+         Camlp4.PreCast.Ast.ctyp)
+        Utils.either
+      val split_amp :
+        Camlp4.PreCast.Ast.ctyp -&gt;
+        (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+         Camlp4.PreCast.Ast.ctyp)
+        Utils.either
+      val split_ofamp :
+        Camlp4.PreCast.Ast.ctyp -&gt;
+        (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+         Camlp4.PreCast.Ast.ctyp)
+        Utils.either
+      val split_star :
+        Camlp4.PreCast.Ast.ctyp -&gt;
+        (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+         Camlp4.PreCast.Ast.ctyp)
+        Utils.either
+      val list :
+        (Camlp4.PreCast.Ast.ctyp -&gt; 'a) -&gt;
+        (Camlp4.PreCast.Ast.ctyp -&gt;
+         (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp,
+          Camlp4.PreCast.Ast.ctyp)
+         Utils.either) -&gt;
+        Camlp4.PreCast.Ast.ctyp -&gt; 'a list
+      val ident : Camlp4.PreCast.Ast.ident -&gt; Type.name
+      val qident : Camlp4.PreCast.Ast.ident -&gt; Type.qname
+      type vmap = (Type.name * Type.variant * Type.name option) list
+      val fresh_name : unit -&gt; string
+      val set_name_prefix : Type.name -&gt; unit
+      module WithParams :
+        functor (P : sig val params : Type.param list end) -&gt;
+          sig
+            val params : Type.param list
+            val apply_t :
+              'a -&gt; [&gt; `Constr of 'a list * [&gt; `Param of Type.param ] list ]
+            val expr :
+              Camlp4.PreCast.Ast.ctyp -&gt; Type.expr * Type.Translate.vmap
+            val tagspec :
+              Camlp4.PreCast.Ast.ctyp -&gt; Type.tagspec * Type.Translate.vmap
+            val application :
+              Camlp4.PreCast.Ast.ctyp -&gt;
+              (Type.qname * Type.expr list) * Type.Translate.vmap
+            val variant :
+              Camlp4.PreCast.Ast.ctyp -&gt;
+              ?alias:Type.name -&gt;
+              [ `Eq | `Gt | `Lt ] -&gt; Type.expr * Type.Translate.vmap
+            val polyexpr :
+              Camlp4.PreCast.Ast.ctyp -&gt; Type.poly_expr * Type.Translate.vmap
+            val field :
+              Camlp4.PreCast.Ast.ctyp -&gt; Type.field * Type.Translate.vmap
+            val summand :
+              Camlp4.PreCast.Ast.ctyp -&gt; Type.summand * Type.Translate.vmap
+            val repr :
+              Camlp4.PreCast.Ast.ctyp -&gt;
+              Type.repr * (Type.name * Type.variant * Type.name option) list
+            val toplevel :
+              Camlp4.PreCast.Ast.ctyp -&gt; Type.rhs * Type.Translate.vmap
+            val constraints :
+              (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp) list -&gt;
+              Type.constraint_ list * Type.Translate.vmap
+            val declify :
+              (Type.name * Type.variant * Type.name option) list -&gt;
+              (Type.decl * (Type.name * Type.expr) option) list
+          end
+      type alias_map = Type.expr Type.NameMap.t
+      val build_alias_map :
+        (Type.NameMap.key * Type.expr) option list -&gt;
+        Type.Translate.alias_map
+      val split : Camlp4.PreCast.Ast.ctyp -&gt; Camlp4.PreCast.Ast.ctyp list
+      val decl :
+        Camlp4.PreCast.Ast.ctyp -&gt; Type.decl list * Type.Translate.alias_map
+      val substitute_aliases :
+        Type.Translate.alias_map -&gt; Type.decl -&gt; Type.decl
+      val decls : Camlp4.PreCast.Ast.ctyp -&gt; Type.decl list
+    end
+  module type Untranslate =
+    sig
+      val param :
+        string * [&lt; `Minus | `Plus ] option -&gt; Camlp4.PreCast.Ast.ctyp
+      val qname : string list -&gt; Camlp4.PreCast.Ast.ident
+      val qName : string list -&gt; Camlp4.PreCast.Ast.ident
+      val expr : Type.expr -&gt; Camlp4.PreCast.Ast.ctyp
+      val poly : Type.param list * Type.expr -&gt; Camlp4.PreCast.Ast.ctyp
+      val rhs : Type.rhs -&gt; Camlp4.PreCast.Ast.ctyp
+      val tagspec : Type.tagspec -&gt; Camlp4.PreCast.Ast.ctyp
+      val summand : Type.summand -&gt; Camlp4.PreCast.Ast.ctyp
+      val field : Type.field -&gt; Camlp4.PreCast.Ast.ctyp
+      val repr : Type.repr -&gt; Camlp4.PreCast.Ast.ctyp
+      val constraint_ :
+        Type.expr * Type.expr -&gt;
+        Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp
+      val decl : Type.decl -&gt; Camlp4.PreCast.Ast.ctyp
+      val sigdecl : Type.decl -&gt; Camlp4.PreCast.Ast.ctyp list
+    end
+  module Untranslate :
+    functor (C : sig val _loc : Camlp4.PreCast.Ast.Loc.t end) -&gt; Untranslate
+  val print_expr : Type.expr -&gt; string
+  val print_rhs : Type.rhs -&gt; string
+end</code></pre></article></div></div></body></html>
