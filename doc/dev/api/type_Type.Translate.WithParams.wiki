@@ -1,0 +1,31 @@
+<<code language="ocaml" | functor (P : sig val params : Type.param list end) ->
+  sig
+    val params : Type.param list
+    val apply_t :
+      'a -> [> `Constr of 'a list * [> `Param of Type.param ] list ]
+    val expr : Camlp4.PreCast.Ast.ctyp -> Type.expr * Type.Translate.vmap
+    val tagspec :
+      Camlp4.PreCast.Ast.ctyp -> Type.tagspec * Type.Translate.vmap
+    val application :
+      Camlp4.PreCast.Ast.ctyp ->
+      (Type.qname * Type.expr list) * Type.Translate.vmap
+    val variant :
+      Camlp4.PreCast.Ast.ctyp ->
+      ?alias:Type.name ->
+      [ `Eq | `Gt | `Lt ] -> Type.expr * Type.Translate.vmap
+    val polyexpr :
+      Camlp4.PreCast.Ast.ctyp -> Type.poly_expr * Type.Translate.vmap
+    val field : Camlp4.PreCast.Ast.ctyp -> Type.field * Type.Translate.vmap
+    val summand :
+      Camlp4.PreCast.Ast.ctyp -> Type.summand * Type.Translate.vmap
+    val repr :
+      Camlp4.PreCast.Ast.ctyp ->
+      Type.repr * (Type.name * Type.variant * Type.name option) list
+    val toplevel : Camlp4.PreCast.Ast.ctyp -> Type.rhs * Type.Translate.vmap
+    val constraints :
+      (Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp) list ->
+      Type.constraint_ list * Type.Translate.vmap
+    val declify :
+      (Type.name * Type.variant * Type.name option) list ->
+      (Type.decl * (Type.name * Type.expr) option) list
+  end >>

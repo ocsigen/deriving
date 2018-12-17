@@ -1,0 +1,17 @@
+<<code language="ocaml" | sig
+  val param : string * [< `Minus | `Plus ] option -> Camlp4.PreCast.Ast.ctyp
+  val qname : string list -> Camlp4.PreCast.Ast.ident
+  val qName : string list -> Camlp4.PreCast.Ast.ident
+  val expr : Type.expr -> Camlp4.PreCast.Ast.ctyp
+  val poly : Type.param list * Type.expr -> Camlp4.PreCast.Ast.ctyp
+  val rhs : Type.rhs -> Camlp4.PreCast.Ast.ctyp
+  val tagspec : Type.tagspec -> Camlp4.PreCast.Ast.ctyp
+  val summand : Type.summand -> Camlp4.PreCast.Ast.ctyp
+  val field : Type.field -> Camlp4.PreCast.Ast.ctyp
+  val repr : Type.repr -> Camlp4.PreCast.Ast.ctyp
+  val constraint_ :
+    Type.expr * Type.expr ->
+    Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp
+  val decl : Type.decl -> Camlp4.PreCast.Ast.ctyp
+  val sigdecl : Type.decl -> Camlp4.PreCast.Ast.ctyp list
+end >>

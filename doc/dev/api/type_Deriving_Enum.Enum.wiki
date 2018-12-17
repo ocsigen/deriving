@@ -1,0 +1,15 @@
+<<code language="ocaml" | sig
+  type a
+  val succ : Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a
+  val pred : Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a
+  val to_enum : int -> Deriving_Enum.Enum.a
+  val from_enum : Deriving_Enum.Enum.a -> int
+  val enum_from : Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a list
+  val enum_from_then :
+    Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a list
+  val enum_from_to :
+    Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a list
+  val enum_from_then_to :
+    Deriving_Enum.Enum.a ->
+    Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a -> Deriving_Enum.Enum.a list
+end >>

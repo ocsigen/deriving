@@ -1,0 +1,9 @@
+<<code language="ocaml" | sig
+  type a = a
+  val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+  val has_type : Deriving_Typeable.dynamic -> bool
+  val cast : Deriving_Typeable.dynamic -> a option
+  val throwing_cast : Deriving_Typeable.dynamic -> a
+  val make_dynamic : a -> Deriving_Typeable.dynamic
+  val mk : a -> Deriving_Typeable.dynamic
+end >>

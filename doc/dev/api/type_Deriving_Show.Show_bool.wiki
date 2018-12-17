@@ -1,0 +1,7 @@
+<<code language="ocaml" | sig
+  type a = bool
+  val format : Format.formatter -> a -> unit
+  val format_list : Format.formatter -> a list -> unit
+  val show : a -> string
+  val show_list : a list -> string
+end >>

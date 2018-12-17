@@ -1,0 +1,1 @@
+<<code language="ocaml" | functor (E : Eq) -> sig type a = E.a option val eq : a -> a -> bool end >>

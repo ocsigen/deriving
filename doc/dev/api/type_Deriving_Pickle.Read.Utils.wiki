@@ -1,0 +1,10 @@
+<<code language="ocaml" | functor (T : Deriving_Typeable.Typeable) ->
+  sig
+    val sum :
+      (int * Deriving_Pickle.id list -> T.a m) -> Deriving_Pickle.id -> T.a m
+    val tuple :
+      (Deriving_Pickle.id list -> T.a m) -> Deriving_Pickle.id -> T.a m
+    val record :
+      (T.a -> Deriving_Pickle.id list -> T.a m) ->
+      int -> Deriving_Pickle.id -> T.a m
+  end >>

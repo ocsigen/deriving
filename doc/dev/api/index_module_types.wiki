@@ -1,0 +1,47 @@
+=Index of module types=
+
+|@@ @style="tet-align: left;"@@\\A|
+|@@class="odocwiki_index"@ @@<<a_api text="AstHelpers"| module type Defs.AstHelpers >> ~[<<a_api | module Defs >>~]||
+|@@ @style="tet-align: left;"@@\\B|
+|@@class="odocwiki_index"@ @@<<a_api text="Bounded"| module type Deriving_Bounded.Bounded >> ~[<<a_api | module Deriving_Bounded >>~]||
+|@@ @style="tet-align: left;"@@\\C|
+|@@class="odocwiki_index"@ @@<<a_api text="Class"| module type Defs.Class >> ~[<<a_api | module Defs >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="ClassBuilder"| module type Defs.ClassBuilder >> ~[<<a_api | module Defs >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="ClassDescription"| module type Defs.ClassDescription >> ~[<<a_api | module Defs >>~]||
+|@@ @style="tet-align: left;"@@\\D|
+|@@class="odocwiki_index"@ @@<<a_api text="Default"| module type Deriving_Default.Default >> ~[<<a_api | module Deriving_Default >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="DepClassBuilder"| module type Defs.DepClassBuilder >> ~[<<a_api | module Defs >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="Dump"| module type Deriving_Dump.Dump >> ~[<<a_api | module Deriving_Dump >>~]||
+|@@ @style="tet-align: left;"@@\\E|
+|@@class="odocwiki_index"@ @@<<a_api text="Enum"| module type Deriving_Enum.Enum >> ~[<<a_api | module Deriving_Enum >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="Eq"| module type Deriving_Eq.Eq >> ~[<<a_api | module Deriving_Eq >>~]||
+|@@ @style="tet-align: left;"@@\\F|
+|@@class="odocwiki_index"@ @@<<a_api text="FullBuilder"| module type Defs.FullBuilder >> ~[<<a_api | module Defs >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="FullClass"| module type Defs.FullClass >> ~[<<a_api | module Defs >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="Functor"| module type Deriving_Functor.Functor >> ~[<<a_api | module Deriving_Functor >>~]||
+|@@ @style="tet-align: left;"@@\\G|
+|@@class="odocwiki_index"@ @@<<a_api text="Generator"| module type Defs.Generator >> ~[<<a_api | module Defs >>~]||
+|@@ @style="tet-align: left;"@@\\I|
+|@@class="odocwiki_index"@ @@<<a_api text="InnerClassBuilder"| module type Defs.InnerClassBuilder >> ~[<<a_api | module Defs >>~]||
+|@@ @style="tet-align: left;"@@\\L|
+|@@class="odocwiki_index"@ @@<<a_api text="Loc"| module type Defs.Loc >> ~[<<a_api | module Defs >>~]||
+|@@ @style="tet-align: left;"@@\\M|
+|@@class="odocwiki_index"@ @@<<a_api text="Monad"| module type Deriving_monad.Monad >> ~[<<a_api | module Deriving_monad >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="MonadPlus"| module type Deriving_monad.MonadPlus >> ~[<<a_api | module Deriving_monad >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="MonadPlusUtilsSig"| module type Deriving_monad.MonadPlusUtilsSig >> ~[<<a_api | module Deriving_monad >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="MonadUtilsSig"| module type Deriving_monad.MonadUtilsSig >> ~[<<a_api | module Deriving_monad >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="Monad_state_type"| module type Deriving_monad.Monad_state_type >> ~[<<a_api | module Deriving_monad >>~]||
+|@@ @style="tet-align: left;"@@\\O|
+|@@class="odocwiki_index"@ @@<<a_api text="OrderedType"| module type Utils.Set.OrderedType >> ~[<<a_api | module Utils.Set >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="OrderedType"| module type Utils.Map.OrderedType >> ~[<<a_api | module Utils.Map >>~]||
+|@@ @style="tet-align: left;"@@\\P|
+|@@class="odocwiki_index"@ @@<<a_api text="Pickle"| module type Deriving_Pickle.Pickle >> ~[<<a_api | module Deriving_Pickle >>~]||
+|@@ @style="tet-align: left;"@@\\S|
+|@@class="odocwiki_index"@ @@<<a_api text="S"| module type Utils.Set.S >> ~[<<a_api | module Utils.Set >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="S"| module type Utils.Map.S >> ~[<<a_api | module Utils.Map >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="Show"| module type Deriving_Show.Show >> ~[<<a_api | module Deriving_Show >>~]||
+|@@ @style="tet-align: left;"@@\\T|
+|@@class="odocwiki_index"@ @@<<a_api text="Typeable"| module type Deriving_Typeable.Typeable >> ~[<<a_api | module Deriving_Typeable >>~]||
+|@@ @style="tet-align: left;"@@\\U|
+|@@class="odocwiki_index"@ @@<<a_api text="Untranslate"| module type Type.Untranslate >> ~[<<a_api | module Type >>~]||
+\\

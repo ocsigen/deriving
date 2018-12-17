@@ -1,0 +1,5 @@
+<<code language="ocaml" | sig
+  type a
+  val min_bound : Deriving_Bounded.Bounded.a
+  val max_bound : Deriving_Bounded.Bounded.a
+end >>

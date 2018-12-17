@@ -1,0 +1,8 @@
+<<code language="ocaml" | functor (S : Show) ->
+  sig
+    type a = S.a list
+    val format : Format.formatter -> a -> unit
+    val format_list : Format.formatter -> a list -> unit
+    val show : a -> string
+    val show_list : a list -> string
+  end >>

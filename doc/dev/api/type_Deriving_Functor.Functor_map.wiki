@@ -1,0 +1,2 @@
+<<code language="ocaml" | functor (O : Map.OrderedType) ->
+  sig type 'a f = 'a Map.Make(O).t val map : ('a -> 'b) -> 'a f -> 'b f end >>

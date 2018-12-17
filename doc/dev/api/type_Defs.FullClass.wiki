@@ -1,0 +1,9 @@
+<<code language="ocaml" | sig
+  val classname : Type.name
+  val runtimename : Type.name
+  val generate : Type.decl list -> Camlp4.PreCast.Ast.str_item
+  val generate_sigs : Type.decl list -> Camlp4.PreCast.Ast.sig_item
+  val generate_expr :
+    Camlp4.PreCast.Ast.module_expr Type.EMap.t ->
+    Type.qname Type.NameMap.t -> Type.expr -> Camlp4.PreCast.Ast.module_expr
+end >>

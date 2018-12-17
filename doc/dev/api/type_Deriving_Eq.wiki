@@ -1,0 +1,35 @@
+<<code language="ocaml" | sig
+  module type Eq =
+    sig type a val eq : Deriving_Eq.Eq.a -> Deriving_Eq.Eq.a -> bool end
+  module Eq_immutable :
+    functor (S : sig type a end) ->
+      sig type a = S.a val eq : a -> a -> bool end
+  module Eq_mutable :
+    functor (S : sig type a end) ->
+      sig type a = S.a val eq : a -> a -> bool end
+  module Eq_alpha :
+    functor (S : sig type a end) ->
+      sig type a = S.a val eq : a -> a -> bool end
+  module Eq_int : sig type a = int val eq : a -> a -> bool end
+  module Eq_bool : sig type a = bool val eq : a -> a -> bool end
+  module Eq_float : sig type a = float val eq : a -> a -> bool end
+  module Eq_unit : sig type a = unit val eq : a -> a -> bool end
+  module Eq_char : sig type a = char val eq : a -> a -> bool end
+  module Eq_string : sig type a = string val eq : a -> a -> bool end
+  module Eq_int32 : sig type a = int32 val eq : a -> a -> bool end
+  module Eq_int64 : sig type a = int64 val eq : a -> a -> bool end
+  module Eq_nativeint : sig type a = nativeint val eq : a -> a -> bool end
+  module Eq_ref :
+    functor (E : Eq) -> sig type a = E.a ref val eq : a -> a -> bool end
+  module Eq_array :
+    functor (E : Eq) -> sig type a = E.a array val eq : a -> a -> bool end
+  module Eq_list :
+    functor (E : Eq) -> sig type a = E.a list val eq : a -> a -> bool end
+  module Eq_option :
+    functor (E : Eq) -> sig type a = E.a option val eq : a -> a -> bool end
+  module Eq_map_s_t :
+    functor (E : Eq) (M : Map.S) ->
+      sig type a = E.a M.t val eq : a -> a -> bool end
+  module Eq_set_s_t :
+    functor (S : Set.S) -> sig type a = S.t val eq : a -> a -> bool end
+end >>

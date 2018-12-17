@@ -1,0 +1,4 @@
+<<code language="ocaml" | sig
+  val generate : Type.decl list -> Camlp4.PreCast.Ast.str_item
+  val generate_sigs : Type.decl list -> Camlp4.PreCast.Ast.sig_item
+end >>

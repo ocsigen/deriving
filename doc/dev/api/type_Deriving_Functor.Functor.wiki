@@ -1,0 +1,6 @@
+<<code language="ocaml" | sig
+  type 'a f
+  val map :
+    ('a -> 'b) ->
+    'a Deriving_Functor.Functor.f -> 'b Deriving_Functor.Functor.f
+end >>

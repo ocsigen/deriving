@@ -1,0 +1,26 @@
+<<code language="ocaml" | sig
+  module type Bounded =
+    sig
+      type a
+      val min_bound : Deriving_Bounded.Bounded.a
+      val max_bound : Deriving_Bounded.Bounded.a
+    end
+  module Bounded_bool :
+    sig type a = bool val min_bound : a val max_bound : a end
+  module Bounded_char :
+    sig type a = char val min_bound : a val max_bound : a end
+  module Bounded_int :
+    sig type a = int val min_bound : a val max_bound : a end
+  module Bounded_int32 :
+    sig type a = int32 val min_bound : a val max_bound : a end
+  module Bounded_int64 :
+    sig type a = int64 val min_bound : a val max_bound : a end
+  module Bounded_nativeint :
+    sig type a = nativeint val min_bound : a val max_bound : a end
+  module Bounded_unit :
+    sig type a = unit val min_bound : a val max_bound : a end
+  module Bounded_open_flag :
+    sig type a = open_flag val min_bound : a val max_bound : a end
+  module Bounded_fpclass :
+    sig type a = fpclass val min_bound : a val max_bound : a end
+end >>

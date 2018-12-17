@@ -1,0 +1,73 @@
+==
+
+=@@id="1_DerivingAPIReference"@@~Deriving ~- ~A~P~I ~Reference=
+
+
+
+
+==@@id="2_Runtimelibrary"@@~Runtime library==
+
+
+
+~Runtime for deriving classes shipped with deriving~.
+
+
+
+|<<a_api | module Deriving_Show >>||
+|<<a_api | module Deriving_Eq >>||
+|<<a_api | module Deriving_Bounded >>||
+|<<a_api | module Deriving_Enum >>||
+|<<a_api | module Deriving_monad >>||
+|<<a_api | module Deriving_Dump >>||
+|<<a_api | module Deriving_Typeable >>|<<div class="odocwiki_info"|~/~*
+>>
+|
+|<<a_api | module Deriving_Pickle >>||
+|<<a_api | module Deriving_Functor >>||
+|<<a_api | module Deriving_Default >>||
+
+
+
+
+
+|<<a_api | module Deriving_num >>||
+
+
+
+
+
+==@@id="2_Syntax"@@~Syntax==
+
+~The //deriving~.syntax~.common// package contains modules needed to
+write deriving classes~.
+
+
+
+|<<a_api | module Id >>||
+|<<a_api | module Utils >>||
+|<<a_api | module Type >>|<<div class="odocwiki_info"|>>
+|
+|<<a_api | module Defs >>|<<div class="odocwiki_info"|>>
+|
+|<<a_api | module Clusters >>||
+|<<a_api | module Base >>|<<div class="odocwiki_info"|~/~*
+>>
+|
+|<<a_api | module Extend >>||
+
+
+
+
+
+==@@id="2_Index"@@~Index==
+
+
+
+* <<a_api text="Index of types" | index types >>
+* <<a_api text="Index of exceptions" | index exceptions >>
+* <<a_api text="Index of values" | index values >>
+* <<a_api text="Index of class methods" | index methods >>
+* <<a_api text="Index of classes" | index classes >>
+* <<a_api text="Index of modules" | index modules >>
+* <<a_api text="Index of module types" | index module types >>
+

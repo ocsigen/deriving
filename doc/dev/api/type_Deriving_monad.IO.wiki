@@ -1,0 +1,10 @@
+<<code language="ocaml" | sig
+  type +'a m
+  val return : 'a -> 'a m
+  val fail : string -> 'a m
+  val ( >>= ) : 'a m -> ('a -> 'b m) -> 'b m
+  val ( >> ) : 'a m -> 'b m -> 'b m
+  val putStr : string -> unit m
+  val runIO : 'a m -> 'a
+  val mkIO : (unit -> 'b) -> 'b m
+end >>

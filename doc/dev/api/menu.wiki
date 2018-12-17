@@ -1,0 +1,29 @@
+=~Deriving ~- ~A~P~I ~Reference
+==~Runtime library
+===[[Deriving_Show|Deriving_Show]]
+===[[Deriving_Eq|Deriving_Eq]]
+===[[Deriving_Bounded|Deriving_Bounded]]
+===[[Deriving_Enum|Deriving_Enum]]
+===[[Deriving_monad|Deriving_monad]]
+===[[Deriving_Dump|Deriving_Dump]]
+===[[Deriving_Typeable|Deriving_Typeable]]
+===[[Deriving_Pickle|Deriving_Pickle]]
+===[[Deriving_Functor|Deriving_Functor]]
+===[[Deriving_Default|Deriving_Default]]
+===[[Deriving_num|Deriving_num]]
+==~Syntax
+===[[Id|Id]]
+===[[Utils|Utils]]
+===[[Type|Type]]
+===[[Defs|Defs]]
+===[[Clusters|Clusters]]
+===[[Base|Base]]
+===[[Extend|Extend]]
+==~Index
+=== <<a_api text="Index of types" | index types >>
+=== <<a_api text="Index of exceptions" | index exceptions >>
+=== <<a_api text="Index of values" | index values >>
+=== <<a_api text="Index of class methods" | index methods >>
+=== <<a_api text="Index of classes" | index classes >>
+=== <<a_api text="Index of modules" | index modules >>
+=== <<a_api text="Index of module types" | index module types >>

@@ -1,0 +1,1 @@
+<<code language="ocaml" | sig type a val eq : Deriving_Eq.Eq.a -> Deriving_Eq.Eq.a -> bool end >>

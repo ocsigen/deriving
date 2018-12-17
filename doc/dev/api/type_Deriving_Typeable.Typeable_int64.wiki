@@ -1,0 +1,9 @@
+<<code language="ocaml" | sig
+  type a = int64
+  val type_rep : TypeRep.t Lazy.t
+  val has_type : dynamic -> bool
+  val cast : dynamic -> a option
+  val throwing_cast : dynamic -> a
+  val make_dynamic : a -> dynamic
+  val mk : a -> dynamic
+end >>

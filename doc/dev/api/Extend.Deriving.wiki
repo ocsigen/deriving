@@ -1,0 +1,6 @@
+=Functor <<a_api_type | module Extend.Deriving >> =
+<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|module>> <<span class="ocsforge_color_uid"|<<span class="ocsforge_color_uid"|Deriving>>>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_sig_block"|<<span class="ocsforge_color_keyword"|functor>> <<span class="ocsforge_color_delimiter"|(>>S <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|<<span class="ocsforge_color_uid"|Camlp4.Sig.Camlp4Syntax>>>><<span class="ocsforge_color_delimiter"|)>> <<span class="ocsforge_color_delimiter"|-~>>> \\  <<span class="odocwiki_type"|<<span class="ocsforge_color_uid"|Camlp4.Sig.Camlp4Syntax>>>><<span class="odocwiki_type"| >>>>>><<div class="odocwiki_module_param_list" | <<span class="odocwiki_param_title" |Parameters :>><<div|
+|@@class="odocwiki_paramstable"@ @class="centertop fifteen code"@@{{{S}}}|@@class="centertop"@@:|<<span class="odocwiki_type"|Camlp4.Sig.Camlp4Syntax>>|
+>>>>
+
+----

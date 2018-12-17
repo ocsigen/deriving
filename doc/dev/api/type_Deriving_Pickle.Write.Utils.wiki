@@ -1,0 +1,10 @@
+<<code language="ocaml" | functor
+  (T : Deriving_Typeable.Typeable) (E : sig
+                                          type a = T.a
+                                          val eq : a -> a -> bool
+                                        end) ->
+  sig
+    val allocate :
+      T.a -> (Deriving_Pickle.id -> unit m) -> Deriving_Pickle.id m
+    val store_repr : Deriving_Pickle.id -> Deriving_Pickle.Repr.t -> unit m
+  end >>

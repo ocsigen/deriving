@@ -1,0 +1,61 @@
+=Index of class methods=
+
+|@@ @style="tet-align: left;"@@\\C|
+|@@class="odocwiki_index"@ @@<<a_api text="call_expr"| method Defs.Generator.generator#call_expr >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="call_poly_expr"| method Defs.Generator.generator#call_poly_expr >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="class_"| method Defs.Generator.generator#class_ >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="class_sig"| method Defs.Generator.generator#class_sig >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="constr"| method Defs.Generator.generator#constr >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="constraint_"| method Type.transform#constraint_ >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="constraint_"| method Type.fold#constraint_ >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="crush"| method Type.fold#crush >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\D|
+|@@class="odocwiki_index"@ @@<<a_api text="decl"| method Type.transform#decl >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="decl"| method Type.fold#decl >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\E|
+|@@class="odocwiki_index"@ @@<<a_api text="expr"| method Defs.Generator.generator#expr >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="expr"| method Type.transform#expr >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="expr"| method Type.fold#expr >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\F|
+|@@class="odocwiki_index"@ @@<<a_api text="field"| method Type.transform#field >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="field"| method Type.fold#field >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="function_"| method Defs.Generator.generator#function_ >> ~[<<a_api | module Defs.Generator >>~]||
+|@@ @style="tet-align: left;"@@\\G|
+|@@class="odocwiki_index"@ @@<<a_api text="gparam"| method Defs.Generator.generator#gparam >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="gsum"| method Defs.Generator.generator#gsum >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="gsummand"| method Type.transform#gsummand >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="gsummand"| method Type.fold#gsummand >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\L|
+|@@class="odocwiki_index"@ @@<<a_api text="label"| method Defs.Generator.generator#label >> ~[<<a_api | module Defs.Generator >>~]||
+|@@ @style="tet-align: left;"@@\\O|
+|@@class="odocwiki_index"@ @@<<a_api text="object_"| method Defs.Generator.generator#object_ >> ~[<<a_api | module Defs.Generator >>~]||
+|@@ @style="tet-align: left;"@@\\P|
+|@@class="odocwiki_index"@ @@<<a_api text="pack"| method Defs.Generator.generator#pack >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="param"| method Defs.Generator.generator#param >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="poly_expr"| method Type.transform#poly_expr >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="poly_expr"| method Type.fold#poly_expr >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="proxy"| method Defs.Generator.generator#proxy >> ~[<<a_api | module Defs.Generator >>~]||
+|@@ @style="tet-align: left;"@@\\R|
+|@@class="odocwiki_index"@ @@<<a_api text="record"| method Defs.Generator.generator#record >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="repr"| method Type.transform#repr >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="repr"| method Type.fold#repr >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="rhs"| method Defs.Generator.generator#rhs >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="rhs"| method Type.transform#rhs >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="rhs"| method Type.fold#rhs >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\S|
+|@@class="odocwiki_index"@ @@<<a_api text="sum"| method Defs.Generator.generator#sum >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="summand"| method Type.transform#summand >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="summand"| method Type.fold#summand >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\T|
+|@@class="odocwiki_index"@ @@<<a_api text="tagspec"| method Type.transform#tagspec >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="tagspec"| method Type.fold#tagspec >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="tuple"| method Defs.Generator.generator#tuple >> ~[<<a_api | module Defs.Generator >>~]||
+|@@ @style="tet-align: left;"@@\\U|
+|@@class="odocwiki_index"@ @@<<a_api text="unpack"| method Defs.Generator.generator#unpack >> ~[<<a_api | module Defs.Generator >>~]||
+|@@ @style="tet-align: left;"@@\\V|
+|@@class="odocwiki_index"@ @@<<a_api text="variant"| method Defs.Generator.generator#variant >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="variant"| method Type.transform#variant >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="variant"| method Type.fold#variant >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\W|
+|@@class="odocwiki_index"@ @@<<a_api text="wrap"| method Defs.Generator.generator#wrap >> ~[<<a_api | module Defs.Generator >>~]||
+\\

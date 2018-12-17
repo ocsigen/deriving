@@ -1,0 +1,512 @@
+<<code language="ocaml" | sig
+  type id
+  module Repr :
+    sig
+      type t
+      val make :
+        ?constructor:int -> Deriving_Pickle.id list -> Deriving_Pickle.Repr.t
+    end
+  module Write :
+    sig
+      type s
+      type +'a m
+      val return : 'a -> 'a m
+      val fail : string -> 'a m
+      val ( >>= ) : 'a m -> ('a -> 'b m) -> 'b m
+      val ( >> ) : 'a m -> 'b m -> 'b m
+      val liftM : ('a -> 'b) -> 'a m -> 'b m
+      val liftM2 : ('a -> 'b -> 'c) -> 'a m -> 'b m -> 'c m
+      val liftM3 : ('a -> 'b -> 'c -> 'd) -> 'a m -> 'b m -> 'c m -> 'd m
+      val liftM4 :
+        ('a -> 'b -> 'c -> 'd -> 'e) -> 'a m -> 'b m -> 'c m -> 'd m -> 'e m
+      val liftM5 :
+        ('a -> 'b -> 'c -> 'd -> 'e -> 'f) ->
+        'a m -> 'b m -> 'c m -> 'd m -> 'e m -> 'f m
+      val ap : ('a -> 'b) m -> 'a m -> 'b m
+      val sequence : 'a m list -> 'a list m
+      val sequence_ : 'a m list -> unit m
+      val mapM : ('a -> 'b m) -> 'a list -> 'b list m
+      val mapM_ : ('a -> 'b m) -> 'a list -> unit m
+      val ( =<< ) : ('a -> 'b m) -> 'a m -> 'b m
+      val join : 'a m m -> 'a m
+      val filterM : ('a -> bool m) -> 'a list -> 'a list m
+      val mapAndUnzipM :
+        ('a -> ('b * 'c) m) -> 'a list -> ('b list * 'c list) m
+      val zipWithM : ('a -> 'b -> 'c m) -> 'a list -> 'b list -> 'c list m
+      val zipWithM_ : ('a -> 'b -> 'c m) -> 'a list -> 'b list -> unit m
+      val foldM : ('a -> 'b -> 'a m) -> 'a -> 'b list -> 'a m
+      val foldM_ : ('a -> 'b -> 'a m) -> 'a -> 'b list -> unit m
+      val replicateM : int -> 'a m -> 'a list m
+      val replicateM_ : int -> 'a m -> unit m
+      val quand : bool -> unit m -> unit m
+      val unless : bool -> unit m -> unit m
+      type state = s
+      val get : state m
+      val put : state -> unit m
+      val runState : 'a m -> state -> 'a * state
+      module Utils :
+        functor
+          (T : Deriving_Typeable.Typeable) (E : sig
+                                                  type a = T.a
+                                                  val eq : a -> a -> bool
+                                                end) ->
+          sig
+            val allocate :
+              T.a -> (Deriving_Pickle.id -> unit m) -> Deriving_Pickle.id m
+            val store_repr :
+              Deriving_Pickle.id -> Deriving_Pickle.Repr.t -> unit m
+          end
+    end
+  module Read :
+    sig
+      type s
+      type +'a m
+      val return : 'a -> 'a m
+      val fail : string -> 'a m
+      val ( >>= ) : 'a m -> ('a -> 'b m) -> 'b m
+      val ( >> ) : 'a m -> 'b m -> 'b m
+      val liftM : ('a -> 'b) -> 'a m -> 'b m
+      val liftM2 : ('a -> 'b -> 'c) -> 'a m -> 'b m -> 'c m
+      val liftM3 : ('a -> 'b -> 'c -> 'd) -> 'a m -> 'b m -> 'c m -> 'd m
+      val liftM4 :
+        ('a -> 'b -> 'c -> 'd -> 'e) -> 'a m -> 'b m -> 'c m -> 'd m -> 'e m
+      val liftM5 :
+        ('a -> 'b -> 'c -> 'd -> 'e -> 'f) ->
+        'a m -> 'b m -> 'c m -> 'd m -> 'e m -> 'f m
+      val ap : ('a -> 'b) m -> 'a m -> 'b m
+      val sequence : 'a m list -> 'a list m
+      val sequence_ : 'a m list -> unit m
+      val mapM : ('a -> 'b m) -> 'a list -> 'b list m
+      val mapM_ : ('a -> 'b m) -> 'a list -> unit m
+      val ( =<< ) : ('a -> 'b m) -> 'a m -> 'b m
+      val join : 'a m m -> 'a m
+      val filterM : ('a -> bool m) -> 'a list -> 'a list m
+      val mapAndUnzipM :
+        ('a -> ('b * 'c) m) -> 'a list -> ('b list * 'c list) m
+      val zipWithM : ('a -> 'b -> 'c m) -> 'a list -> 'b list -> 'c list m
+      val zipWithM_ : ('a -> 'b -> 'c m) -> 'a list -> 'b list -> unit m
+      val foldM : ('a -> 'b -> 'a m) -> 'a -> 'b list -> 'a m
+      val foldM_ : ('a -> 'b -> 'a m) -> 'a -> 'b list -> unit m
+      val replicateM : int -> 'a m -> 'a list m
+      val replicateM_ : int -> 'a m -> unit m
+      val quand : bool -> unit m -> unit m
+      val unless : bool -> unit m -> unit m
+      type state = s
+      val get : state m
+      val put : state -> unit m
+      val runState : 'a m -> state -> 'a * state
+      module Utils :
+        functor (T : Deriving_Typeable.Typeable) ->
+          sig
+            val sum :
+              (int * Deriving_Pickle.id list -> T.a m) ->
+              Deriving_Pickle.id -> T.a m
+            val tuple :
+              (Deriving_Pickle.id list -> T.a m) ->
+              Deriving_Pickle.id -> T.a m
+            val record :
+              (T.a -> Deriving_Pickle.id list -> T.a m) ->
+              int -> Deriving_Pickle.id -> T.a m
+          end
+    end
+  exception UnpicklingError of string
+  exception UnknownTag of int * string
+  module type Pickle =
+    sig
+      type a
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle :
+        Deriving_Pickle.Pickle.a ->
+        Deriving_Pickle.id Deriving_Pickle.Write.m
+      val unpickle :
+        Deriving_Pickle.id -> Deriving_Pickle.Pickle.a Deriving_Pickle.Read.m
+      val to_buffer : Buffer.t -> Deriving_Pickle.Pickle.a -> unit
+      val to_string : Deriving_Pickle.Pickle.a -> string
+      val to_channel :
+        Pervasives.out_channel -> Deriving_Pickle.Pickle.a -> unit
+      val from_stream : char Stream.t -> Deriving_Pickle.Pickle.a
+      val from_string : string -> Deriving_Pickle.Pickle.a
+      val from_channel : Pervasives.in_channel -> Deriving_Pickle.Pickle.a
+    end
+  module Defaults :
+    functor
+      (S : sig
+             type a
+             module Typeable :
+               sig
+                 type a = a
+                 val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+                 val has_type : Deriving_Typeable.dynamic -> bool
+                 val cast : Deriving_Typeable.dynamic -> a option
+                 val throwing_cast : Deriving_Typeable.dynamic -> a
+                 val make_dynamic : a -> Deriving_Typeable.dynamic
+                 val mk : a -> Deriving_Typeable.dynamic
+               end
+             module Eq : sig type a = a val eq : a -> a -> bool end
+             val pickle :
+               Deriving_Pickle.Defaults.a ->
+               Deriving_Pickle.id Deriving_Pickle.Write.m
+             val unpickle :
+               Deriving_Pickle.id ->
+               Deriving_Pickle.Defaults.a Deriving_Pickle.Read.m
+           end) ->
+      sig
+        type a = S.a
+        module Typeable :
+          sig
+            type a = a
+            val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+            val has_type : Deriving_Typeable.dynamic -> bool
+            val cast : Deriving_Typeable.dynamic -> a option
+            val throwing_cast : Deriving_Typeable.dynamic -> a
+            val make_dynamic : a -> Deriving_Typeable.dynamic
+            val mk : a -> Deriving_Typeable.dynamic
+          end
+        module Eq : sig type a = a val eq : a -> a -> bool end
+        val pickle : a -> id Write.m
+        val unpickle : id -> a Read.m
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Pickle_unit :
+    sig
+      type a = unit
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_bool :
+    sig
+      type a = bool
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_int :
+    sig
+      type a = int
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_char :
+    sig
+      type a = char
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_float :
+    sig
+      type a = float
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_string :
+    sig
+      type a = string
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_int32 :
+    sig
+      type a = int32
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_int64 :
+    sig
+      type a = int64
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_nativeint :
+    sig
+      type a = nativeint
+      module Typeable :
+        sig
+          type a = a
+          val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+          val has_type : Deriving_Typeable.dynamic -> bool
+          val cast : Deriving_Typeable.dynamic -> a option
+          val throwing_cast : Deriving_Typeable.dynamic -> a
+          val make_dynamic : a -> Deriving_Typeable.dynamic
+          val mk : a -> Deriving_Typeable.dynamic
+        end
+      module Eq : sig type a = a val eq : a -> a -> bool end
+      val pickle : a -> id Write.m
+      val unpickle : id -> a Read.m
+      val to_buffer : Buffer.t -> a -> unit
+      val to_string : a -> string
+      val to_channel : out_channel -> a -> unit
+      val from_stream : char Stream.t -> a
+      val from_string : string -> a
+      val from_channel : in_channel -> a
+    end
+  module Pickle_option :
+    functor (V0 : Pickle) ->
+      sig
+        type a = V0.a option
+        module Typeable :
+          sig
+            type a = a
+            val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+            val has_type : Deriving_Typeable.dynamic -> bool
+            val cast : Deriving_Typeable.dynamic -> a option
+            val throwing_cast : Deriving_Typeable.dynamic -> a
+            val make_dynamic : a -> Deriving_Typeable.dynamic
+            val mk : a -> Deriving_Typeable.dynamic
+          end
+        module Eq : sig type a = a val eq : a -> a -> bool end
+        val pickle : a -> id Write.m
+        val unpickle : id -> a Read.m
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Pickle_list :
+    functor (V0 : Pickle) ->
+      sig
+        type a = V0.a list
+        module Typeable :
+          sig
+            type a = a
+            val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+            val has_type : Deriving_Typeable.dynamic -> bool
+            val cast : Deriving_Typeable.dynamic -> a option
+            val throwing_cast : Deriving_Typeable.dynamic -> a
+            val make_dynamic : a -> Deriving_Typeable.dynamic
+            val mk : a -> Deriving_Typeable.dynamic
+          end
+        module Eq : sig type a = a val eq : a -> a -> bool end
+        val pickle : a -> id Write.m
+        val unpickle : id -> a Read.m
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Pickle_ref :
+    functor (S : Pickle) ->
+      sig
+        type a = S.a ref
+        module Typeable :
+          sig
+            type a = a
+            val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+            val has_type : Deriving_Typeable.dynamic -> bool
+            val cast : Deriving_Typeable.dynamic -> a option
+            val throwing_cast : Deriving_Typeable.dynamic -> a
+            val make_dynamic : a -> Deriving_Typeable.dynamic
+            val mk : a -> Deriving_Typeable.dynamic
+          end
+        module Eq : sig type a = a val eq : a -> a -> bool end
+        val pickle : a -> id Write.m
+        val unpickle : id -> a Read.m
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+  module Pickle_from_dump :
+    functor
+      (P : Deriving_Dump.Dump) (E : sig
+                                      type a = P.a
+                                      val eq : a -> a -> bool
+                                    end) (T : sig
+                                                type a = P.a
+                                                val type_rep :
+                                                  Deriving_Typeable.TypeRep.t
+                                                  Lazy.t
+                                                val has_type :
+                                                  Deriving_Typeable.dynamic ->
+                                                  bool
+                                                val cast :
+                                                  Deriving_Typeable.dynamic ->
+                                                  a option
+                                                val throwing_cast :
+                                                  Deriving_Typeable.dynamic ->
+                                                  a
+                                                val make_dynamic :
+                                                  a ->
+                                                  Deriving_Typeable.dynamic
+                                                val mk :
+                                                  a ->
+                                                  Deriving_Typeable.dynamic
+                                              end) ->
+      sig
+        type a = P.a
+        module Typeable :
+          sig
+            type a = a
+            val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+            val has_type : Deriving_Typeable.dynamic -> bool
+            val cast : Deriving_Typeable.dynamic -> a option
+            val throwing_cast : Deriving_Typeable.dynamic -> a
+            val make_dynamic : a -> Deriving_Typeable.dynamic
+            val mk : a -> Deriving_Typeable.dynamic
+          end
+        module Eq : sig type a = a val eq : a -> a -> bool end
+        val pickle : a -> id Write.m
+        val unpickle : id -> a Read.m
+        val to_buffer : Buffer.t -> a -> unit
+        val to_string : a -> string
+        val to_channel : out_channel -> a -> unit
+        val from_stream : char Stream.t -> a
+        val from_string : string -> a
+        val from_channel : in_channel -> a
+      end
+end >>

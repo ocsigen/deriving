@@ -1,0 +1,1 @@
+<<code language="ocaml" | functor (D : Default) -> sig type a = D.a val default : unit -> a end >>

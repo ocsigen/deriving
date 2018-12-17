@@ -1,0 +1,11 @@
+<<code language="ocaml" | sig
+  type +'a m
+  val return : 'a -> 'a Deriving_monad.Monad.m
+  val fail : string -> 'a Deriving_monad.Monad.m
+  val ( >>= ) :
+    'a Deriving_monad.Monad.m ->
+    ('a -> 'b Deriving_monad.Monad.m) -> 'b Deriving_monad.Monad.m
+  val ( >> ) :
+    'a Deriving_monad.Monad.m ->
+    'b Deriving_monad.Monad.m -> 'b Deriving_monad.Monad.m
+end >>

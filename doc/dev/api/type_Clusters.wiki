@@ -1,0 +1,8 @@
+<<code language="ocaml" | sig
+  type cluster = {
+    params : Type.param list;
+    decls : Type.decl list;
+    instances : (Type.name * Type.expr list) list;
+  }
+  val make : Type.decl list -> Clusters.cluster list
+end >>
