@@ -20,6 +20,7 @@
 <<when-project when="ocsigen-toolkit"| @@class="logo-subproject"@@Toolkit>>
 <<when-project when="ocsigen-start"  | @@class="logo-subproject"@@Start>>
 <<when-project when="ocsimore"       | @@class="logo-subproject"@@Ocsimore>>
+<<when-project when="deriving"       | @@class="logo-subproject"@@Deriving>>
 
 <<div class="mainmenu"|
 <<span class="mainmenu-home"|[[site:/|Home]]>>
@@ -49,6 +50,7 @@
 *@@class="drawermainmenu-project"@@[[wiki("tyxml"):|Tyxml]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-toolkit"):|Toolkit]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-start"):|Start]]
+*@@class="drawermainmenu-project"@@[[wiki("deriving"):|Deriving]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsimore"):|Ocsimore (//deprecated//)]]
 *@@class="drawermainmenu-page"@@[[site:/projects|Other projects]]
 *@@class="drawermainmenu-page"@@[[site:/papers|Research papers]]
