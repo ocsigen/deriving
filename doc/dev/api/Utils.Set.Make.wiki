@@ -1,8 +1,0 @@
-=Functor <<a_api_type | module Utils.Set.Make >> =
-<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|module>> <<span class="ocsforge_color_uid"|<<span class="ocsforge_color_uid"|Make>>>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_sig_block"|<<span class="ocsforge_color_keyword"|functor>> <<span class="ocsforge_color_delimiter"|(>>Ord <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|<<a_api text="OrderedType" | module Utils.Set.OrderedType >>>><<span class="ocsforge_color_delimiter"|)>> <<span class="ocsforge_color_delimiter"|-~>>> \\  <<span class="odocwiki_type"|<<a_api text="S" | module Utils.Set.S >>>><<span class="odocwiki_type"|  with type elt = Ord.t>>>>>><<div class="odocwiki_module_param_list" | <<span class="odocwiki_param_title" |Parameters :>><<div|
-|@@class="odocwiki_paramstable"@ @class="centertop fifteen code"@@{{{Ord}}}|@@class="centertop"@@:|<<span class="odocwiki_type"|Utils.Set.OrderedType>>|
->>>>
-
-----
-<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|include>> Set.S>>
-<<pre id="VALtoList" class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|val>> <<span class="odocwiki_name"|to~List>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|t <<span class="ocsforge_color_delimiter"| -> >> elt list>>>><<pre id="VALfromList" class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|val>> <<span class="odocwiki_name"|from~List>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|elt list <<span class="ocsforge_color_delimiter"| -> >> t>>>>

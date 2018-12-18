@@ -1,1 +1,0 @@
-<<code language="ocaml" | sig type a = int64 val default : unit -> a end >>

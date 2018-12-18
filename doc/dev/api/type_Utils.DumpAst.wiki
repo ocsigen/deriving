@@ -1,4 +1,0 @@
-<<code language="ocaml" | sig
-  val ident : Camlp4.PreCast.Ast.ident -> string
-  val ctyp : Camlp4.PreCast.Ast.ctyp -> string
-end >>

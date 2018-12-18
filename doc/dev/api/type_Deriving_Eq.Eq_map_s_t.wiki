@@ -1,2 +1,0 @@
-<<code language="ocaml" | functor (E : Eq) (M : Map.S) ->
-  sig type a = E.a M.t val eq : a -> a -> bool end >>
