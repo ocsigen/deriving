@@ -1,5 +1,0 @@
-=Module <<a_api_type | module Deriving_monad.Monad_list >> =
-<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|module>> <<span class="ocsforge_color_uid"|<<span class="ocsforge_color_uid"|Monad_list>>>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|<<a_api text="MonadPlus" | module Deriving_monad.MonadPlus >>>><<span class="odocwiki_type"|  with type 'a m = 'a list>>>>
-----
-<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|include>> <<a_api | module type Deriving_monad.Monad >>>>
-<<pre id="VALmzero" class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|val>> <<span class="odocwiki_name"|mzero>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|'a m>>>><<pre id="VALmplus" class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|val>> <<span class="odocwiki_name"|mplus>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|'a m <<span class="ocsforge_color_delimiter"| -> >> 'a m <<span class="ocsforge_color_delimiter"| -> >> 'a m>>>>
