@@ -1,0 +1,75 @@
+<<code language="ocaml" | object
+  method call_expr :
+    Defs.Generator.context -> Type.expr -> string -> Camlp4.PreCast.Ast.expr
+  method call_poly_expr :
+    Defs.Generator.context ->
+    Type.poly_expr -> string -> Camlp4.PreCast.Ast.expr
+  method class_ :
+    Defs.Generator.context -> [ `NYI ] -> Camlp4.PreCast.Ast.str_item list
+  method class_sig :
+    Type.qname Type.NameMap.t -> Type.expr -> Camlp4.PreCast.Ast.module_type
+  method constr :
+    Defs.Generator.context ->
+    Type.qname * Type.expr list -> Camlp4.PreCast.Ast.module_expr
+  method expr :
+    Defs.Generator.context -> Type.expr -> Camlp4.PreCast.Ast.module_expr
+  method function_ :
+    Defs.Generator.context ->
+    Type.expr * Type.expr -> Camlp4.PreCast.Ast.str_item list
+  method gparam :
+    Defs.Generator.context ->
+    Type.param * Type.expr -> Camlp4.PreCast.Ast.module_expr
+  method gsum :
+    ?eq:Type.expr ->
+    Defs.Generator.context ->
+    Type.name ->
+    Type.expr list ->
+    Type.constraint_ list ->
+    Type.gsummand list -> Camlp4.PreCast.Ast.str_item list
+  method label :
+    Defs.Generator.context ->
+    [ `NonOptional | `Optional ] * Type.name * Type.expr * Type.expr ->
+    Camlp4.PreCast.Ast.str_item list
+  method object_ :
+    Defs.Generator.context -> [ `NYI ] -> Camlp4.PreCast.Ast.str_item list
+  method pack :
+    Type.qname Type.NameMap.t ->
+    Type.expr -> Camlp4.PreCast.Ast.module_expr -> Camlp4.PreCast.Ast.expr
+  method param :
+    Defs.Generator.context -> Type.param -> Camlp4.PreCast.Ast.module_expr
+  method virtual proxy :
+    unit -> Type.name option * Camlp4.PreCast.Ast.ident list
+  method virtual record :
+    ?eq:Type.expr ->
+    Defs.Generator.context ->
+    Type.name ->
+    Type.expr list ->
+    Type.constraint_ list ->
+    Type.field list -> Camlp4.PreCast.Ast.str_item list
+  method rhs :
+    Defs.Generator.context ->
+    Type.subst -> Type.decl -> Camlp4.PreCast.Ast.module_expr
+  method virtual sum :
+    ?eq:Type.expr ->
+    Defs.Generator.context ->
+    Type.name ->
+    Type.expr list ->
+    Type.constraint_ list ->
+    Type.summand list -> Camlp4.PreCast.Ast.str_item list
+  method virtual tuple :
+    Defs.Generator.context ->
+    Type.expr list -> Camlp4.PreCast.Ast.str_item list
+  method unpack :
+    Type.qname Type.NameMap.t ->
+    Type.expr -> Camlp4.PreCast.Ast.expr -> Camlp4.PreCast.Ast.module_expr
+  method virtual variant :
+    Defs.Generator.context ->
+    Type.name ->
+    Type.expr list ->
+    Type.constraint_ list -> Type.variant -> Camlp4.PreCast.Ast.str_item list
+  method wrap :
+    Defs.Generator.context ->
+    ?default:Type.name option ->
+    Type.expr ->
+    Camlp4.PreCast.Ast.str_item list -> Camlp4.PreCast.Ast.module_expr
+end >>

@@ -1,0 +1,15 @@
+<<code language="ocaml" | sig
+  type t
+  type delayed = Deriving_Typeable.TypeRep.t Lazy.t
+  val compare :
+    Deriving_Typeable.TypeRep.t -> Deriving_Typeable.TypeRep.t -> int
+  val eq : Deriving_Typeable.TypeRep.t -> Deriving_Typeable.TypeRep.t -> bool
+  val mkFresh :
+    string ->
+    Deriving_Typeable.TypeRep.delayed list -> Deriving_Typeable.TypeRep.t
+  val mkTuple :
+    Deriving_Typeable.TypeRep.delayed list -> Deriving_Typeable.TypeRep.t
+  val mkPolyv :
+    (string * Deriving_Typeable.TypeRep.delayed option) list ->
+    Deriving_Typeable.TypeRep.delayed list -> Deriving_Typeable.TypeRep.t
+end >>

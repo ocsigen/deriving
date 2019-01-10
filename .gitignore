@@ -1,0 +1,16 @@
+._*
+*~
+#*
+*#
+_build
+setup.log
+setup.data
+*.native
+*.byte
+syntax/common/id.ml
+*.bak
+*.ba0
+setup.exe
+*.mllib
+*.mlpack
+lib/META

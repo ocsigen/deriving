@@ -1,0 +1,58 @@
+=Index of types=
+
+|@@ @style="tet-align: left;"@@\\A|
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Default.Default.a >> ~[<<a_api | module Deriving_Default.Default >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Pickle.Pickle.a >> ~[<<a_api | module Deriving_Pickle.Pickle >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Typeable.Typeable.a >> ~[<<a_api | module Deriving_Typeable.Typeable >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Dump.Dump.a >> ~[<<a_api | module Deriving_Dump.Dump >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Enum.Enum.a >> ~[<<a_api | module Deriving_Enum.Enum >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Bounded.Bounded.a >> ~[<<a_api | module Deriving_Bounded.Bounded >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Eq.Eq.a >> ~[<<a_api | module Deriving_Eq.Eq >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="a"| type Deriving_Show.Show.a >> ~[<<a_api | module Deriving_Show.Show >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="alias_map"| type Type.Translate.alias_map >> ~[<<a_api | module Type.Translate >>~]||
+|@@ @style="tet-align: left;"@@\\C|
+|@@class="odocwiki_index"@ @@<<a_api text="cluster"| type Clusters.cluster >> ~[<<a_api | module Clusters >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="constraint_"| type Type.constraint_ >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="context"| type Defs.Generator.context >> ~[<<a_api | module Defs.Generator >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="context"| type Functor_class.Builder.context >> ~[<<a_api | module Functor_class.Builder >>~]||
+|@@ @style="tet-align: left;"@@\\D|
+|@@class="odocwiki_index"@ @@<<a_api text="decl"| type Type.decl >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="delayed"| type Deriving_Typeable.TypeRep.delayed >> ~[<<a_api | module Deriving_Typeable.TypeRep >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="dynamic"| type Deriving_Typeable.dynamic >> ~[<<a_api | module Deriving_Typeable >>~]||
+|@@ @style="tet-align: left;"@@\\E|
+|@@class="odocwiki_index"@ @@<<a_api text="either"| type Utils.either >> ~[<<a_api | module Utils >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="expr"| type Type.expr >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\F|
+|@@class="odocwiki_index"@ @@<<a_api text="f"| type Deriving_Functor.Functor.f >> ~[<<a_api | module Deriving_Functor.Functor >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="field"| type Type.field >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\G|
+|@@class="odocwiki_index"@ @@<<a_api text="generator"| type Defs.generator >> ~[<<a_api | module Defs >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="gsummand"| type Type.gsummand >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\I|
+|@@class="odocwiki_index"@ @@<<a_api text="id"| type Deriving_Pickle.id >> ~[<<a_api | module Deriving_Pickle >>~]||
+|@@ @style="tet-align: left;"@@\\M|
+|@@class="odocwiki_index"@ @@<<a_api text="m"| type Deriving_monad.Monad.m >> ~[<<a_api | module Deriving_monad.Monad >>~]||
+|@@ @style="tet-align: left;"@@\\N|
+|@@class="odocwiki_index"@ @@<<a_api text="name"| type Type.name >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\P|
+|@@class="odocwiki_index"@ @@<<a_api text="param"| type Type.param >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="poly_expr"| type Type.poly_expr >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\Q|
+|@@class="odocwiki_index"@ @@<<a_api text="qname"| type Type.qname >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\R|
+|@@class="odocwiki_index"@ @@<<a_api text="repr"| type Type.repr >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="rhs"| type Type.rhs >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\S|
+|@@class="odocwiki_index"@ @@<<a_api text="s"| type Deriving_Pickle.Read.s >> ~[<<a_api | module Deriving_Pickle.Read >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="s"| type Deriving_Pickle.Write.s >> ~[<<a_api | module Deriving_Pickle.Write >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="state"| type Deriving_monad.Monad_state_type.state >> ~[<<a_api | module Deriving_monad.Monad_state_type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="subst"| type Type.subst >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="summand"| type Type.summand >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\T|
+|@@class="odocwiki_index"@ @@<<a_api text="t"| type Deriving_Pickle.Repr.t >> ~[<<a_api | module Deriving_Pickle.Repr >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="t"| type Deriving_Typeable.TypeRep.t >> ~[<<a_api | module Deriving_Typeable.TypeRep >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="tagspec"| type Type.tagspec >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\V|
+|@@class="odocwiki_index"@ @@<<a_api text="variant"| type Type.variant >> ~[<<a_api | module Type >>~]||
+|@@class="odocwiki_index"@ @@<<a_api text="vmap"| type Type.Translate.vmap >> ~[<<a_api | module Type.Translate >>~]||
+\\

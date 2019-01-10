@@ -1,0 +1,9 @@
+=Index of classes=
+
+|@@ @style="tet-align: left;"@@\\F|
+|@@class="odocwiki_index"@ @@<<a_api text="fold"| class Type.fold >> ~[<<a_api | module Type >>~]||
+|@@ @style="tet-align: left;"@@\\G|
+|@@class="odocwiki_index"@ @@<<a_api text="generator"| class Defs.Generator.generator >> ~[<<a_api | module Defs.Generator >>~]||
+|@@ @style="tet-align: left;"@@\\T|
+|@@class="odocwiki_index"@ @@<<a_api text="transform"| class Type.transform >> ~[<<a_api | module Type >>~]||
+\\

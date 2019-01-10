@@ -1,0 +1,17 @@
+<<code language="ocaml" | functor
+  (M : sig
+         type +'a m
+         val return : 'a -> 'a Deriving_monad.MonadDefault.m
+         val fail : string -> 'a Deriving_monad.MonadDefault.m
+         val ( >>= ) :
+           'a Deriving_monad.MonadDefault.m ->
+           ('a -> 'b Deriving_monad.MonadDefault.m) ->
+           'b Deriving_monad.MonadDefault.m
+       end) ->
+  sig
+    type 'a m = 'a M.m
+    val return : 'a -> 'a m
+    val fail : string -> 'a m
+    val ( >>= ) : 'a m -> ('a -> 'b m) -> 'b m
+    val ( >> ) : 'a m -> 'b m -> 'b m
+  end >>

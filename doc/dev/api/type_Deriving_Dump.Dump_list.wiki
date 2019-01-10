@@ -1,0 +1,10 @@
+<<code language="ocaml" | functor (P : Dump) ->
+  sig
+    type a = P.a list
+    val to_buffer : Buffer.t -> a -> unit
+    val to_string : a -> string
+    val to_channel : out_channel -> a -> unit
+    val from_stream : char Stream.t -> a
+    val from_string : string -> a
+    val from_channel : in_channel -> a
+  end >>

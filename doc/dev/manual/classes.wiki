@@ -1,0 +1,230 @@
+= Standard classes =
+== Show ==
+
+<<code language="ocaml"|
+module type Show =
+sig
+  type a
+  val format : Format.formatter -> a -> unit
+  val format_list : Format.formatter -> a list -> unit
+  val show : a -> string
+  val show_list : a list -> string
+end
+>>
+
+If you're writing your own instance then you'll find the Defaults useful. The only method you have to write yourself is format:
+
+<<code language="ocaml"|
+module Defaults (S :
+  sig
+    type a
+    val format : Format.formatter -> a -> unit
+  end) : Show with type a = S.a
+
+>>
+== Eq ==
+
+<<code language="ocaml"|
+module type Eq =
+sig
+  type a
+  val eq : a -> a -> bool
+end
+>>
+
+== Typeable ==
+
+<<code language="ocaml"|
+module TypeRep :
+sig
+  type t
+  val compare : t -> t -> int
+  val eq : t -> t -> bool
+  ...
+end
+>>
+
+The exception CastFailure is thrown when throwing_cast fails:
+
+<<code language="ocaml"|
+exception CastFailure of string
+>>
+<<code language="ocaml"|
+module type Typeable =
+sig
+  type a
+  val type_rep : unit -> TypeRep.t
+  val has_type : dynamic -> bool
+  val cast : dynamic -> a option
+  val throwing_cast : dynamic -> a
+  val make_dynamic : a -> dynamic
+  val mk : a -> dynamic
+end
+>>
+
+If you're writing your own instance (which is not recommended in this
+case!) you can just supply the type_rep method and use the Defaults
+functor:
+
+<<code language="ocaml"|
+module Defaults (T : (sig
+                        type a
+                        val type_rep : unit -> TypeRep.t
+                      end))
+  : Typeable with type a = T.a
+>>
+
+== Dump ==
+
+<<code language="ocaml"|
+module type Dump =
+  sig
+    type a
+    val to_buffer : Buffer.t -> a -> unit
+    val to_string : a -> string
+    val to_channel : out_channel -> a -> unit
+    val from_stream : char Stream.t -> a
+    val from_string : string -> a
+    val from_channel : in_channel -> a
+  end
+>>
+
+If the input doesn't match the type then deserialisation will fail
+with the exception:
+
+<<code language="ocaml"|
+exception Dump_failure of string
+>>
+
+If you're writing your own instance then you use the Defaults functor,
+which requires implementations of the methods to_buffer and
+from_stream.
+
+<<code language="ocaml"|
+
+module Defaults
+  (P : sig
+     type a
+     val to_buffer : Buffer.t -> a -> unit
+     val from_stream : char Stream.t -> a
+   end) : Dump with type a = P.a
+>>
+== Pickle ==
+<<code language="ocaml"|
+module type Pickle =
+sig
+  type a
+  module T : Typeable.Typeable with type a = a
+  module E : Eq.Eq with type a = a
+  val pickle : a -> id Write.m
+  val unpickle : id -> a Read.m
+  val to_buffer : Buffer.t -> a -> unit
+  val to_string : a -> string
+  val to_channel : out_channel -> a -> unit
+  val from_stream : char Stream.t -> a
+  val from_string : string -> a
+  val from_channel : in_channel -> a
+end
+>>
+
+If deserialisation (unmarshalling) fails then one of the following
+exceptions is thrown:
+
+
+<<code language="ocaml"|
+exception UnpicklingError of string
+exception UnknownTag of int * string
+>>
+
+As usual, you can use the Defaults method when writing your own
+instance:
+
+<<code language="ocaml"|
+module Defaults
+  (S : sig
+     type a
+     module T : Typeable.Typeable with type a = a
+     module E : Eq.Eq with type a = a
+     val pickle : a -> id Write.m
+     val unpickle : id -> a Read.m
+   end) : Pickle with type a = S.a
+>>
+
+You can also create a Pickle instance from a Dump instance, although
+you may limit the opportunities for sharing if you do:
+
+<<code language="ocaml"|
+module Pickle_from_dump
+  (D : Dump.Dump)
+  (E : Eq.Eq with type a = D.a)
+  (T : Typeable.Typeable with type a = D.a)
+  : Pickle with type a = D.a
+>>
+
+== Enum ==
+
+<<code language="ocaml"|
+module type Enum =
+  sig
+    type a
+    val succ : a -> a
+    val pred : a -> a
+    val to_enum : int -> a
+    val from_enum : a -> int
+    val enum_from : a -> a list
+    val enum_from_then : a -> a -> a list
+    val enum_from_to : a -> a -> a list
+    val enum_from_then_to : a -> a -> a -> a list
+  end
+
+>>
+
+There are two easy ways to write your own instance of Enum: you can
+supply an explicit mapping from values of your type to integers:
+
+<<code language="ocaml"|
+module Defaults
+  (E : sig type a val numbering : (a * int) list end)
+  : Enum with type a = E.a
+>>
+
+or you can supply the mapping as a pair of functions, together with suitable bounds for your type:
+<<code language="ocaml"|
+module Defaults'
+  (E : sig type a val from_enum : a -> int val to_enum : int -> a end)
+  (B : Bounded.Bounded with type a = E.a)
+  : Enum with type a = B.a
+>>
+
+== Bounded ==
+<<code language="ocaml"|
+module type Bounded =
+sig
+  type a
+  val min_bound : a
+  val max_bound : a
+end
+>>
+
+== Functor ==
+
+There is no signature for Functor, since the type of the derived
+function depends on the number of type parameters. For example, a type
+with one parameter will result in a singature
+
+<<code language="ocaml"|
+sig
+  type 'a f
+  val map : ('a -> 'b) -> 'a f -> 'b f
+end
+>>
+
+whereas a type with three parameters will generate an instance with
+signature
+
+<<code language="ocaml"|
+sig
+  type ('a,'b,'c) f
+  val map : ('a -> 'd) -> ('b -> 'e) -> ('c -> 'f) -> ('a,'b,'c) f -> ('d,'e,'f) f
+end
+>>

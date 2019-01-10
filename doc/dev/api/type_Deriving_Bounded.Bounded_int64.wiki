@@ -1,0 +1,1 @@
+<<code language="ocaml" | sig type a = int64 val min_bound : a val max_bound : a end >>

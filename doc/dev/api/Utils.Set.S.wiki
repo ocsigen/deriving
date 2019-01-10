@@ -1,0 +1,5 @@
+=Module type <<a_api_type | module type Utils.Set.S >> =
+<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|module type>> <<span class="ocsforge_color_uid"|S>> <<span class="ocsforge_color_delimiter"|~=>> <<span class="ocsforge_color_keyword"|sig>><<a_api text=".." | module type Utils.Set.S >><<span class="ocsforge_color_keyword"|end>>>>
+----
+<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|include>> Set.S>>
+<<pre id="VALtoList" class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|val>> <<span class="odocwiki_name"|to~List>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|t <<span class="ocsforge_color_delimiter"| -> >> elt list>>>><<pre id="VALfromList" class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|val>> <<span class="odocwiki_name"|from~List>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|elt list <<span class="ocsforge_color_delimiter"| -> >> t>>>>

@@ -1,0 +1,3 @@
+=Module <<a_api_type | module Eq_class.Builder.Helpers >> =
+<<pre class="ocsforge_color odocwiki_code"|<<span class="ocsforge_color_keyword"|module>> <<span class="ocsforge_color_uid"|<<span class="ocsforge_color_uid"|Helpers>>>> <<span class="ocsforge_color_delimiter"|~:>> <<span class="odocwiki_type"|<<span class="ocsforge_color_uid"|Generator.AstHelpers>>>>>>
+----

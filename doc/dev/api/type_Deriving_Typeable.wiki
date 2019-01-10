@@ -1,0 +1,181 @@
+<<code language="ocaml" | sig
+  module TypeRep :
+    sig
+      type t
+      type delayed = Deriving_Typeable.TypeRep.t Lazy.t
+      val compare :
+        Deriving_Typeable.TypeRep.t -> Deriving_Typeable.TypeRep.t -> int
+      val eq :
+        Deriving_Typeable.TypeRep.t -> Deriving_Typeable.TypeRep.t -> bool
+      val mkFresh :
+        string ->
+        Deriving_Typeable.TypeRep.delayed list -> Deriving_Typeable.TypeRep.t
+      val mkTuple :
+        Deriving_Typeable.TypeRep.delayed list -> Deriving_Typeable.TypeRep.t
+      val mkPolyv :
+        (string * Deriving_Typeable.TypeRep.delayed option) list ->
+        Deriving_Typeable.TypeRep.delayed list -> Deriving_Typeable.TypeRep.t
+    end
+  exception CastFailure of string
+  type dynamic
+  val tagOf : Deriving_Typeable.dynamic -> Deriving_Typeable.TypeRep.t
+  module type Typeable =
+    sig
+      type a
+      val type_rep : Deriving_Typeable.TypeRep.t Lazy.t
+      val has_type : Deriving_Typeable.dynamic -> bool
+      val cast :
+        Deriving_Typeable.dynamic -> Deriving_Typeable.Typeable.a option
+      val throwing_cast :
+        Deriving_Typeable.dynamic -> Deriving_Typeable.Typeable.a
+      val make_dynamic :
+        Deriving_Typeable.Typeable.a -> Deriving_Typeable.dynamic
+      val mk : Deriving_Typeable.Typeable.a -> Deriving_Typeable.dynamic
+    end
+  module Defaults :
+    functor
+      (T : sig type a val type_rep : Deriving_Typeable.TypeRep.t Lazy.t end) ->
+      sig
+        type a = T.a
+        val type_rep : TypeRep.t Lazy.t
+        val has_type : dynamic -> bool
+        val cast : dynamic -> a option
+        val throwing_cast : dynamic -> a
+        val make_dynamic : a -> dynamic
+        val mk : a -> dynamic
+      end
+  module Typeable_list :
+    functor (A : Typeable) ->
+      sig
+        type a = A.a list
+        val type_rep : TypeRep.t Lazy.t
+        val has_type : dynamic -> bool
+        val cast : dynamic -> a option
+        val throwing_cast : dynamic -> a
+        val make_dynamic : a -> dynamic
+        val mk : a -> dynamic
+      end
+  module Typeable_option :
+    functor (A : Typeable) ->
+      sig
+        type a = A.a option
+        val type_rep : TypeRep.t Lazy.t
+        val has_type : dynamic -> bool
+        val cast : dynamic -> a option
+        val throwing_cast : dynamic -> a
+        val make_dynamic : a -> dynamic
+        val mk : a -> dynamic
+      end
+  module Typeable_ref :
+    functor (A : Typeable) ->
+      sig
+        type a = A.a ref
+        val type_rep : TypeRep.t Lazy.t
+        val has_type : dynamic -> bool
+        val cast : dynamic -> a option
+        val throwing_cast : dynamic -> a
+        val make_dynamic : a -> dynamic
+        val mk : a -> dynamic
+      end
+  module Typeable_unit :
+    sig
+      type a = unit
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_int :
+    sig
+      type a = int
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_float :
+    sig
+      type a = float
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_bool :
+    sig
+      type a = bool
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_string :
+    sig
+      type a = string
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_char :
+    sig
+      type a = char
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_int32 :
+    sig
+      type a = int32
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_int64 :
+    sig
+      type a = int64
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Typeable_nativeint :
+    sig
+      type a = nativeint
+      val type_rep : TypeRep.t Lazy.t
+      val has_type : dynamic -> bool
+      val cast : dynamic -> a option
+      val throwing_cast : dynamic -> a
+      val make_dynamic : a -> dynamic
+      val mk : a -> dynamic
+    end
+  module Primitive_typeable :
+    functor (T : sig type t val magic : string end) ->
+      sig
+        type a = T.t
+        val type_rep : TypeRep.t Lazy.t
+        val has_type : dynamic -> bool
+        val cast : dynamic -> a option
+        val throwing_cast : dynamic -> a
+        val make_dynamic : a -> dynamic
+        val mk : a -> dynamic
+      end
+end >>

@@ -1,0 +1,13 @@
+<<code language="ocaml" | object
+  method constraint_ : Type.constraint_ -> Type.constraint_
+  method decl : Type.decl -> Type.decl
+  method expr : Type.expr -> Type.expr
+  method field : Type.field -> Type.field
+  method gsummand : Type.gsummand -> Type.gsummand
+  method poly_expr : Type.poly_expr -> Type.poly_expr
+  method repr : Type.repr -> Type.repr
+  method rhs : Type.rhs -> Type.rhs
+  method summand : Type.summand -> Type.summand
+  method tagspec : Type.tagspec -> Type.tagspec
+  method variant : Type.variant -> Type.variant
+end >>

@@ -1,0 +1,24 @@
+<<code language="ocaml" | sig
+  module type Default =
+    sig type a val default : unit -> Deriving_Default.Default.a end
+  module Defaults :
+    functor (D : Default) -> sig type a = D.a val default : unit -> a end
+  module Default_string : sig type a = string val default : unit -> a end
+  module Default_int64 : sig type a = int64 val default : unit -> a end
+  module Default_int : sig type a = int val default : unit -> a end
+  module Default_bool : sig type a = bool val default : unit -> a end
+  module Default_unit : sig type a = unit val default : unit -> a end
+  module Default_char : sig type a = char val default : unit -> a end
+  module Default_float : sig type a = float val default : unit -> a end
+  module Default_list :
+    functor (A : Default) ->
+      sig type a = A.a list val default : unit -> a end
+  module Default_option :
+    functor (A : Default) ->
+      sig type a = A.a option val default : unit -> a end
+  module Default_array :
+    functor (A : Default) ->
+      sig type a = A.a array val default : unit -> a end
+  module Default_ref :
+    functor (A : Default) -> sig type a = A.a ref val default : unit -> a end
+end >>

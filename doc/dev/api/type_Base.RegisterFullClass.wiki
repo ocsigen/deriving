@@ -1,0 +1,5 @@
+<<code language="ocaml" | functor (Desc : Defs.ClassDescription) (MakeClass : Defs.FullBuilder) ->
+  sig
+    val depends : (module Defs.DepClassBuilder)
+    val register_predefs : Type.qname -> Type.qname -> unit
+  end >>

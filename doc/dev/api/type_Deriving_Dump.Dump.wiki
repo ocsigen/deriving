@@ -1,0 +1,9 @@
+<<code language="ocaml" | sig
+  type a
+  val to_buffer : Buffer.t -> Deriving_Dump.Dump.a -> unit
+  val to_string : Deriving_Dump.Dump.a -> string
+  val to_channel : Pervasives.out_channel -> Deriving_Dump.Dump.a -> unit
+  val from_stream : char Stream.t -> Deriving_Dump.Dump.a
+  val from_string : string -> Deriving_Dump.Dump.a
+  val from_channel : Pervasives.in_channel -> Deriving_Dump.Dump.a
+end >>

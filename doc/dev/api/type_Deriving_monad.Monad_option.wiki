@@ -1,0 +1,9 @@
+<<code language="ocaml" | sig
+  type 'a m = 'a option
+  val return : 'a -> 'a m
+  val fail : string -> 'a m
+  val ( >>= ) : 'a m -> ('a -> 'b m) -> 'b m
+  val ( >> ) : 'a m -> 'b m -> 'b m
+  val mzero : 'a m
+  val mplus : 'a m -> 'a m -> 'a m
+end >>

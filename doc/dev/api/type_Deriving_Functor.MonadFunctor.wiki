@@ -1,0 +1,2 @@
+<<code language="ocaml" | functor (M : Deriving_monad.Monad) ->
+  sig type 'a f = 'a M.m val map : ('a -> 'b) -> 'a f -> 'b f end >>

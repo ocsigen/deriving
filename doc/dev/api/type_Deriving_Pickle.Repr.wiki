@@ -1,0 +1,5 @@
+<<code language="ocaml" | sig
+  type t
+  val make :
+    ?constructor:int -> Deriving_Pickle.id list -> Deriving_Pickle.Repr.t
+end >>

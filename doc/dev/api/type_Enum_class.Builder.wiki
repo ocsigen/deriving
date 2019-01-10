@@ -1,0 +1,71 @@
+<<code language="ocaml" | functor (Generator : Pa_deriving_common.Defs.Generator) ->
+  sig
+    module Helpers :
+      sig
+        module Untranslate :
+          sig
+            val param :
+              string * [< `Minus | `Plus ] option -> Camlp4.PreCast.Ast.ctyp
+            val qname : string list -> Camlp4.PreCast.Ast.ident
+            val qName : string list -> Camlp4.PreCast.Ast.ident
+            val expr :
+              Pa_deriving_common.Type.expr -> Camlp4.PreCast.Ast.ctyp
+            val poly :
+              Pa_deriving_common.Type.param list *
+              Pa_deriving_common.Type.expr -> Camlp4.PreCast.Ast.ctyp
+            val rhs : Pa_deriving_common.Type.rhs -> Camlp4.PreCast.Ast.ctyp
+            val tagspec :
+              Pa_deriving_common.Type.tagspec -> Camlp4.PreCast.Ast.ctyp
+            val summand :
+              Pa_deriving_common.Type.summand -> Camlp4.PreCast.Ast.ctyp
+            val field :
+              Pa_deriving_common.Type.field -> Camlp4.PreCast.Ast.ctyp
+            val repr :
+              Pa_deriving_common.Type.repr -> Camlp4.PreCast.Ast.ctyp
+            val constraint_ :
+              Pa_deriving_common.Type.expr * Pa_deriving_common.Type.expr ->
+              Camlp4.PreCast.Ast.ctyp * Camlp4.PreCast.Ast.ctyp
+            val decl :
+              Pa_deriving_common.Type.decl -> Camlp4.PreCast.Ast.ctyp
+            val sigdecl :
+              Pa_deriving_common.Type.decl -> Camlp4.PreCast.Ast.ctyp list
+          end
+        val seq :
+          Camlp4.PreCast.Ast.expr ->
+          Camlp4.PreCast.Ast.expr -> Camlp4.PreCast.Ast.expr
+        val seq_list :
+          Camlp4.PreCast.Ast.expr list -> Camlp4.PreCast.Ast.expr
+        val record_pattern :
+          ?prefix:string ->
+          Pa_deriving_common.Type.field list -> Camlp4.PreCast.Ast.patt
+        val record_expr :
+          (string * Camlp4.PreCast.Ast.expr) list -> Camlp4.PreCast.Ast.expr
+        val record_expression :
+          ?prefix:string ->
+          Pa_deriving_common.Type.field list -> Camlp4.PreCast.Ast.expr
+        val expr_list :
+          Camlp4.PreCast.Ast.expr list -> Camlp4.PreCast.Ast.expr
+        val patt_list :
+          Camlp4.PreCast.Ast.patt list -> Camlp4.PreCast.Ast.patt
+        val tuple_expr :
+          Camlp4.PreCast.Ast.expr list -> Camlp4.PreCast.Ast.expr
+        val tuple :
+          ?param:string ->
+          int ->
+          string list * Camlp4.PreCast.Ast.patt * Camlp4.PreCast.Ast.expr
+        val cast_pattern :
+          Pa_deriving_common.Type.qname Pa_deriving_common.Type.NameMap.t ->
+          ?param:string ->
+          Pa_deriving_common.Type.expr ->
+          Camlp4.PreCast.Ast.patt * Camlp4.PreCast.Ast.expr *
+          Camlp4.PreCast.Ast.expr
+        val modname_from_qname :
+          qname:string list -> classname:string -> Camlp4.PreCast.Ast.ident
+      end
+    val wrap : Camlp4.PreCast.Ast.expr -> Camlp4.PreCast.Ast.str_item list
+    val generator : Generator.generator
+    val generate :
+      Pa_deriving_common.Type.decl list -> Camlp4.PreCast.Ast.str_item
+    val generate_sigs :
+      Pa_deriving_common.Type.decl list -> Camlp4.PreCast.Ast.sig_item
+  end >>
