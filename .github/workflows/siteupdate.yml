@@ -47,7 +47,8 @@ jobs:
           export HOW_OUT=_doc
           eval $(opam env)
           quickdop -f $HOW_DOC $HOW_OUT -t json -c $HOW_CONFIG -viu
-          HOW_LATEST=$(find $HOW_DOC -maxdepth 1 -type d -not -name $HOW_DOC -not -name dev -exec basename {} \; | sort -nr | head -n 1)
+#          HOW_LATEST=$(find $HOW_DOC -maxdepth 1 -type d -not -name $HOW_DOC -not -name dev -exec basename {} \; | sort -nr | head -n 1)
+          HOW_LATEST=dev
           export HOW_LATEST
           ln -s $HOW_LATEST $HOW_OUT/latest
           echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; URL=latest/manual/intro" /></head><body></body></html>' > $HOW_OUT/index.html
