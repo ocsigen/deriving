@@ -39,6 +39,7 @@ jobs:
           opam pin add -y html_of_wiki https://github.com/ocsigen/html_of_wiki.git
           git clone --depth 1 https://github.com/ocsigen/ocsigen.github.io.git __ocsigen.github.io
           mv __ocsigen.github.io/template how_template
+          
       - name: Generate doc
         run: |
           export HOW_DOC=doc
@@ -46,6 +47,10 @@ jobs:
           export HOW_OUT=_doc
           eval $(opam env)
           quickdop -f $HOW_DOC $HOW_OUT -t json -c $HOW_CONFIG -viu
+          HOW_LATEST=$(find $HOW_DOC -maxdepth 1 -type d -not -name $HOW_DOC -not -name dev -exec basename {} \; | sort -nr | head -n 1)
+          export HOW_LATEST
+          ln -s $HOW_LATEST $HOW_OUT/latest
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; URL=latest/manual/intro" /></head><body></body></html>' > $HOW_OUT/index.html
           
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
